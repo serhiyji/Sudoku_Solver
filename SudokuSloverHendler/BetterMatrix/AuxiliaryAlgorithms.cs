@@ -1,12 +1,9 @@
-﻿using SudokuSloverHendler.Collections;
+﻿using System;
+using SudokuSloverHendler.Collections;
 using SudokuSloverHendler.Coordinates;
 using SudokuSloverHendler.Matrix;
 using SudokuSloverHendler.Points;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SudokuSloverHendler.BetterMatrix
 {
