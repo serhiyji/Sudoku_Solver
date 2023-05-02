@@ -27,7 +27,6 @@ namespace WPF_Client
         }
         private void BindGridToBetterMatrix(ref UniformGrid grid)
         {
-            //grid = new UniformGrid();
             grid.Columns = 9;
             grid.Rows = 9;
             for (int i = 0; i < 9; i++) // row
@@ -37,11 +36,29 @@ namespace WPF_Client
                 {
                     Grid.SetColumn(grid, j);
 
+                    Border border = new Border()
+                    {
+                        HorizontalAlignment = HorizontalAlignment.Stretch,
+                        VerticalAlignment = VerticalAlignment.Stretch,
+                        Margin = new Thickness(5),
+                        Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 0)),
+                    };
+
+                    Canvas canvas = new Canvas()
+                    {
+                        HorizontalAlignment = HorizontalAlignment.Stretch,
+                        VerticalAlignment = VerticalAlignment.Stretch,
+                    };
+
+                    border.Child = canvas;
+
                     TextBlock textBlock = new TextBlock()
                     {
                         HorizontalAlignment = HorizontalAlignment.Center,
-                        VerticalAlignment= VerticalAlignment.Center,
-                    }; // main value
+                        VerticalAlignment = VerticalAlignment.Center,
+                    };
+
+                    canvas.Children.Add(textBlock);
 
                     Binding BindingMainValue = new Binding()
                     {
@@ -58,10 +75,9 @@ namespace WPF_Client
                     };
 
                     textBlock.SetBinding(TextBlock.TextProperty, BindingMainValue);
-                    textBlock.SetBinding(TextBlock.BackgroundProperty, BindingMainColor);
+                    border.SetBinding(Border.BackgroundProperty, BindingMainColor);
 
-
-                    grid.Children.Add(textBlock);
+                    grid.Children.Add(border);
                 }
             }
         }
