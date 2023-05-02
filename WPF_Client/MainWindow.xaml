@@ -6,7 +6,20 @@
         xmlns:local="clr-namespace:WPF_Client"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+    <DockPanel LastChildFill="True">
+        <DockPanel>
+            
+        <UniformGrid Columns="3" DockPanel.Dock="Bottom">
+            <Button>Next Hint</Button>
+            <Button>Slove up to</Button>
+            <Button>Execute</Button>
+            
+        </UniformGrid>
+            
+        <UniformGrid Name="grid_matrix">
+            
+        </UniformGrid>
+            
+        </DockPanel>
+    </DockPanel>
 </Window>

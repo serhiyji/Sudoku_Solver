@@ -15,14 +15,14 @@ using System.Windows.Shapes;
 
 namespace WPF_Client
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+        ViewModel model;
         public MainWindow()
         {
             InitializeComponent();
+            model = new ViewModel(ref grid_matrix);
+            this.DataContext = model;
         }
     }
 }

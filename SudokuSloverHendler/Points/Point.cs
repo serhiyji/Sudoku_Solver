@@ -1,8 +1,10 @@
 ﻿using System;
+using PropertyChanged;
 using SudokuSloverHendler.Collections;
 
 namespace SudokuSloverHendler.Points
 {
+    [AddINotifyPropertyChangedInterface]
     public partial class Point
     {
         public int value { get; set; }

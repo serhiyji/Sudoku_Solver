@@ -1,5 +1,6 @@
 ﻿using PropertyChanged;
 using SudokuSloverHendler.BetterMatrix;
+using SudokuSloverHendler.Coordinates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,6 @@ namespace WPF_Client
         private int _count;
         private int _count_not_filled;
         private BetterMatrix matrix;
+        private PosPoint CursorPosition;
     }
 }

@@ -16,12 +16,12 @@ namespace SudokuSloverHendler.Matrix
         }
         public void SetDelfaultValues()
         {
-            System.Reflection.ConstructorInfo constructor = typeof(T).GetConstructor(Type.EmptyTypes);
-            T obj = ReferenceEquals(constructor, null) ? default : (T)constructor.Invoke(new object[0]);
             for (int i = 0; i < matrix.GetLength(0); i++)
             {
                 for (int j = 0; j < matrix.GetLength(1); j++)
                 {
+                    System.Reflection.ConstructorInfo constructor = typeof(T).GetConstructor(Type.EmptyTypes);
+                    T obj = ReferenceEquals(constructor, null) ? default : (T)constructor.Invoke(new object[0]);
                     matrix[i, j] = obj;
                 }
             }

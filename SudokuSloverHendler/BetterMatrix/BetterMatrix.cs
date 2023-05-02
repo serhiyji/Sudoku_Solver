@@ -8,7 +8,7 @@ namespace SudokuSloverHendler.BetterMatrix
 {
     public partial class BetterMatrix : Matrix<Point>
     {
-        public BetterMatrix()
+        public BetterMatrix() : base()
         {
             for (int i = 0; i < matrix.GetLength(0); i++)
             {
