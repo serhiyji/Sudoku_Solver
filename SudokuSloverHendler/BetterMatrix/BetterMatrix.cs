@@ -14,7 +14,7 @@ namespace SudokuSloverHendler.BetterMatrix
             {
                 for (int j = 0; j < matrix.GetLength(1); j++)
                 {
-                    this.matrix[i, j] = new Point { value = 0, set = new Set<int>() };
+                    this.matrix[i, j] = new Point() { value = 0, set = new Set<int>() };
                 }
             }
         }

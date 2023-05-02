@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
+using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace WPF_Client
@@ -36,14 +37,30 @@ namespace WPF_Client
                 {
                     Grid.SetColumn(grid, j);
 
-                    Binding binding = new Binding()
+                    TextBlock textBlock = new TextBlock()
+                    {
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment= VerticalAlignment.Center,
+                    }; // main value
+
+                    Binding BindingMainValue = new Binding()
                     {
                         Path = new PropertyPath($"value"),
                         Source = matrix.matrix[i, j],
                         UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
                     };
-                    TextBlock textBlock = new TextBlock();
-                    textBlock.SetBinding(TextBlock.TextProperty, binding);
+
+                    Binding BindingMainColor = new Binding()
+                    {
+                        Path = new PropertyPath($"ColorValue"),
+                        Source = matrix.matrix[i, j],
+                        UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                    };
+
+                    textBlock.SetBinding(TextBlock.TextProperty, BindingMainValue);
+                    textBlock.SetBinding(TextBlock.BackgroundProperty, BindingMainColor);
+
+
                     grid.Children.Add(textBlock);
                 }
             }

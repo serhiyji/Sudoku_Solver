@@ -1,10 +1,10 @@
 ﻿using System;
+using System.Windows.Media;
 using PropertyChanged;
 using SudokuSloverHendler.Collections;
 
 namespace SudokuSloverHendler.Points
 {
-    [AddINotifyPropertyChangedInterface]
     public partial class Point
     {
         public int value { get; set; }
