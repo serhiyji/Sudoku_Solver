@@ -5,7 +5,8 @@ using SudokuSloverHendler.Collections;
 
 namespace SudokuSloverHendler.Points
 {
-    public partial class Point
+    [AddINotifyPropertyChangedInterface]
+    public class Point
     {
         public int value { get; set; }
         public Set<int> set;

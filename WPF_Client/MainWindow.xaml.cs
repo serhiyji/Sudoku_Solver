@@ -21,7 +21,7 @@ namespace WPF_Client
         public MainWindow()
         {
             InitializeComponent();
-            model = new ViewModel(ref grid_matrix);
+            model = new ViewModel();
             this.DataContext = model;
         }
     }

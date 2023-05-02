@@ -1,5 +1,6 @@
 ﻿using SudokuSloverHendler.BetterMatrix;
 using SudokuSloverHendler.Coordinates;
+using SudokuSloverHendler.Points;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,68 +17,33 @@ namespace WPF_Client
 {
     public partial class ViewModel
     {
-        public ViewModel(ref UniformGrid uniformGrid)
+        private DispatcherTimer timer;
+        public ViewModel()
         {
             this._count_filled = 0;
             this._count = 81;
             this._count_not_filled = 81;
             this.matrix = new BetterMatrix();
             this.CursorPosition = new PosPoint(4, 4);
-            BindGridToBetterMatrix(ref uniformGrid);
+            this.points = new System.Collections.ObjectModel.ObservableCollection<ViewPoint>();
+            BindGridToBetterMatrix();
+            timer = new DispatcherTimer();
+            timer.Interval = new TimeSpan(0, 0, 0, 1, 0);
+            timer.Tick += Timer_Tick;
+            timer.Start();
         }
-        private void BindGridToBetterMatrix(ref UniformGrid grid)
+        private void Timer_Tick(object? sender, EventArgs e)
         {
-            grid.Columns = 9;
-            grid.Rows = 9;
+            Random random = new Random();
+            matrix.matrix[random.Next(0, 9), random.Next(0, 9)].value = random.Next(1, 100);
+        }
+        private void BindGridToBetterMatrix()
+        {
             for (int i = 0; i < 9; i++) // row
             {
-                Grid.SetRow(grid, i);
                 for (int j = 0; j < 9; j++) // collom
                 {
-                    Grid.SetColumn(grid, j);
-
-                    Border border = new Border()
-                    {
-                        HorizontalAlignment = HorizontalAlignment.Stretch,
-                        VerticalAlignment = VerticalAlignment.Stretch,
-                        Margin = new Thickness(5),
-                        Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 0)),
-                    };
-
-                    Canvas canvas = new Canvas()
-                    {
-                        HorizontalAlignment = HorizontalAlignment.Stretch,
-                        VerticalAlignment = VerticalAlignment.Stretch,
-                    };
-
-                    border.Child = canvas;
-
-                    TextBlock textBlock = new TextBlock()
-                    {
-                        HorizontalAlignment = HorizontalAlignment.Center,
-                        VerticalAlignment = VerticalAlignment.Center,
-                    };
-
-                    canvas.Children.Add(textBlock);
-
-                    Binding BindingMainValue = new Binding()
-                    {
-                        Path = new PropertyPath($"value"),
-                        Source = matrix.matrix[i, j],
-                        UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
-                    };
-
-                    Binding BindingMainColor = new Binding()
-                    {
-                        Path = new PropertyPath($"ColorValue"),
-                        Source = matrix.matrix[i, j],
-                        UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
-                    };
-
-                    textBlock.SetBinding(TextBlock.TextProperty, BindingMainValue);
-                    border.SetBinding(Border.BackgroundProperty, BindingMainColor);
-
-                    grid.Children.Add(border);
+                    this.points.Add(new ViewPoint(ref matrix.matrix[i, j]));
                 }
             }
         }
