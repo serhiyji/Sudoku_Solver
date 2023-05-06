@@ -1,14 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using PropertyChanged;
 using SudokuSloverHendler.Coordinates;
 
 namespace SudokuSloverHendler.Matrix
 {
+    [AddINotifyPropertyChangedInterface]
     public class Matrix<T> where T : new()
     {
-        public T[,] matrix = new T[9, 9];
+        public T[,] matrix { get; set; }
         public const int size = 9;
         public Matrix(bool IsSetDefaultValues = true)
         {
+            this.matrix = new T[size, size];
             if (IsSetDefaultValues)
             {
                 SetDelfaultValues();

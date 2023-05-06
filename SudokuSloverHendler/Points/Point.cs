@@ -1,15 +1,16 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows.Media;
 using PropertyChanged;
 using SudokuSloverHendler.Collections;
 
 namespace SudokuSloverHendler.Points
 {
-    [AddINotifyPropertyChangedInterface]
-    public class Point
+    public partial class Point
     {
         public int value { get; set; }
-        public Set<int> set;
+        public Set<int> set { get; set; }
         public Point() : this(0)
         {
 
