@@ -6,38 +6,76 @@
         xmlns:local="clr-namespace:WPF_Client"
         d:DataContext="{d:DesignInstance Type=local:ViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="500">
     <Window.Resources>
-
+        <!--<Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Margin" Value="5"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+            <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
+            <Setter Property="Padding" Value="5"></Setter>
+        </Style>-->
+        <!--<Style x:Key="PointMainMatrix" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+            <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
+        </Style>-->
     </Window.Resources>
-    <DockPanel LastChildFill="True">
+    <DockPanel LastChildFill="True" Background="AliceBlue">
         <DockPanel>
+            <DockPanel DockPanel.Dock="Bottom" LastChildFill="True">
+                <UniformGrid Columns="2" Rows="2" DockPanel.Dock="Right">
+                    <Button>Next Hint</Button>
+                    <Button>Execute</Button>
+                    <Button>Slove up to</Button>
+                    <Button>Cancel</Button>
+                </UniformGrid>
+                <TextBlock></TextBlock>
+            </DockPanel>
 
-            <UniformGrid Columns="3" DockPanel.Dock="Bottom">
-                <Button>Next Hint</Button>
-                <Button>Slove up to</Button>
-                <Button>Execute</Button>
+            
+            <!--матриця-->
+            <Border BorderThickness="2" BorderBrush="Red" CornerRadius="5">
+                <Grid>
+                    <ItemsControl 
+                        ItemsSource="{Binding Path=Points, UpdateSourceTrigger=PropertyChanged}"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        >
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <DockPanel 
+                                    Margin="5"
+                                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                    LastChildFill="True">
+                                    <Grid>
 
-            </UniformGrid>
+                                        <Border BorderBrush="Red" BorderThickness="1"
+                                                HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                                >
+                                            <TextBlock Background="Coral" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                            Text="{Binding Path=Value, UpdateSourceTrigger=PropertyChanged}"
+                                                            ></TextBlock>
 
-            <Grid>
-                <ItemsControl 
-                        ItemsSource="{Binding Path=Points, UpdateSourceTrigger=PropertyChanged}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Path=Value, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <UniformGrid Columns="9" Rows="9">
-                                
-                            </UniformGrid>
-                        </ItemsPanelTemplate>
+                                        </Border>
+                                        <UniformGrid Columns="3" Rows="3">
+                                            
+                                        </UniformGrid>
+                                    </Grid>
+                                </DockPanel>
+                                    
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                        
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="9" Rows="9"> </UniformGrid>
+                            </ItemsPanelTemplate>
 
-                    </ItemsControl.ItemsPanel>
-                </ItemsControl>
-            </Grid>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </Grid>
+            </Border>
 
         </DockPanel>
     </DockPanel>
