@@ -19,6 +19,7 @@ namespace SudokuSloverHendler.Points
         {
             value = v;
             set = new Set<int>();
+            IsSelected = false;
         }
         public static bool operator ==(Point p1, int value)
         {

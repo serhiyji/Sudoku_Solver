@@ -1,4 +1,5 @@
-﻿using PropertyChanged;
+﻿using ClientApp;
+using PropertyChanged;
 using SudokuSloverHendler.BetterMatrix;
 using SudokuSloverHendler.Coordinates;
 using System;
@@ -14,8 +15,10 @@ namespace WPF_Client
     public partial class ViewModel
     {
         private BetterMatrix matrix;
-        private PosPoint CursorPosition;
+        private CursorPosition cursorPosition;
         public ObservableCollection<SudokuSloverHendler.Points.Point> points { get; set; }
         public IEnumerable<SudokuSloverHendler.Points.Point> Points => points;
+        // Buttons
+        //private RelayCommand
     }
 }

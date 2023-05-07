@@ -22,7 +22,7 @@ namespace WPF_Client
         public ViewModel()
         {
             this.matrix = new BetterMatrix();
-            this.CursorPosition = new PosPoint(4, 4);
+            this.cursorPosition = new CursorPosition(ref matrix, 4, 4);
             this.points = new ObservableCollection<SudokuSloverHendler.Points.Point>();
             BindGridToBetterMatrix();
         }
