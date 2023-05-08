@@ -46,16 +46,16 @@ namespace WPF_Client
             this.LeftCommand = new RelayCommand((i) => LeftBtnClick(), (i) => true);
             this.RightCommand = new RelayCommand((i) => RightBtnClick(), (i) => true);
 
-            this.NumPad0Command = new RelayCommand((i) => this.SetValue(0));
-            this.NumPad1Command = new RelayCommand((i) => this.SetValue(1));
-            this.NumPad2Command = new RelayCommand((i) => this.SetValue(2));
-            this.NumPad3Command = new RelayCommand((i) => this.SetValue(3));
-            this.NumPad4Command = new RelayCommand((i) => this.SetValue(4));
-            this.NumPad5Command = new RelayCommand((i) => this.SetValue(5));
-            this.NumPad6Command = new RelayCommand((i) => this.SetValue(6));
-            this.NumPad7Command = new RelayCommand((i) => this.SetValue(7));
-            this.NumPad8Command = new RelayCommand((i) => this.SetValue(8));
-            this.NumPad9Command = new RelayCommand((i) => this.SetValue(9));
+            this.NumPad0Command = new RelayCommand((i) => this.SetValue(0), (i) => true);
+            this.NumPad1Command = new RelayCommand((i) => this.SetValue(1), (i) => true);
+            this.NumPad2Command = new RelayCommand((i) => this.SetValue(2), (i) => true);
+            this.NumPad3Command = new RelayCommand((i) => this.SetValue(3), (i) => true);
+            this.NumPad4Command = new RelayCommand((i) => this.SetValue(4), (i) => true);
+            this.NumPad5Command = new RelayCommand((i) => this.SetValue(5), (i) => true);
+            this.NumPad6Command = new RelayCommand((i) => this.SetValue(6), (i) => true);
+            this.NumPad7Command = new RelayCommand((i) => this.SetValue(7), (i) => true);
+            this.NumPad8Command = new RelayCommand((i) => this.SetValue(8), (i) => true);
+            this.NumPad9Command = new RelayCommand((i) => this.SetValue(9), (i) => true);
         }
 
         private void BindGridToBetterMatrix()

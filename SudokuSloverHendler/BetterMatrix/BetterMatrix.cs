@@ -34,11 +34,14 @@ namespace SudokuSloverHendler.BetterMatrix
             {
                 if (this.matrix[pos_p.i, pos_p.j].value == 0)
                 {
-                    this.matrix[pos_p.i, pos_p.j].value = value;
-                    this.matrix[pos_p.i, pos_p.j].set -= new Set<int>(1 , 2, 3, 4, 5, 6, 7, 8, 9);
-                    this.ClearValueInSetInHorizontalLine(pos_p.i, value);
-                    this.ClearValueInSetInVerticalLine(pos_p.j, value);
-                    this.ClearValueInSetInSquare(new PosSquare(pos_p), value);
+                    if (this.matrix[pos_p.i, pos_p.j].set.Contains(value))
+                    {
+                        this.matrix[pos_p.i, pos_p.j].value = value;
+                        this.matrix[pos_p.i, pos_p.j].set -= new Set<int>(1 , 2, 3, 4, 5, 6, 7, 8, 9);
+                        this.ClearValueInSetInHorizontalLine(pos_p.i, value);
+                        this.ClearValueInSetInVerticalLine(pos_p.j, value);
+                        this.ClearValueInSetInSquare(new PosSquare(pos_p), value);
+                    }
                 }
                 else
                 {
