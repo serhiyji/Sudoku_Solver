@@ -23,7 +23,7 @@ namespace SudokuSloverHendler.Collections
         public static Set<T> operator +(Set<T> set1, Set<T> set2)
         {
             Set<T> temp = new Set<T>(set1);
-            temp.AddRange(set2.Where(i => !set2.Contains(i)));
+            temp.AddRange(set2.Where(i => !set1.Contains(i)));
             return temp;
         }
         // *
@@ -37,7 +37,7 @@ namespace SudokuSloverHendler.Collections
 
         public override string ToString()
         {
-            return string.Join("", this);
+            return string.Join(", ", this);
         }
     }
 }

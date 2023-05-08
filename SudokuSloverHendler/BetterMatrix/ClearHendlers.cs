@@ -57,5 +57,32 @@ namespace SudokuSloverHendler.BetterMatrix
         { return this.ClearValuesInSetInRange(new PosPoint(pos_s.i * 3, pos_s.j * 3), new PosPoint(pos_s.i * 3 + 2, pos_s.j * 3 + 2), values, arr); }
         public bool ClearValuesInSetInPosPoint(PosPoint pos_p, Set<int> values)
         { return this.ClearValuesInSetInRange(pos_p, pos_p, values); }
+
+        public void SettingPosibleValue(PosPoint pos_p, int value)
+        {
+            this.SettingPosibleValueInHorizontalLine(pos_p.i, value);
+            this.SettingPosibleValueInVerticalLine(pos_p.j, value);
+            this.SettingPosibleValueInSquare(new PosSquare(pos_p), value);
+            this.matrix[pos_p.i, pos_p.j].set = GetPossibleValuesInPosPoint(pos_p);
+        }
+        private void SettingPosibleValue(PosPoint pos1, PosPoint pos2, int value)
+        {
+            for (int i = pos1.i; i <= pos2.i; i++)
+            {
+                for (int j = pos1.j; j <= pos2.j; j++)
+                {
+                    if (matrix[i, j].value == 0 && this.GetPossibleValuesInPosPoint(new PosPoint(i, j)).Contains(value))
+                    {
+                        this.matrix[i, j].set += new Set<int>(value);
+                    }
+                }
+            }
+        }
+        private void SettingPosibleValueInHorizontalLine(int index, int value)
+        { this.SettingPosibleValue(new PosPoint(index, 0), new PosPoint(index, size - 1), value); }
+        private void SettingPosibleValueInVerticalLine(int index, int value)
+        { this.SettingPosibleValue(new PosPoint(0, index), new PosPoint(size - 1, index), value); }
+        private void SettingPosibleValueInSquare(PosSquare pos_s, int value)
+        { this.SettingPosibleValue(new PosPoint(pos_s.i * 3, pos_s.j * 3), new PosPoint(pos_s.i * 3 + 2, pos_s.j * 3 + 2), value); }
     }
 }

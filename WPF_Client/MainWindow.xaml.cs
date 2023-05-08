@@ -22,8 +22,6 @@ namespace WPF_Client
         {
             InitializeComponent();
             model = new ViewModel();
-            //this.KeyDown += (s, e) => { };
-            //this.MouseLeftButtonDown += (s, e) => { };
             this.DataContext = model;
         }
     }

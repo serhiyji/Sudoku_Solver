@@ -11,16 +11,13 @@ namespace SudokuSloverHendler.Points
     {
         public int value { get; set; }
         public Set<int> set { get; set; }
-        public Point() : this(0)
-        {
-
-        }
         public Point(int v)
         {
-            value = v;
-            set = new Set<int>();
-            IsSelected = false;
+            this.value = v;
+            this.set = new Set<int>();
+            this.SetViewProp();
         }
+        public Point() : this(0) { }
         public static bool operator ==(Point p1, int value)
         {
             return p1.Equals(new Point(value));

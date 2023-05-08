@@ -26,6 +26,7 @@ namespace WPF_Client
             this.DescriptionAlgorithm = "";
 
             this.matrix = new BetterMatrix();
+            this.matrix.SetPossibleValues();
             this.cursorPosition = new CursorPosition(ref matrix, 4, 4);
             this.points = new ObservableCollection<SudokuSloverHendler.Points.Point>();
 
@@ -50,7 +51,7 @@ namespace WPF_Client
             this.NumPad2Command = new RelayCommand((i) => this.SetValue(2));
             this.NumPad3Command = new RelayCommand((i) => this.SetValue(3));
             this.NumPad4Command = new RelayCommand((i) => this.SetValue(4));
-            this.NumPad5Command = new RelayCommand((i) => this.SetValue(4));
+            this.NumPad5Command = new RelayCommand((i) => this.SetValue(5));
             this.NumPad6Command = new RelayCommand((i) => this.SetValue(6));
             this.NumPad7Command = new RelayCommand((i) => this.SetValue(7));
             this.NumPad8Command = new RelayCommand((i) => this.SetValue(8));
@@ -69,9 +70,9 @@ namespace WPF_Client
             }
         }
 
-        private async void SetValue(int value)
+        private void SetValue(int value)
         {
-            //matrix.SetValue(new PosPoint(cursorPosition.I, cursorPosition.J), value);
+            matrix.SetValue(new PosPoint(cursorPosition.I, cursorPosition.J), value);
         }
 
         #region Buttons Handlers
@@ -94,7 +95,7 @@ namespace WPF_Client
         }
         private void CancelBtnClick()
         {
-
+            
         }
         #endregion
 
