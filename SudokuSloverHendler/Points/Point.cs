@@ -9,20 +9,20 @@ namespace SudokuSloverHendler.Points
 {
     public partial class Point
     {
-        public int value { get; set; }
-        public Set<int> set { get; set; }
-        public Point(int v)
+        public byte value { get; set; }
+        public Set<byte> set { get; set; }
+        public Point(byte v)
         {
             this.value = v;
-            this.set = new Set<int>();
+            this.set = new Set<byte>();
             this.SetViewProp();
         }
         public Point() : this(0) { }
-        public static bool operator ==(Point p1, int value)
+        public static bool operator ==(Point p1, byte value)
         {
             return p1.Equals(new Point(value));
         }
-        public static bool operator !=(Point p1, int value)
+        public static bool operator !=(Point p1, byte value)
         {
             return !p1.Equals(new Point(value));
         }

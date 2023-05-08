@@ -57,10 +57,10 @@ namespace SudokuSloverHendler.BetterMatrix
                     {
                         if (pos[i1] != pos[i2] && pos[i2] != pos[i3] && pos[i1] != pos[i3])
                         {
-                            Set<int> set1 = this.matrix[pos[i1].i, pos[i1].j].set;
-                            Set<int> set2 = this.matrix[pos[i2].i, pos[i2].j].set;
-                            Set<int> set3 = this.matrix[pos[i3].i, pos[i3].j].set;
-                            Set<int> all = set1 + set2 + set3;
+                            Set<byte> set1 = this.matrix[pos[i1].i, pos[i1].j].set;
+                            Set<byte> set2 = this.matrix[pos[i2].i, pos[i2].j].set;
+                            Set<byte> set3 = this.matrix[pos[i3].i, pos[i3].j].set;
+                            Set<byte> all = set1 + set2 + set3;
                             if ((set1.Count() >= 2 && set1.Count() <= 3) && (set2.Count() >= 2 && set2.Count() <= 3) && (set3.Count() >= 2 && set3.Count() <= 3) && all.Count() == 3)
                             {
                                 Intersections triple = new Intersections(new Arrange<PosPoint>(pos[i1], pos[i2], pos[i3]), all);
@@ -91,11 +91,11 @@ namespace SudokuSloverHendler.BetterMatrix
                             if (pos[i1] != pos[i2] && pos[i2] != pos[i3] && pos[i1] != pos[i3]
                              && pos[i3] != pos[i4] && pos[i1] != pos[i4] && pos[i2] != pos[i4])
                             {
-                                Set<int> set1 = this.matrix[pos[i1].i, pos[i1].j].set;
-                                Set<int> set2 = this.matrix[pos[i2].i, pos[i2].j].set;
-                                Set<int> set3 = this.matrix[pos[i3].i, pos[i3].j].set;
-                                Set<int> set4 = this.matrix[pos[i4].i, pos[i4].j].set;
-                                Set<int> all = set1 + set2 + set3 + set4;
+                                Set<byte> set1 = this.matrix[pos[i1].i, pos[i1].j].set;
+                                Set<byte> set2 = this.matrix[pos[i2].i, pos[i2].j].set;
+                                Set<byte> set3 = this.matrix[pos[i3].i, pos[i3].j].set;
+                                Set<byte> set4 = this.matrix[pos[i4].i, pos[i4].j].set;
+                                Set<byte> all = set1 + set2 + set3 + set4;
                                 if ((set1.Count() >= 2 && set1.Count() <= 4) && (set2.Count() >= 2 && set2.Count() <= 4)
                                  && (set3.Count() >= 2 && set3.Count() <= 4) && (set4.Count() >= 2 && set4.Count() <= 4) && all.Count() == 4)
                                 {
@@ -116,9 +116,9 @@ namespace SudokuSloverHendler.BetterMatrix
         private Arrange<Intersections> GetHiddenPairInRange(PosPoint pos1, PosPoint pos2)
         {
             Arrange<Intersections> pairs = new Arrange<Intersections>();
-            for (int num1 = 0; num1 < 10; num1++)
+            for (byte num1 = 0; num1 < 10; num1++)
             {
-                for (int num2 = 1; num2 < 10; num2++)
+                for (byte num2 = 1; num2 < 10; num2++)
                 {
                     if (num1 != num2)
                     {
@@ -128,7 +128,7 @@ namespace SudokuSloverHendler.BetterMatrix
                             Arrange<PosPoint> arr1 = this.GetPossPosPointsInRange(pos1, pos2, num1), arr2 = this.GetPossPosPointsInRange(pos1, pos2, num2);
                             if (arr1 == arr2)
                             {
-                                Intersections para = new Intersections(new Arrange<PosPoint>(arr1[0], arr1[1]), new Set<int>(num1, num2));
+                                Intersections para = new Intersections(new Arrange<PosPoint>(arr1[0], arr1[1]), new Set<byte>(num1, num2));
                                 if (!pairs.Contains(para))
                                 {
                                     pairs.Add(para);
@@ -144,11 +144,11 @@ namespace SudokuSloverHendler.BetterMatrix
         private Arrange<Intersections> GetHiddenTripleInRange(PosPoint pos1, PosPoint pos2)
         {
             Arrange<Intersections> triples = new Arrange<Intersections>();
-            for (int num1 = 0; num1 < 10; num1++)
+            for (byte num1 = 0; num1 < 10; num1++)
             {
-                for (int num2 = 0; num2 < 10; num2++)
+                for (byte num2 = 0; num2 < 10; num2++)
                 {
-                    for (int num3 = 0; num3 < 10; num3++)
+                    for (byte num3 = 0; num3 < 10; num3++)
                     {
                         int count_num1 = this.GetCountPossiblePosPointInRange(pos1, pos2, num1);
                         int count_num2 = this.GetCountPossiblePosPointInRange(pos1, pos2, num2);
@@ -158,8 +158,8 @@ namespace SudokuSloverHendler.BetterMatrix
                             Set<PosPoint> poss_num = new Set<PosPoint>(this.GetPossPosPointsInRange(pos1, pos2, num1)) + new Set<PosPoint>(this.GetPossPosPointsInRange(pos1, pos2, num2)) + new Set<PosPoint>(this.GetPossPosPointsInRange(pos1, pos2, num3));
                             if (poss_num.Count() == 3)
                             {
-                                Set<int> set_other = new Set<int>();
-                                Set<int> values = new Set<int>();
+                                Set<byte> set_other = new Set<byte>();
+                                Set<byte> values = new Set<byte>();
                                 for (int i = pos1.i; i <= pos2.i; i++)
                                 {
                                     for (int j = pos1.j; j <= pos2.j; j++)
@@ -194,13 +194,13 @@ namespace SudokuSloverHendler.BetterMatrix
         private Arrange<Intersections> GetHiddenQuadrupleInRange(PosPoint pos1, PosPoint pos2)
         {
             Arrange<Intersections> quadruples = new Arrange<Intersections>();
-            for (int num1 = 1; num1 < 10; num1++)
+            for (byte num1 = 1; num1 < 10; num1++)
             {
-                for (int num2 = 1; num2 < 10; num2++)
+                for (byte num2 = 1; num2 < 10; num2++)
                 {
-                    for (int num3 = 1; num3 < 10; num3++)
+                    for (byte num3 = 1; num3 < 10; num3++)
                     {
-                        for (int num4 = 1; num4 < 10; num4++)
+                        for (byte num4 = 1; num4 < 10; num4++)
                         {
                             int count_num1 = this.GetCountPossiblePosPointInRange(pos1, pos2, num1);
                             int count_num2 = this.GetCountPossiblePosPointInRange(pos1, pos2, num2);
@@ -214,8 +214,8 @@ namespace SudokuSloverHendler.BetterMatrix
                                                        + new Set<PosPoint>(this.GetPossPosPointsInRange(pos1, pos2, num3)) + new Set<PosPoint>(this.GetPossPosPointsInRange(pos1, pos2, num4));
                                 if (poss_num.Count() == 4)
                                 {
-                                    Set<int> set_other = new Set<int>();
-                                    Set<int> values = new Set<int>();
+                                    Set<byte> set_other = new Set<byte>();
+                                    Set<byte> values = new Set<byte>();
                                     for (int i = pos1.i; i <= pos2.i; i++)
                                     {
                                         for (int j = pos1.j; j <= pos2.j; j++)

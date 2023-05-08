@@ -70,7 +70,7 @@ namespace WPF_Client
             }
         }
 
-        private void SetValue(int value)
+        private void SetValue(byte value)
         {
             matrix.SetValue(new PosPoint(cursorPosition.I, cursorPosition.J), value);
         }

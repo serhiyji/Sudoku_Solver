@@ -21,16 +21,16 @@ namespace SudokuSloverHendler.BetterMatrix
                 }
             }
         }
-        private Set<int> GetPossibleValuesInPosPoint(PosPoint pos_p)
+        private Set<byte> GetPossibleValuesInPosPoint(PosPoint pos_p)
         {
-            Set<int> set1 = new Set<int>(this.GetSetHorizontalLine(pos_p.i));
-            Set<int> set2 = new Set<int>(this.GetSetVerticalLine(pos_p.j));
-            Set<int> set3 = new Set<int>(this.GetSetSquare(new PosSquare(pos_p)));
-            return (new Set<int>(1, 2, 3, 4, 5, 6, 7, 8, 9) - (set1 + set2 + set3));
+            Set<byte> set1 = new Set<byte>(this.GetSetHorizontalLine(pos_p.i));
+            Set<byte> set2 = new Set<byte>(this.GetSetVerticalLine(pos_p.j));
+            Set<byte> set3 = new Set<byte>(this.GetSetSquare(new PosSquare(pos_p)));
+            return (new Set<byte>(1, 2, 3, 4, 5, 6, 7, 8, 9) - (set1 + set2 + set3));
         }
-        private Set<int> GetSetInRange(PosPoint pos1, PosPoint pos2)
+        private Set<byte> GetSetInRange(PosPoint pos1, PosPoint pos2)
         {
-            Set<int> set = new Set<int>();
+            Set<byte> set = new Set<byte>();
             for (int i = pos1.i; i <= pos2.i; i++)
             {
                 for (int j = pos1.j; j <= pos2.j; j++)
@@ -43,11 +43,11 @@ namespace SudokuSloverHendler.BetterMatrix
             }
             return set;
         }
-        private Set<int> GetSetHorizontalLine(int index)
+        private Set<byte> GetSetHorizontalLine(int index)
         { return this.GetSetInRange(new PosPoint(index, 0), new PosPoint(index, size - 1)); }
-        private Set<int> GetSetVerticalLine(int index)
+        private Set<byte> GetSetVerticalLine(int index)
         { return this.GetSetInRange(new PosPoint(0, index), new PosPoint(size - 1, index)); }
-        private Set<int> GetSetSquare(PosSquare pos_s)
+        private Set<byte> GetSetSquare(PosSquare pos_s)
         { return this.GetSetInRange(new PosPoint(pos_s.i * 3, pos_s.j * 3), new PosPoint(pos_s.i * 3 + 2, pos_s.j * 3 + 2)); }
     }
 }

@@ -7,9 +7,9 @@ namespace SudokuSloverHendler
     public class Intersections
     {
         public Arrange<PosPoint> PosPoints = new Arrange<PosPoint>();
-        public Set<int> values = new Set<int>();
+        public Set<byte> values = new Set<byte>();
         public Intersections() { }
-        public Intersections(Arrange<PosPoint> ArrPos, Set<int> SetValues)
+        public Intersections(Arrange<PosPoint> ArrPos, Set<byte> SetValues)
         {
             this.PosPoints = ArrPos;
             this.values = SetValues;

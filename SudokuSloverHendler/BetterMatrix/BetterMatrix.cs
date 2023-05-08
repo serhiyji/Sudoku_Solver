@@ -15,13 +15,13 @@ namespace SudokuSloverHendler.BetterMatrix
             {
                 for (int j = 0; j < matrix.GetLength(1); j++)
                 {
-                    this.matrix[i, j] = new Point() { value = 0, set = new Set<int>() };
+                    this.matrix[i, j] = new Point() { value = 0, set = new Set<byte>() };
                 }
             }
         }
-        public void SetValue(PosPoint pos_p, int value)
+        public void SetValue(PosPoint pos_p, byte value)
         {
-            int last_value = matrix[pos_p.i, pos_p.j].value;
+            byte last_value = matrix[pos_p.i, pos_p.j].value;
             if (value == 0)
             {
                 if (last_value != 0)
@@ -37,7 +37,7 @@ namespace SudokuSloverHendler.BetterMatrix
                     if (this.matrix[pos_p.i, pos_p.j].set.Contains(value))
                     {
                         this.matrix[pos_p.i, pos_p.j].value = value;
-                        this.matrix[pos_p.i, pos_p.j].set -= new Set<int>(1 , 2, 3, 4, 5, 6, 7, 8, 9);
+                        this.matrix[pos_p.i, pos_p.j].set -= new Set<byte>(1 , 2, 3, 4, 5, 6, 7, 8, 9);
                         this.ClearValueInSetInHorizontalLine(pos_p.i, value);
                         this.ClearValueInSetInVerticalLine(pos_p.j, value);
                         this.ClearValueInSetInSquare(new PosSquare(pos_p), value);
@@ -56,7 +56,7 @@ namespace SudokuSloverHendler.BetterMatrix
             {
                 for (int j = 0; j < mat.matrix.GetLength(1); j++)
                 {
-                    this.matrix[i, j].value = (int)mat.matrix[i, j];
+                    this.matrix[i, j].value = (byte)mat.matrix[i, j];
                 }
             }
         }

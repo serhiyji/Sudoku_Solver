@@ -36,6 +36,28 @@ namespace SudokuSloverHendler.Matrix
         {
             matrix[pos.i, pos.j] = value;
         }
+        public T this[int i, int j]
+        {
+            get
+            {
+                return matrix[i, j];
+            }
+            set
+            {
+                matrix[i, j] = value;
+            }
+        }
+        public T this[PosPoint pos_p]
+        {
+            get
+            {
+                return matrix[pos_p.i, pos_p.j];
+            }
+            set
+            {
+                matrix[pos_p.i, pos_p.j] = value;
+            }
+        }
         public override string ToString()
         {
             string res = "";
