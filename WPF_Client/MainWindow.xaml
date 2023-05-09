@@ -67,8 +67,8 @@
                     <Button Command="{Binding Path=SloveUpToCmd, UpdateSourceTrigger=PropertyChanged}">Slove up to</Button>
                     <Button Command="{Binding Path=Cancel, UpdateSourceTrigger=PropertyChanged}">Cancel</Button>
                 </UniformGrid>
-                <TextBox Margin="5" VerticalScrollBarVisibility="Visible"
-                         Text="{Binding Path=DescriptionAlgorithm, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                <TextBlock TextAlignment="Center" Margin="5"
+                           Text="{Binding Path=Intersection.NameMethodSlover, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
             </DockPanel>
             
             <Grid Margin="5">
@@ -89,12 +89,13 @@
                                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                                                 >
                                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                   FontSize="25"
                                                             Text="{Binding Path=Value, UpdateSourceTrigger=PropertyChanged}"
                                                             ></TextBlock>
 
                                     </Border>
                                     <UniformGrid Columns="3" Rows="3" Margin="2">
-                                        <Border>                                            
+                                        <Border CornerRadius="999">                                            
                                             <TextBlock TextAlignment="Center"
                                                        Text="{Binding Path=Val1, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                         </Border>

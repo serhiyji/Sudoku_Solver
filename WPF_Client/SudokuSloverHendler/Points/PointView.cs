@@ -12,10 +12,12 @@ namespace SudokuSloverHendler.Points
     [AddINotifyPropertyChangedInterface]
     public partial class Point
     {
+        private static SolidColorBrush EmptyColor = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
+        private static SolidColorBrush SelectedColor = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
+
         public bool IsSelected { get; set; }
-        //public string Value => value.ToString();
         public string Value => (value == 0) ? "" : value.ToString();
-        public SolidColorBrush Selected => IsSelected ? new SolidColorBrush(Color.FromArgb(255, 255, 0, 0)) : new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
+        public SolidColorBrush Selected => IsSelected ? SelectedColor : EmptyColor;
         public string Val1 => (this.set.Contains(1)) ? "1" : "";
         public string Val2 => (this.set.Contains(2)) ? "2" : "";
         public string Val3 => (this.set.Contains(3)) ? "3" : "";

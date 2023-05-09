@@ -9,13 +9,13 @@ namespace SudokuSloverHendler.BetterMatrix
 {
     public partial class BetterMatrix : Matrix<Point>
     {
-        public BetterMatrix() : base()
+        public BetterMatrix() : base(false)
         {
             for (int i = 0; i < matrix.GetLength(0); i++)
             {
                 for (int j = 0; j < matrix.GetLength(1); j++)
                 {
-                    this.matrix[i, j] = new Point() { value = 0, set = new Set<byte>() };
+                    this.matrix[i, j] = new Point(0, new PosPoint(i, j));
                 }
             }
         }

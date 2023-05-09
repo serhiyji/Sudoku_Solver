@@ -24,8 +24,8 @@ namespace WPF_Client
     {
         public ViewModel()
         {
-            this.DescriptionAlgorithm = "";
-
+            this.Intersection = new Intersections();
+            this.IsExecute = false;
             this.matrix = new BetterMatrix();
             this.slover = new SudokuSloverHendler.SudokuSlover(ref this.matrix);
             this.cursorPosition = new CursorPosition(ref matrix, 4, 4);
@@ -37,26 +37,26 @@ namespace WPF_Client
 
         private void BindingButtons()
         {
-            this.NextHintCommand = new RelayCommand((i) => NextHintBtnClick(), (i) => true);
-            this.ExecuteCommand = new RelayCommand((i) => ExecuteBtnClick(), (i) => true);
+            this.NextHintCommand = new RelayCommand((i) => NextHintBtnClick(), (i) => !this.IsExecute);
+            this.ExecuteCommand = new RelayCommand((i) => ExecuteBtnClick(), (i) => this.IsExecute);
             this.SloveUpToCommand = new RelayCommand((i) => SloveUpToBtnClick(), (i) => true);
-            this.CancelCommand = new RelayCommand((i) => CancelBtnClick(), (i) => true);
+            this.CancelCommand = new RelayCommand((i) => CancelBtnClick(), (i) => this.IsExecute);
 
             this.UpCommand = new RelayCommand((i) => UpBtnClick(), (i) => true);
             this.DownCommand = new RelayCommand((i) => DownBtnClick(), (i) => true);
             this.LeftCommand = new RelayCommand((i) => LeftBtnClick(), (i) => true);
             this.RightCommand = new RelayCommand((i) => RightBtnClick(), (i) => true);
 
-            this.NumPad0Command = new RelayCommand((i) => this.SetValue(0), (i) => true);
-            this.NumPad1Command = new RelayCommand((i) => this.SetValue(1), (i) => true);
-            this.NumPad2Command = new RelayCommand((i) => this.SetValue(2), (i) => true);
-            this.NumPad3Command = new RelayCommand((i) => this.SetValue(3), (i) => true);
-            this.NumPad4Command = new RelayCommand((i) => this.SetValue(4), (i) => true);
-            this.NumPad5Command = new RelayCommand((i) => this.SetValue(5), (i) => true);
-            this.NumPad6Command = new RelayCommand((i) => this.SetValue(6), (i) => true);
-            this.NumPad7Command = new RelayCommand((i) => this.SetValue(7), (i) => true);
-            this.NumPad8Command = new RelayCommand((i) => this.SetValue(8), (i) => true);
-            this.NumPad9Command = new RelayCommand((i) => this.SetValue(9), (i) => true);
+            this.NumPad0Command = new RelayCommand((i) => this.SetValue(0), (i) => !this.IsExecute);
+            this.NumPad1Command = new RelayCommand((i) => this.SetValue(1), (i) => !this.IsExecute);
+            this.NumPad2Command = new RelayCommand((i) => this.SetValue(2), (i) => !this.IsExecute);
+            this.NumPad3Command = new RelayCommand((i) => this.SetValue(3), (i) => !this.IsExecute);
+            this.NumPad4Command = new RelayCommand((i) => this.SetValue(4), (i) => !this.IsExecute);
+            this.NumPad5Command = new RelayCommand((i) => this.SetValue(5), (i) => !this.IsExecute);
+            this.NumPad6Command = new RelayCommand((i) => this.SetValue(6), (i) => !this.IsExecute);
+            this.NumPad7Command = new RelayCommand((i) => this.SetValue(7), (i) => !this.IsExecute);
+            this.NumPad8Command = new RelayCommand((i) => this.SetValue(8), (i) => !this.IsExecute);
+            this.NumPad9Command = new RelayCommand((i) => this.SetValue(9), (i) => !this.IsExecute);
         }
 
         private void BindGridToBetterMatrix()
@@ -87,12 +87,15 @@ namespace WPF_Client
             Intersections intersection = this.slover.NextSlover();
             if (!(intersection is null))
             {
-                //AlgorithmKeeperSolution.Instance.Intersection = intersection;
+                this.IsExecute = true;
+                this.Intersection.SetValues(intersection);
             }
         }
         private void ExecuteBtnClick()
         {
-
+            this.IsExecute = false;
+            this.slover.Intersections_Handler(Intersection);
+            this.Intersection.SetDefoltValues();
         }
         private void SloveUpToBtnClick()
         {
@@ -100,7 +103,8 @@ namespace WPF_Client
         }
         private void CancelBtnClick()
         {
-            
+            this.IsExecute = false;
+            this.Intersection.SetDefoltValues();
         }
         #endregion
 

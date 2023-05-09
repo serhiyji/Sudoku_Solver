@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Media;
 using PropertyChanged;
 using SudokuSloverHendler.Collections;
+using SudokuSloverHendler.Coordinates;
 
 namespace SudokuSloverHendler.Points
 {
@@ -11,13 +12,16 @@ namespace SudokuSloverHendler.Points
     {
         public byte value { get; set; }
         public Set<byte> set { get; set; }
-        public Point(byte v)
+        private PosPoint pos;
+        public Point(byte v, PosPoint p)
         {
             this.value = v;
             this.set = new Set<byte>();
+            this.pos = p;
             this.SetViewProp();
         }
-        public Point() : this(0) { }
+        public Point(byte value) : this(value, new PosPoint()) { }
+        public Point() : this(0, new PosPoint()) { }
         public static bool operator ==(Point p1, byte value)
         {
             return p1.Equals(new Point(value));

@@ -20,10 +20,12 @@ namespace WPF_Client
         // Matrix
         private BetterMatrix matrix;
         private SudokuSlover slover;
+        public Intersections Intersection { get; set; }
+        private bool IsExecute;
         public ObservableCollection<SudokuSloverHendler.Points.Point> points { get; set; }
         public IEnumerable<SudokuSloverHendler.Points.Point> Points => points;
         // Texts
-        public string DescriptionAlgorithm { get; set; }
+        //public string DescriptionAlgorithm => In;
         // Buttons
         private RelayCommand NextHintCommand;
         private RelayCommand ExecuteCommand;
