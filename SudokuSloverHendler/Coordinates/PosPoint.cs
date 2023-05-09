@@ -20,10 +20,18 @@ namespace SudokuSloverHendler.Coordinates
         #region operators ==, !=, <, >
         public static bool operator ==(PosPoint pos1, PosPoint pos2)
         {
+            if (pos1 is null || pos2 is null)
+            {
+                return false;
+            }
             return pos1.Equals(pos2);
         }
         public static bool operator !=(PosPoint pos1, PosPoint pos2)
         {
+            if (pos1 is null || pos2 is null)
+            {
+                return false;
+            }
             return !pos1.Equals(pos2);
         }
         public override bool Equals(object obj)

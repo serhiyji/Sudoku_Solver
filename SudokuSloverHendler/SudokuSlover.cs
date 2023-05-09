@@ -18,11 +18,8 @@ namespace SudokuSloverHendler
             this.matrix = matrix;
             this.matrix.SetPossibleValues();
         }
-        private void SetValue(PosPoint pos_p, byte value)
-        {
-            this.matrix.SetValue(pos_p, value);
-        }
 
+        #region Intersections_Handler
         private bool IsPosPointsInHorizontalLine(Arrange<PosPoint> arr)
         {
             bool total_i = true;
@@ -50,11 +47,21 @@ namespace SudokuSloverHendler
             }
             return total;
         }
-
-        private bool Intersections_Handler(Intersections inter, bool pos, bool sq, bool lh, bool lv)
+        public bool Intersections_Handler(Intersections inter, bool pos = false, bool sq = false, bool lh = false, bool lv = false)
         {
+            if (inter.IsSingleValue)
+            {
+                this.matrix.SetValue(inter.PosPointNewValue, inter.NewValue);
+            }
+            else
+            {
+
+            }
+
+
             bool total = false;
-            if (pos)
+
+            /*if (pos)
             {
                 for (int i = 0; i < inter.PosPoints.Count(); i++)
                 {
@@ -66,11 +73,13 @@ namespace SudokuSloverHendler
             total = (lh) ? (this.IsPosPointsInHorizontalLine(inter.PosPoints)) ?
                 this.matrix.ClearValuesInSetInHorizontalLine(inter.PosPoints[0].i, inter.values, inter.PosPoints) || total : total : total;
             total = (lv) ? (this.IsPosPointsInVerticalLine(inter.PosPoints)) ?
-                this.matrix.ClearValuesInSetInVerticalLine(inter.PosPoints[0].j, inter.values, inter.PosPoints) || total : total : total;
+                this.matrix.ClearValuesInSetInVerticalLine(inter.PosPoints[0].j, inter.values, inter.PosPoints) || total : total : total;*/
+
             return total;
         }
+        #endregion
 
-        private bool Full_House()
+        private Intersections Full_House()
         {
             // Horizontal Line
             for (int i = 0; i < 9; i++)
@@ -78,8 +87,13 @@ namespace SudokuSloverHendler
                 if (this.matrix.IsOneNullInHorizontalLine(i))
                 {
                     PosPoint pos_p = this.matrix.GetPosPointNullHorizontalLine(i);
-                    this.SetValue(pos_p, this.matrix.GetFirstValueSetInPosPoint(pos_p));
-                    return true;
+                    return new Intersections()
+                    {
+                        NameMethodSlover = "Full_House",
+                        IsSingleValue = true,
+                        NewValue = this.matrix.GetFirstValueSetInPosPoint(pos_p),
+                        PosPointNewValue = pos_p
+                    };
                 }
             }
             // Verticall Line
@@ -88,8 +102,13 @@ namespace SudokuSloverHendler
                 if (this.matrix.IsOneNullInVerticallLine(i))
                 {
                     PosPoint pos_p = this.matrix.GetPosPointNullVerticalLine(i);
-                    this.SetValue(pos_p, this.matrix.GetFirstValueSetInPosPoint(pos_p));
-                    return true;
+                    return new Intersections()
+                    {
+                        NameMethodSlover = "Full_House",
+                        IsSingleValue = true,
+                        NewValue = this.matrix.GetFirstValueSetInPosPoint(pos_p),
+                        PosPointNewValue = pos_p
+                    };
                 }
             }
             // Square
@@ -101,12 +120,17 @@ namespace SudokuSloverHendler
                     if (this.matrix.IsOneNullInSquare(pos_s))
                     {
                         PosPoint pos_p = this.matrix.GetPosPointNullSquare(pos_s);
-                        this.SetValue(pos_p, this.matrix.GetFirstValueSetInPosPoint(pos_p));
-                        return true;
+                        return new Intersections()
+                        {
+                            NameMethodSlover = "Full_House",
+                            IsSingleValue = true,
+                            NewValue = this.matrix.GetFirstValueSetInPosPoint(pos_p),
+                            PosPointNewValue = pos_p
+                        };
                     }
                 }
             }
-            return false;
+            return null;
         }
         private bool Naked_Single()
         {
@@ -118,7 +142,7 @@ namespace SudokuSloverHendler
                     {
                         if (this.matrix.IsOnePossibleValueInPosPoint(new PosPoint(i, j)))
                         {
-                            this.SetValue(new PosPoint(i, j), this.matrix.GetFirstValueSetInPosPoint(new PosPoint(i, j)));
+                            this.matrix.SetValue(new PosPoint(i, j), this.matrix.GetFirstValueSetInPosPoint(new PosPoint(i, j)));
                             return true;
                         }
                     }
@@ -134,7 +158,7 @@ namespace SudokuSloverHendler
                 {
                     if (this.matrix.GetCountPossiblePosPointInHorizontalLine(i, value) == 1)
                     {
-                        this.SetValue(this.matrix.GetFirstPossiblePosPointInHorizontalLine(i, value), value);
+                        this.matrix.SetValue(this.matrix.GetFirstPossiblePosPointInHorizontalLine(i, value), value);
                         return true;
                     }
                 }
@@ -142,7 +166,7 @@ namespace SudokuSloverHendler
                 {
                     if (this.matrix.GetCountPossiblePosPointInVerticalLine(i, value) == 1)
                     {
-                        this.SetValue(this.matrix.GetFirstPossiblePosPointInVerticalLine(i, value), value);
+                        this.matrix.SetValue(this.matrix.GetFirstPossiblePosPointInVerticalLine(i, value), value);
                         return true;
                     }
                 }
@@ -152,34 +176,13 @@ namespace SudokuSloverHendler
                     {
                         if (this.matrix.GetCountPossiblePosPointInSquare(new PosSquare(i, j), value) == 1)
                         {
-                            this.SetValue(this.matrix.GetFirstPossiblePosPointInSquare(new PosSquare(i, j), value), value);
+                            this.matrix.SetValue(this.matrix.GetFirstPossiblePosPointInSquare(new PosSquare(i, j), value), value);
                             return true;
                         }
                     }
                 }
             }
             return false;
-        }
-        private bool Clear_Singles()
-        {
-            bool total = false;
-            for (int i = 0; i < 9; i++)
-            {
-                for (int j = 0; j < 9; j++)
-                {
-                    PosPoint pos = new PosPoint(i, j);
-                    if (this.matrix.IsNullInPosPoint(pos))
-                    {
-                        if (this.matrix.IsOnePossibleValueInPosPoint(pos))
-                        {
-                            total = this.matrix.ClearValueInSetInSquare(new PosSquare(pos), this.matrix.GetFirstValueSetInPosPoint(pos), new Arrange<PosPoint>(pos)) || total;
-                            total = this.matrix.ClearValueInSetInHorizontalLine(i, this.matrix.GetFirstValueSetInPosPoint(pos), new Arrange<PosPoint>(pos)) || total;
-                            total = this.matrix.ClearValueInSetInVerticalLine(j, this.matrix.GetFirstValueSetInPosPoint(pos), new Arrange<PosPoint>(pos)) || total;
-                        }
-                    }
-                }
-            }
-            return total;
         }
         private bool Locked_Pair()
         {
@@ -413,27 +416,15 @@ namespace SudokuSloverHendler
             }
             return total;
         }
-        public bool loop()
+
+        public Intersections NextSlover()
         {
-            while (true)
             {
-                if (this.Full_House()) { return true; }
-                else if (this.Naked_Single()) { return true; }
-                else if (this.Hidden_Single()) { return true; }
-                //else if (this.Clear_Singles()) { continue; }
-                else if (this.Locked_Pair()) { continue; }
-                else if (this.Locked_Triple()) { return true; }
-                else if (this.Locked_Candidates_Type_Pointing()) { continue; }
-                else if (this.Locked_Candidates_Type_Claiming()) { continue; }
-                else if (this.Naked_Pair()) { continue; }
-                else if (this.Naked_Triple()) { continue; }
-                else if (this.Naked_Quadruple()) { continue; }
-                else if (this.Hidden_Pair()) { continue; }
-                else if (this.Hidden_Triple()) { continue; }
-                else if (this.Hidden_Quadruple()) { continue; }
-                else { return false; }
+                Intersections intersection_Full_House = this.Full_House();
+                if (!(intersection_Full_House is null)) { return intersection_Full_House; }
             }
-            return false;
+            // ...
+            return null;
         }
     }
 }

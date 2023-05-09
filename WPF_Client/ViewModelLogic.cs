@@ -1,5 +1,6 @@
 ﻿using ClientApp;
 using PropertyChanged;
+using SudokuSloverHendler;
 using SudokuSloverHendler.BetterMatrix;
 using SudokuSloverHendler.Coordinates;
 using SudokuSloverHendler.Points;
@@ -83,7 +84,11 @@ namespace WPF_Client
 
         private void NextHintBtnClick()
         {
-
+            Intersections intersection = this.slover.NextSlover();
+            if (!(intersection is null))
+            {
+                this.slover.Intersections_Handler(intersection);
+            }
         }
         private void ExecuteBtnClick()
         {
