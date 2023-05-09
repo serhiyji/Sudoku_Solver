@@ -1,5 +1,6 @@
 ﻿using ClientApp;
 using PropertyChanged;
+using SudokuSloverHendler;
 using SudokuSloverHendler.BetterMatrix;
 using SudokuSloverHendler.Coordinates;
 using System;
@@ -18,6 +19,7 @@ namespace WPF_Client
         private CursorPosition cursorPosition;
         // Matrix
         private BetterMatrix matrix;
+        private SudokuSlover slover;
         public ObservableCollection<SudokuSloverHendler.Points.Point> points { get; set; }
         public IEnumerable<SudokuSloverHendler.Points.Point> Points => points;
         // Texts

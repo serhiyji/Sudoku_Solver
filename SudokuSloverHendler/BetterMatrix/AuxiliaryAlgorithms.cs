@@ -56,7 +56,7 @@ namespace SudokuSloverHendler.BetterMatrix
         { return this.matrix[pos_p.i, pos_p.j].set.Contains(value); }
         public bool IsOnePossibleValueInPosPoint(PosPoint pos_p)
         { return this.matrix[pos_p.i, pos_p.j].set.Count() == 1; }
-        public int GetFirstValueSetInPosPoint(PosPoint pos_p)
+        public byte GetFirstValueSetInPosPoint(PosPoint pos_p)
         { return this.matrix[pos_p.i, pos_p.j].set[0]; }
 
         private Arrange<PosPoint> GetPossPosPointsInRange(PosPoint pos1, PosPoint pos2, byte value)
@@ -85,9 +85,9 @@ namespace SudokuSloverHendler.BetterMatrix
         public Arrange<PosPoint> GetPossPosPointsInSquare(PosSquare pos_s, byte value)
         { return this.GetPossPosPointsInRange(new PosPoint(pos_s.i * 3, pos_s.j * 3), new PosPoint(pos_s.i * 3 + 2, pos_s.j * 3 + 2), value); }
 
-        private int GetCountPossiblePosPointInRange(PosPoint pos1, PosPoint pos2, byte value)
+        private byte GetCountPossiblePosPointInRange(PosPoint pos1, PosPoint pos2, byte value)
         {
-            int count = 0;
+            byte count = 0;
             for (int i = pos1.i; i <= pos2.i; i++)
             {
                 for (int j = pos1.j; j <= pos2.j; j++)
@@ -101,11 +101,11 @@ namespace SudokuSloverHendler.BetterMatrix
             return count;
         }
 
-        public int GetCountPossiblePosPointInHorizontalLine(int index, byte value)
+        public byte GetCountPossiblePosPointInHorizontalLine(int index, byte value)
         { return this.GetCountPossiblePosPointInRange(new PosPoint(index, 0), new PosPoint(index, size - 1), value); }
-        public int GetCountPossiblePosPointInVerticalLine(int index, byte value)
+        public byte GetCountPossiblePosPointInVerticalLine(int index, byte value)
         { return this.GetCountPossiblePosPointInRange(new PosPoint(0, index), new PosPoint(size - 1, index), value); }
-        public int GetCountPossiblePosPointInSquare(PosSquare pos_s, byte value)
+        public byte GetCountPossiblePosPointInSquare(PosSquare pos_s, byte value)
         { return this.GetCountPossiblePosPointInRange(new PosPoint(pos_s.i * 3, pos_s.j * 3), new PosPoint(pos_s.i * 3 + 2, pos_s.j * 3 + 2), value); }
 
         private PosPoint GetOneNullPosPointInRange(PosPoint pos1, PosPoint pos2)

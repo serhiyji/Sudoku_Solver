@@ -26,7 +26,7 @@ namespace WPF_Client
             this.DescriptionAlgorithm = "";
 
             this.matrix = new BetterMatrix();
-            this.matrix.SetPossibleValues();
+            this.slover = new SudokuSloverHendler.SudokuSlover(ref this.matrix);
             this.cursorPosition = new CursorPosition(ref matrix, 4, 4);
             this.points = new ObservableCollection<SudokuSloverHendler.Points.Point>();
 
