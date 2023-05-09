@@ -87,7 +87,7 @@ namespace WPF_Client
             Intersections intersection = this.slover.NextSlover();
             if (!(intersection is null))
             {
-                this.slover.Intersections_Handler(intersection);
+                //AlgorithmKeeperSolution.Instance.Intersection = intersection;
             }
         }
         private void ExecuteBtnClick()
