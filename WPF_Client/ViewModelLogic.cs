@@ -84,6 +84,7 @@ namespace WPF_Client
 
         private void NextHintBtnClick()
         {
+            this.matrix.SetPossibleValues();
             Intersections intersection = this.slover.NextSlover();
             if (!(intersection is null))
             {
