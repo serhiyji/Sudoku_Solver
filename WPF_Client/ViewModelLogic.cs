@@ -82,7 +82,7 @@ namespace WPF_Client
 
         private void NextHintBtnClick()
         {
-            this.matrix.SetPossibleValues();
+            //this.matrix.SetPossibleValues();
             Intersections intersection = this.slover.NextSlover();
             if (!(intersection is null))
             {
@@ -98,7 +98,18 @@ namespace WPF_Client
         }
         private void SloveUpToBtnClick()
         {
-
+            while(true)
+            {
+                Intersections intersection = this.slover.NextSlover();
+                if (!(intersection is null))
+                {
+                    this.slover.Intersections_Handler(intersection);
+                }
+                else
+                {
+                    break;
+                }
+            };
         }
         private void CancelBtnClick()
         {

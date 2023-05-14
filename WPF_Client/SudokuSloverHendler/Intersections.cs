@@ -17,23 +17,39 @@ namespace SudokuSloverHendler
         // 
 
 
-        public Arrange<PosPoint> PosPoints = new Arrange<PosPoint>();
-        public Set<byte> values = new Set<byte>();
+        public Arrange<PosPoint> PosPoints { get; set; }
+        public Set<byte> values { get; set; }
+
         public Intersections()
         {
-            this.SetDefoltValues();
+            SetDefoltValues();
         }
+        public Intersections(string nameMethodSlover = "", bool isSingleValue = false,
+            byte newValue = 0, PosPoint posPointNewValue = null,
+            Arrange<PosPoint> posPoints = null, Set<byte> values = null) : this()
+        {
+            NameMethodSlover = nameMethodSlover;
+            IsSingleValue = isSingleValue;
+            NewValue = newValue;
+            PosPointNewValue = posPointNewValue;
+            PosPoints = posPoints;
+            this.values = values;
+        }
+
         public Intersections(Arrange<PosPoint> ArrPos, Set<byte> SetValues) : this()
         {
             this.PosPoints = ArrPos;
             this.values = SetValues;
         }
+
         public void SetDefoltValues()
         {
             NameMethodSlover = "";
             IsSingleValue = false;
             NewValue = 0;
             PosPointNewValue = new PosPoint();
+            PosPoints = new Arrange<PosPoint>();
+            values = new Set<byte>();
         }
         public void SetValues(Intersections intersection)
         {
@@ -42,21 +58,29 @@ namespace SudokuSloverHendler
             this.NewValue = intersection.NewValue;
             this.PosPointNewValue.i = intersection.PosPointNewValue.i;
             this.PosPointNewValue.j = intersection.PosPointNewValue.j;
+            this.PosPoints = intersection.PosPoints;
+            this.values = intersection.values;
+        }
+        public bool IsValid(BetterMatrix.BetterMatrix matrix)
+        {
+            if (this.IsSingleValue)
+            {
+                // ...
+            }
+            else
+            {
+                // ...
+            }
+            return false;
         }
         public static bool operator ==(Intersections inter1, Intersections inter2)
         {
-            if (inter1 is null || inter2 is null)
-            {
-                return false;
-            }
+            if (inter1 is null || inter2 is null) { return false; }
             return inter1.Equals(inter2);
         }
         public static bool operator !=(Intersections inter1, Intersections inter2)
         {
-            if (inter1 is null || inter2 is null)
-            {
-                return false;
-            }
+            if (inter1 is null || inter2 is null) { return false; }
             return !inter1.Equals(inter2);
         }
         public override bool Equals(object obj)

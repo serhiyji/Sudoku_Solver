@@ -33,10 +33,12 @@ namespace SudokuSloverHendler.Collections
         }
         public static bool operator ==(Arrange<T> arr1, Arrange<T> arr2)
         {
+            if (arr1 is null || arr2 is null) { return false; }
             return arr1.Equals(arr2);
         }
         public static bool operator !=(Arrange<T> arr1, Arrange<T> arr2)
         {
+            if (arr1 is null || arr2 is null) { return false; }
             return arr1.Equals(arr2);
         }
         public static Arrange<T> operator +(Arrange<T> arr1, Arrange<T> arr2)

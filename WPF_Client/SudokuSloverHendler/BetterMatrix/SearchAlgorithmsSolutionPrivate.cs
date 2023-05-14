@@ -25,30 +25,35 @@ namespace SudokuSloverHendler.BetterMatrix
             return arr;
         }
         // Locked / Naked
-        private Arrange<Intersections> GetLockedPairInRange(PosPoint pos1, PosPoint pos2)
+        private Intersections GetLockedPairInRange(PosPoint pos1, PosPoint pos2)
         {
             Arrange<PosPoint> pos = this.GetPosPointsInRange(pos1, pos2);
-            Arrange<Intersections> pairs = new Arrange<Intersections>();
             for (int i = 0; i < pos.Count(); i++)
             {
                 for (int j = 0; j < pos.Count(); j++)
                 {
                     if ((pos[i] != pos[j]) && (this.matrix[pos[i].i, pos[i].j].set == this.matrix[pos[j].i, pos[j].j].set) && (this.matrix[pos[i].i, pos[i].j].set.Count() == 2))
                     {
-                        Intersections para = new Intersections(new Arrange<PosPoint>(pos[i], pos[j]), this.GetPossValueInPosPoint(pos[i]));
-                        if (!pairs.Contains(para))
+                        Intersections intersection = new Intersections()
                         {
-                            pairs.Add(para);
+                            NameMethodSlover = $"Locked Pair {new Arrange<PosPoint>(pos[i], pos[j])} : {this.GetPossValueInPosPoint(pos[i])}",
+                            IsSingleValue = false,
+                            PosPoints = new Arrange<PosPoint>(pos[i], pos[j]),
+                            values = this.GetPossValueInPosPoint(pos[i])
+                        };
+                        if (intersection.IsValid(this))
+                        {
+                            return intersection;
                         }
+                        //Intersections para = new Intersections(new Arrange<PosPoint>(pos[i], pos[j]), this.GetPossValueInPosPoint(pos[i]));
                     }
                 }
             }
-            return pairs;
+            return null;
         }
-        private Arrange<Intersections> GetLockedTripleInRange(PosPoint pos1, PosPoint pos2)
+        private Intersections GetLockedTripleInRange(PosPoint pos1, PosPoint pos2)
         {
             Arrange<PosPoint> pos = this.GetPosPointsInRange(pos1, pos2);
-            Arrange<Intersections> tripls = new Arrange<Intersections>();
             for (int i1 = 0; i1 < pos.Count(); i1++)
             {
                 for (int i2 = 0; i2 < pos.Count(); i2++)
@@ -63,23 +68,29 @@ namespace SudokuSloverHendler.BetterMatrix
                             Set<byte> all = set1 + set2 + set3;
                             if ((set1.Count() >= 2 && set1.Count() <= 3) && (set2.Count() >= 2 && set2.Count() <= 3) && (set3.Count() >= 2 && set3.Count() <= 3) && all.Count() == 3)
                             {
-                                Intersections triple = new Intersections(new Arrange<PosPoint>(pos[i1], pos[i2], pos[i3]), all);
-                                if (!tripls.Contains(triple))
+                                Intersections intersection = new Intersections()
                                 {
-                                    tripls.Add(triple);
+                                    NameMethodSlover = "Locked Triple",
+                                    IsSingleValue = false,
+                                    PosPoints = new Arrange<PosPoint>(pos[i1], pos[i2], pos[i3]),
+                                    values = all
+                                };
+                                if (intersection.IsValid(this))
+                                {
+                                    return intersection;
                                 }
+                                //Intersections triple = new Intersections(new Arrange<PosPoint>(pos[i1], pos[i2], pos[i3]), all);
                             }
                         }
                     }
                 }
             }
-            return tripls;
+            return null;
         }
         // Naked
-        private Arrange<Intersections> GetNakedQuadrupleInRange(PosPoint pos1, PosPoint pos2)
+        private Intersections GetNakedQuadrupleInRange(PosPoint pos1, PosPoint pos2)
         {
             Arrange<PosPoint> pos = this.GetPosPointsInRange(pos1, pos2);
-            Arrange<Intersections> quadruples = new Arrange<Intersections>();
             for (int i1 = 0; i1 < pos.Count(); i1++)
             {
                 for (int i2 = 0; i2 < pos.Count(); i2++)
@@ -99,21 +110,28 @@ namespace SudokuSloverHendler.BetterMatrix
                                 if ((set1.Count() >= 2 && set1.Count() <= 4) && (set2.Count() >= 2 && set2.Count() <= 4)
                                  && (set3.Count() >= 2 && set3.Count() <= 4) && (set4.Count() >= 2 && set4.Count() <= 4) && all.Count() == 4)
                                 {
-                                    Intersections quadruple = new Intersections(new Arrange<PosPoint>(pos[i1], pos[i2], pos[i3], pos[i4]), all);
-                                    if (!quadruples.Contains(quadruple))
+                                    Intersections intersection = new Intersections()
                                     {
-                                        quadruples.Add(quadruple);
+                                        NameMethodSlover = "Naked Quadruple",
+                                        IsSingleValue = false,
+                                        PosPoints = new Arrange<PosPoint>(pos[i1], pos[i2], pos[i3], pos[i4]),
+                                        values = all
+                                    };
+                                    if (intersection.IsValid(this))
+                                    {
+                                        return intersection;
                                     }
+                                    //Intersections quadruple = new Intersections(new Arrange<PosPoint>(pos[i1], pos[i2], pos[i3], pos[i4]), all);
                                 }
                             }
                         }
                     }
                 }
             }
-            return quadruples;
+            return null;
         }
         // Hidden
-        private Arrange<Intersections> GetHiddenPairInRange(PosPoint pos1, PosPoint pos2)
+        private Intersections GetHiddenPairInRange(PosPoint pos1, PosPoint pos2)
         {
             Arrange<Intersections> pairs = new Arrange<Intersections>();
             for (byte num1 = 0; num1 < 10; num1++)
@@ -128,22 +146,28 @@ namespace SudokuSloverHendler.BetterMatrix
                             Arrange<PosPoint> arr1 = this.GetPossPosPointsInRange(pos1, pos2, num1), arr2 = this.GetPossPosPointsInRange(pos1, pos2, num2);
                             if (arr1 == arr2)
                             {
-                                Intersections para = new Intersections(new Arrange<PosPoint>(arr1[0], arr1[1]), new Set<byte>(num1, num2));
-                                if (!pairs.Contains(para))
+                                Intersections intersection = new Intersections()
                                 {
-                                    pairs.Add(para);
+                                    NameMethodSlover = "Hidden Pair",
+                                    IsSingleValue = false,
+                                    PosPoints = new Arrange<PosPoint>(arr1[0], arr1[1]),
+                                    values = new Set<byte>(num1, num2)
+                                };
+                                if (intersection.IsValid(this))
+                                {
+                                    return intersection;
                                 }
+                                //Intersections para = new Intersections(new Arrange<PosPoint>(arr1[0], arr1[1]), new Set<byte>(num1, num2));
                             }
                         }
                     }
 
                 }
             }
-            return pairs;
+            return null;
         }
-        private Arrange<Intersections> GetHiddenTripleInRange(PosPoint pos1, PosPoint pos2)
+        private Intersections GetHiddenTripleInRange(PosPoint pos1, PosPoint pos2)
         {
-            Arrange<Intersections> triples = new Arrange<Intersections>();
             for (byte num1 = 0; num1 < 10; num1++)
             {
                 for (byte num2 = 0; num2 < 10; num2++)
@@ -178,22 +202,28 @@ namespace SudokuSloverHendler.BetterMatrix
                                 values = values - set_other;
                                 if (values.Count() == 3)
                                 {
-                                    Intersections triple = new Intersections(poss_num, values);
-                                    if (!triples.Contains(triple))
+                                    Intersections intersection = new Intersections()
                                     {
-                                        triples.Add(triple);
+                                        NameMethodSlover = "Hidden Triple",
+                                        IsSingleValue = false,
+                                        PosPoints = poss_num, 
+                                        values = values
+                                    };
+                                    if (intersection.IsValid(this))
+                                    {
+                                        return intersection;
                                     }
+                                    //Intersections triple = new Intersections(poss_num, values);
                                 }
                             }
                         }
                     }
                 }
             }
-            return triples;
+            return null;
         }
-        private Arrange<Intersections> GetHiddenQuadrupleInRange(PosPoint pos1, PosPoint pos2)
+        private Intersections GetHiddenQuadrupleInRange(PosPoint pos1, PosPoint pos2)
         {
-            Arrange<Intersections> quadruples = new Arrange<Intersections>();
             for (byte num1 = 1; num1 < 10; num1++)
             {
                 for (byte num2 = 1; num2 < 10; num2++)
@@ -234,11 +264,18 @@ namespace SudokuSloverHendler.BetterMatrix
                                     values = values - set_other;
                                     if (values.Count() == 4)
                                     {
-                                        Intersections quadruple = new Intersections(poss_num, values);
-                                        if (!quadruples.Contains(quadruple))
+                                        Intersections intersection = new Intersections()
                                         {
-                                            quadruples.Add(quadruple);
+                                            NameMethodSlover = "Hidden Quadruple",
+                                            IsSingleValue = false,
+                                            PosPoints = poss_num, 
+                                            values = values
+                                        };
+                                        if (intersection.IsValid(this))
+                                        {
+                                            return intersection;
                                         }
+                                        //Intersections quadruple = new Intersections(poss_num, values);
                                     }
                                 }
                             }
@@ -246,7 +283,7 @@ namespace SudokuSloverHendler.BetterMatrix
                     }
                 }
             }
-            return quadruples;
+            return null;
         }
     }
 }
