@@ -20,8 +20,8 @@ namespace WPF_Client
         // Matrix
         private BetterMatrix matrix;
         private SudokuSlover slover;
-        public Intersections Intersection { get; set; }
-        private bool IsExecute;
+        public Intersections Intersection => Solution.Instance.Intersection;
+        public bool IsExecute => Solution.Instance.IsExecute;
         public ObservableCollection<SudokuSloverHendler.Points.Point> points { get; set; }
         public IEnumerable<SudokuSloverHendler.Points.Point> Points => points;
         // Texts

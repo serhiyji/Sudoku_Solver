@@ -40,7 +40,8 @@ namespace SudokuSloverHendler
             this.NameMethodSlover = intersection.NameMethodSlover;
             this.IsSingleValue = intersection.IsSingleValue;
             this.NewValue = intersection.NewValue;
-            this.PosPointNewValue = intersection.PosPointNewValue;
+            this.PosPointNewValue.i = intersection.PosPointNewValue.i;
+            this.PosPointNewValue.j = intersection.PosPointNewValue.j;
         }
         public static bool operator ==(Intersections inter1, Intersections inter2)
         {

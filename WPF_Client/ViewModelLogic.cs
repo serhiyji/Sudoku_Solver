@@ -24,8 +24,6 @@ namespace WPF_Client
     {
         public ViewModel()
         {
-            this.Intersection = new Intersections();
-            this.IsExecute = false;
             this.matrix = new BetterMatrix();
             this.slover = new SudokuSloverHendler.SudokuSlover(ref this.matrix);
             this.cursorPosition = new CursorPosition(ref matrix, 4, 4);
@@ -88,15 +86,15 @@ namespace WPF_Client
             Intersections intersection = this.slover.NextSlover();
             if (!(intersection is null))
             {
-                this.IsExecute = true;
-                this.Intersection.SetValues(intersection);
+                Solution.Instance.IsExecute = true;
+                Solution.Instance.Intersection.SetValues(intersection);
             }
         }
         private void ExecuteBtnClick()
         {
-            this.IsExecute = false;
-            this.slover.Intersections_Handler(Intersection);
-            this.Intersection.SetDefoltValues();
+            Solution.Instance.IsExecute = false;
+            this.slover.Intersections_Handler(Solution.Instance.Intersection);
+            Solution.Instance.Intersection.SetDefoltValues();
         }
         private void SloveUpToBtnClick()
         {
@@ -104,8 +102,8 @@ namespace WPF_Client
         }
         private void CancelBtnClick()
         {
-            this.IsExecute = false;
-            this.Intersection.SetDefoltValues();
+            Solution.Instance.IsExecute = false;
+            Solution.Instance.Intersection.SetDefoltValues();
         }
         #endregion
 

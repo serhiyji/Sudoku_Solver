@@ -20,6 +20,7 @@ namespace WPF_Client
         ViewModel model;
         public MainWindow()
         {
+            Solution solution = Solution.Instance;
             InitializeComponent();
             model = new ViewModel();
             this.DataContext = model;

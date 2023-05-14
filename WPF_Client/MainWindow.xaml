@@ -100,35 +100,35 @@
                                                 <TextBlock TextAlignment="Center"
                                                            Text="{Binding Path=Val1, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                             </Border>
-                                            <Border>
+                                            <Border CornerRadius="999">
                                                 <TextBlock TextAlignment="Center"
                                                            Text="{Binding Path=Val2, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                             </Border>
-                                            <Border>
+                                            <Border CornerRadius="999">
                                                 <TextBlock TextAlignment="Center"
                                                            Text="{Binding Path=Val3, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                             </Border>
-                                            <Border>
+                                            <Border CornerRadius="999">
                                                 <TextBlock TextAlignment="Center"
                                                            Text="{Binding Path=Val4, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                             </Border>
-                                            <Border>
+                                            <Border CornerRadius="999">
                                                 <TextBlock TextAlignment="Center"
                                                            Text="{Binding Path=Val5, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                             </Border>
-                                            <Border>
+                                            <Border CornerRadius="999">
                                                 <TextBlock TextAlignment="Center"
                                                            Text="{Binding Path=Val6, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                             </Border>
-                                            <Border>
+                                            <Border CornerRadius="999">
                                                 <TextBlock TextAlignment="Center"
                                                            Text="{Binding Path=Val7, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                             </Border>
-                                            <Border>
+                                            <Border CornerRadius="999">
                                                 <TextBlock TextAlignment="Center"
                                                            Text="{Binding Path=Val8, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                             </Border>
-                                            <Border>
+                                            <Border CornerRadius="999">
                                                 <TextBlock TextAlignment="Center"
                                                            Text="{Binding Path=Val9, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                             </Border>

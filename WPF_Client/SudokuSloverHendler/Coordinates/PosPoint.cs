@@ -1,7 +1,9 @@
-﻿using System;
+﻿using PropertyChanged;
+using System;
 
 namespace SudokuSloverHendler.Coordinates
 {
+    [AddINotifyPropertyChangedInterface]
     public class PosPoint : IComparable<PosPoint>
     {
         public int i { get; set; }
