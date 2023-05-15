@@ -154,6 +154,22 @@ namespace SudokuSloverHendler.BetterMatrix
         { return this.GetFirstPossiblePosPointInRange(new PosPoint(0, index), new PosPoint(size - 1, index), value); }
         public PosPoint GetFirstPossiblePosPointInSquare(PosSquare pos_s, byte value)
         { return this.GetFirstPossiblePosPointInRange(new PosPoint(pos_s.i * 3, pos_s.j * 3), new PosPoint(pos_s.i * 3 + 2, pos_s.j * 3 + 2), value); }
+
+        private Arrange<PosPoint> GetPosPointsInRange(PosPoint pos1, PosPoint pos2)
+        {
+            Arrange<PosPoint> arr = new Arrange<PosPoint>();
+            for (int i = pos1.i; i <= pos2.i; i++)
+            {
+                for (int j = pos1.j; j <= pos2.j; j++)
+                {
+                    if (matrix[i, j].value == 0)
+                    {
+                        arr.Add(new PosPoint(i, j));
+                    }
+                }
+            }
+            return arr;
+        }
     }
 
 }

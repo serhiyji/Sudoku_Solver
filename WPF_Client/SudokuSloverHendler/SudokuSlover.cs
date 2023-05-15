@@ -41,9 +41,9 @@ namespace SudokuSloverHendler
         }
 
         #region Intersections_Handler
-        private bool IsPosPointsInHorizontalLine(Arrange<PosPoint> arr)
+        public static bool IsPosPointsInHorizontalLine(Arrange<PosPoint> arr)
         {
-            if(arr.Count() == 1 || arr.Count() == 0) { return true; };
+            //if(arr.Count() == 1 || arr.Count() == 0) { return true; };
             bool total_i = true;
             for (int i = 0; i < arr.Count() - 1; i++)
             {
@@ -51,9 +51,9 @@ namespace SudokuSloverHendler
             }
             return total_i;
         }
-        private bool IsPosPointsInVerticalLine(Arrange<PosPoint> arr)
+        public static bool IsPosPointsInVerticalLine(Arrange<PosPoint> arr)
         {
-            if (arr.Count() == 1 || arr.Count() == 0) { return true; };
+            //if (arr.Count() == 1 || arr.Count() == 0) { return true; };
             bool total_j = true;
             for (int i = 0; i < arr.Count() - 1; i++)
             {
@@ -61,9 +61,9 @@ namespace SudokuSloverHendler
             }
             return total_j;
         }
-        private bool IsOneSquareInArrPospoint(Arrange<PosPoint> arr)
+        public static bool IsOneSquareInArrPospoint(Arrange<PosPoint> arr)
         {
-            if (arr.Count() == 1 || arr.Count() == 0) { return true; };
+            //if (arr.Count() == 1 || arr.Count() == 0) { return true; };
             bool total = true;
             for (int i = 0; i < arr.Count() - 1; i++)
             {
@@ -88,11 +88,11 @@ namespace SudokuSloverHendler
                         total = this.matrix.ClearValuesInSetInPosPoint(inter.PosPoints[i], this.matrix.GetPossValueInPosPoint(inter.PosPoints[i]) - inter.values) || total;
                     }
                 }
-                total = (sq) ? (this.IsOneSquareInArrPospoint(inter.PosPoints)) ?
+                total = (sq) ? (IsOneSquareInArrPospoint(inter.PosPoints)) ?
                     this.matrix.ClearValuesInSetInSquare(new PosSquare(inter.PosPoints[0]), inter.values, inter.PosPoints) || total : total : total;
-                total = (lh) ? (this.IsPosPointsInHorizontalLine(inter.PosPoints)) ?
+                total = (lh) ? (IsPosPointsInHorizontalLine(inter.PosPoints)) ?
                     this.matrix.ClearValuesInSetInHorizontalLine(inter.PosPoints[0].i, inter.values, inter.PosPoints) || total : total : total;
-                total = (lv) ? (this.IsPosPointsInVerticalLine(inter.PosPoints)) ?
+                total = (lv) ? (IsPosPointsInVerticalLine(inter.PosPoints)) ?
                     this.matrix.ClearValuesInSetInVerticalLine(inter.PosPoints[0].j, inter.values, inter.PosPoints) || total : total : total;
 
                 return total;

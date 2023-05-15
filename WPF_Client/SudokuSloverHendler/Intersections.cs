@@ -3,6 +3,7 @@ using Microsoft.VisualBasic;
 using PropertyChanged;
 using SudokuSloverHendler.Collections;
 using SudokuSloverHendler.Coordinates;
+using SudokuSloverHendler.Points;
 
 namespace SudokuSloverHendler
 {
@@ -63,13 +64,28 @@ namespace SudokuSloverHendler
         }
         public bool IsValid(BetterMatrix.BetterMatrix matrix)
         {
-            if (this.IsSingleValue)
+            if (!this.IsSingleValue)
             {
-                // ...
-            }
-            else
-            {
-                // ...
+                if(this.PosPoints.Count == 0) { return false; }
+                byte count = (byte)this.PosPoints.Count;
+                bool hl = SudokuSlover.IsPosPointsInHorizontalLine(this.PosPoints), 
+                    vl = SudokuSlover.IsPosPointsInVerticalLine(this.PosPoints), 
+                    sq = SudokuSlover.IsOneSquareInArrPospoint(this.PosPoints);
+                foreach (byte item in this.values)
+                {
+                    if (hl && matrix.GetCountPossiblePosPointInHorizontalLine(PosPoints[0].i, item) > count)
+                    {
+                        return true;
+                    }
+                    else if (vl && matrix.GetCountPossiblePosPointInVerticalLine(PosPoints[0].j, item) > count)
+                    {
+                        return true;
+                    }
+                    else if (sq && matrix.GetCountPossiblePosPointInSquare(new PosSquare(this.PosPoints[0]), item) > count)
+                    {
+                        return true;
+                    }
+                }
             }
             return false;
         }

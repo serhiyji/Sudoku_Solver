@@ -9,21 +9,6 @@ namespace SudokuSloverHendler.BetterMatrix
 {
     public partial class BetterMatrix : Matrix<Point>
     {
-        private Arrange<PosPoint> GetPosPointsInRange(PosPoint pos1, PosPoint pos2)
-        {
-            Arrange<PosPoint> arr = new Arrange<PosPoint>();
-            for (int i = pos1.i; i <= pos2.i; i++)
-            {
-                for (int j = pos1.j; j <= pos2.j; j++)
-                {
-                    if (matrix[i, j].value == 0)
-                    {
-                        arr.Add(new PosPoint(i, j));
-                    }
-                }
-            }
-            return arr;
-        }
         // Locked / Naked
         private Intersections GetLockedPairInRange(PosPoint pos1, PosPoint pos2)
         {

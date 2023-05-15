@@ -93,7 +93,8 @@ namespace WPF_Client
         private void ExecuteBtnClick()
         {
             Solution.Instance.IsExecute = false;
-            this.slover.Intersections_Handler(Solution.Instance.Intersection);
+            bool res = this.slover.Intersections_Handler(Solution.Instance.Intersection);
+            MessageBox.Show(res.ToString());
             Solution.Instance.Intersection.SetDefoltValues();
         }
         private void SloveUpToBtnClick()
