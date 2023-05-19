@@ -14,14 +14,14 @@ using System.Windows.Shapes;
 
 namespace WPF_Client.LoginRegistration
 {
-    /// <summary>
-    /// Interaction logic for LoginWindow.xaml
-    /// </summary>
-    public partial class LoginWindow : Window
+    public partial class LoginRegistration : Window
     {
-        public LoginWindow()
+        ViewModel model;
+        public LoginRegistration()
         {
             InitializeComponent();
+            this.model = new ViewModel();
+            this.DataContext = model;
         }
     }
 }

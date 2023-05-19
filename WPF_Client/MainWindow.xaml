@@ -57,9 +57,10 @@
         <DockPanel>
             
             <!--верх-->
-            <!--<DockPanel DockPanel.Dock="Top">
-                
-            </DockPanel>-->
+            <DockPanel DockPanel.Dock="Top" LastChildFill="False">
+                <Button DockPanel.Dock="Right" Command="{Binding Path=SignInCmd, UpdateSourceTrigger=PropertyChanged}">Sign in</Button>
+                <Button DockPanel.Dock="Right" Command="{Binding Path=SignUpCmd, UpdateSourceTrigger=PropertyChanged}">Sign up</Button>
+            </DockPanel>
             
             <!--низ-->
             

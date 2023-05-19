@@ -25,8 +25,12 @@ namespace WPF_Client
     {
         public ViewModel()
         {
+            this.IsOpenSignInOrSignUp = false;
+            this.IsSignIn = false;
+            this.UserId = null;
+
             this.matrix = new BetterMatrix();
-            this.slover = new SudokuSloverHendler.SudokuSlover(ref this.matrix);
+            this.slover = new SudokuSlover(ref this.matrix);
             this.cursorPosition = new CursorPosition(ref matrix, 4, 4);
             this.points = new ObservableCollection<SudokuSloverHendler.Points.Point>();
 
@@ -36,6 +40,10 @@ namespace WPF_Client
 
         private void BindingButtons()
         {
+            this.SignInCommand = new RelayCommand((i) => this.SignInBtnClick(), (i) => !IsOpenSignInOrSignUp);
+            this.SignUpCommand = new RelayCommand((i) => this.SignUpBtnClick(), (i) => !IsOpenSignInOrSignUp);
+            this.SignOutCommand = new RelayCommand((i) => this.SignOutBtnClick(), (i) => true);
+
             this.NextHintCommand = new RelayCommand((i) => NextHintBtnClick(), (i) => !this.IsExecute);
             this.ExecuteCommand = new RelayCommand((i) => ExecuteBtnClick(), (i) => this.IsExecute);
             this.SloveUpToCommand = new RelayCommand((i) => SloveUpToBtnClick(), (i) => true);
@@ -81,9 +89,35 @@ namespace WPF_Client
         private void LeftBtnClick() => this.cursorPosition.SetPosition(Side.Left);
         private void RightBtnClick() => this.cursorPosition.SetPosition(Side.Right);
 
+        private async void SignInBtnClick()
+        {
+            await Task.Run(() =>
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    this.IsOpenSignInOrSignUp = true;
+                    WPF_Client.LoginRegistration.LoginRegistration loginWindow = new WPF_Client.LoginRegistration.LoginRegistration();
+                    loginWindow.Show();
+                    loginWindow.Closed += (s, e) =>
+                    {
+                        // ...
+                        this.IsOpenSignInOrSignUp = false;
+                    };
+                });
+            });
+        }
+
+
+        private void SignUpBtnClick()
+        {
+
+        }
+        private void SignOutBtnClick()
+        {
+
+        }
         private void NextHintBtnClick()
         {
-            //this.matrix.SetPossibleValues();
             Intersections intersection = this.slover.NextSlover();
             if (!(intersection is null))
             {
@@ -119,6 +153,5 @@ namespace WPF_Client
             Solution.Instance.Intersection.SetDefoltValues();
         }
         #endregion
-
     }
 }

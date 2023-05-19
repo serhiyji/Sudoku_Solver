@@ -43,7 +43,7 @@ namespace SudokuSloverHendler
         #region Intersections_Handler
         public static bool IsPosPointsInHorizontalLine(Arrange<PosPoint> arr)
         {
-            //if(arr.Count() == 1 || arr.Count() == 0) { return true; };
+            if(arr.Count() == 1 || arr.Count() == 0) { return true; };
             bool total_i = true;
             for (int i = 0; i < arr.Count() - 1; i++)
             {
@@ -53,7 +53,7 @@ namespace SudokuSloverHendler
         }
         public static bool IsPosPointsInVerticalLine(Arrange<PosPoint> arr)
         {
-            //if (arr.Count() == 1 || arr.Count() == 0) { return true; };
+            if (arr.Count() == 1 || arr.Count() == 0) { return true; };
             bool total_j = true;
             for (int i = 0; i < arr.Count() - 1; i++)
             {
@@ -63,7 +63,7 @@ namespace SudokuSloverHendler
         }
         public static bool IsOneSquareInArrPospoint(Arrange<PosPoint> arr)
         {
-            //if (arr.Count() == 1 || arr.Count() == 0) { return true; };
+            if (arr.Count() == 1 || arr.Count() == 0) { return true; };
             bool total = true;
             for (int i = 0; i < arr.Count() - 1; i++)
             {

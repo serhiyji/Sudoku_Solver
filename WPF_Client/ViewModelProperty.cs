@@ -17,8 +17,12 @@ namespace WPF_Client
     [AddINotifyPropertyChangedInterface]
     public partial class ViewModel
     {
-        private CursorPosition cursorPosition;
+        // Bools
+        public bool IsOpenSignInOrSignUp { get; set; }
+        public bool IsSignIn { get; set; }
+        public int? UserId { get; set; }
         // Matrix
+        private CursorPosition cursorPosition;
         private BetterMatrix matrix;
         private SudokuSlover slover;
         public Intersections Intersection => Solution.Instance.Intersection;
@@ -26,6 +30,9 @@ namespace WPF_Client
         public ObservableCollection<SudokuSloverHendler.Points.Point> points { get; set; }
         public IEnumerable<SudokuSloverHendler.Points.Point> Points => points;
         // Buttons
+        private RelayCommand SignInCommand;
+        private RelayCommand SignUpCommand;
+        private RelayCommand SignOutCommand;
         private RelayCommand NextHintCommand;
         private RelayCommand ExecuteCommand;
         private RelayCommand SloveUpToCommand;
@@ -35,6 +42,9 @@ namespace WPF_Client
         public ICommand ExecuteCmd => ExecuteCommand;
         public ICommand SloveUpToCmd => SloveUpToCommand;
         public ICommand Cancel => CancelCommand;
+        public ICommand SignInCmd => SignInCommand;
+        public ICommand SignUpCmd => SignUpCommand;
+        public ICommand SignOutCmd => SignOutCommand;
 
         private RelayCommand UpCommand;
         private RelayCommand DownCommand;
