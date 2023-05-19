@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace ClientApp
+namespace WPF_Client.Expansion
 {
     public class RelayCommand : ICommand
     {
@@ -24,8 +24,8 @@ namespace ClientApp
             this.canExecute = canExecute;
         }
 
-        public bool CanExecute(object parameter) => this.canExecute == null || this.canExecute(parameter);
+        public bool CanExecute(object parameter) => canExecute == null || canExecute(parameter);
 
-        public void Execute(object parameter) => this.execute(parameter);
+        public void Execute(object parameter) => execute(parameter);
     }
 }

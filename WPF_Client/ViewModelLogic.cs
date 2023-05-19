@@ -1,9 +1,4 @@
-﻿using ClientApp;
-using PropertyChanged;
-using SudokuSloverHendler;
-using SudokuSloverHendler.BetterMatrix;
-using SudokuSloverHendler.Coordinates;
-using SudokuSloverHendler.Points;
+﻿using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,6 +12,12 @@ using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
+
+using SudokuSloverHendler;
+using SudokuSloverHendler.BetterMatrix;
+using SudokuSloverHendler.Coordinates;
+using SudokuSloverHendler.Points;
+using WPF_Client.Expansion;
 
 namespace WPF_Client
 {

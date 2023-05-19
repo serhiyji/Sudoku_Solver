@@ -1,10 +1,12 @@
 ﻿using PropertyChanged;
-using SudokuSloverHendler;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using SudokuSloverHendler;
+using WPF_Client.Expansion;
 
 namespace WPF_Client
 {
@@ -15,7 +17,7 @@ namespace WPF_Client
         public bool IsExecute { get; set; }
         public Solution()
         {
-            this.Intersection = new Intersections();
+            Intersection = new Intersections();
             IsExecute = false;
         }
     }

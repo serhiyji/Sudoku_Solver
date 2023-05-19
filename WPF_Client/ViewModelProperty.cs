@@ -1,8 +1,4 @@
-﻿using ClientApp;
-using PropertyChanged;
-using SudokuSloverHendler;
-using SudokuSloverHendler.BetterMatrix;
-using SudokuSloverHendler.Coordinates;
+﻿using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,6 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+
+using SudokuSloverHendler;
+using SudokuSloverHendler.BetterMatrix;
+using SudokuSloverHendler.Coordinates;
+using WPF_Client.Expansion;
 
 namespace WPF_Client
 {
@@ -24,8 +25,6 @@ namespace WPF_Client
         public bool IsExecute => Solution.Instance.IsExecute;
         public ObservableCollection<SudokuSloverHendler.Points.Point> points { get; set; }
         public IEnumerable<SudokuSloverHendler.Points.Point> Points => points;
-        // Texts
-        //public string DescriptionAlgorithm => In;
         // Buttons
         private RelayCommand NextHintCommand;
         private RelayCommand ExecuteCommand;
