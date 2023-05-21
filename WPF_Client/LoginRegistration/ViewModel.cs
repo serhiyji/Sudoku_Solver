@@ -13,7 +13,8 @@ namespace WPF_Client.LoginRegistration
     [AddINotifyPropertyChangedInterface]
     public class ViewModel
     {
-        private DataBaseContext db;
+        public int IdUser { get; set; }
+        //private DataBaseContext db;
         public ViewModel()
         {
 

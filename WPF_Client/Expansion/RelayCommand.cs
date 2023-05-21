@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace WPF_Client.Expansion
 {
     public class RelayCommand : ICommand
     {
-        private Action<object> execute;
-        private Func<object, bool> canExecute;
+        public Action<object> execute;
+        public Func<object, bool> canExecute;
 
         public event EventHandler CanExecuteChanged
         {
@@ -25,7 +26,7 @@ namespace WPF_Client.Expansion
         }
 
         public bool CanExecute(object parameter) => canExecute == null || canExecute(parameter);
-
+        
         public void Execute(object parameter) => execute(parameter);
     }
 }

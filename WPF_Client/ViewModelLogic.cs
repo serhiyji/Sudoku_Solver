@@ -49,10 +49,10 @@ namespace WPF_Client
             this.SloveUpToCommand = new RelayCommand((i) => SloveUpToBtnClick(), (i) => true);
             this.CancelCommand = new RelayCommand((i) => CancelBtnClick(), (i) => this.IsExecute);
 
-            this.UpCommand = new RelayCommand((i) => UpBtnClick(), (i) => true);
-            this.DownCommand = new RelayCommand((i) => DownBtnClick(), (i) => true);
-            this.LeftCommand = new RelayCommand((i) => LeftBtnClick(), (i) => true);
-            this.RightCommand = new RelayCommand((i) => RightBtnClick(), (i) => true);
+            this.UpCommand = new RelayCommand((i) => this.cursorPosition.SetPosition(Side.Up), (i) => true);
+            this.DownCommand = new RelayCommand((i) => this.cursorPosition.SetPosition(Side.Down), (i) => true);
+            this.LeftCommand = new RelayCommand((i) => this.cursorPosition.SetPosition(Side.Left), (i) => true);
+            this.RightCommand = new RelayCommand((i) => this.cursorPosition.SetPosition(Side.Right), (i) => true);
 
             this.NumPad0Command = new RelayCommand((i) => this.SetValue(0), (i) => !this.IsExecute);
             this.NumPad1Command = new RelayCommand((i) => this.SetValue(1), (i) => !this.IsExecute);
@@ -84,11 +84,6 @@ namespace WPF_Client
         }
 
         #region Buttons Handlers
-        private void UpBtnClick() => this.cursorPosition.SetPosition(Side.Up);
-        private void DownBtnClick() => this.cursorPosition.SetPosition(Side.Down);
-        private void LeftBtnClick() => this.cursorPosition.SetPosition(Side.Left);
-        private void RightBtnClick() => this.cursorPosition.SetPosition(Side.Right);
-
         private async void SignInBtnClick()
         {
             await Task.Run(() =>
@@ -97,11 +92,14 @@ namespace WPF_Client
                 {
                     this.IsOpenSignInOrSignUp = true;
                     WPF_Client.LoginRegistration.LoginRegistration loginWindow = new WPF_Client.LoginRegistration.LoginRegistration();
-                    loginWindow.Show();
+                    loginWindow.ShowDialog();
                     loginWindow.Closed += (s, e) =>
                     {
-                        // ...
-                        this.IsOpenSignInOrSignUp = false;
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            this.IsOpenSignInOrSignUp = false;
+                            // ...
+                        });
                     };
                 });
             });
