@@ -15,9 +15,8 @@ namespace WPF_Client.DBContexts.Entities
         public User User { get; set; }
         [Required, MaxLength(64)]
         public string Name { get; set; }
-        [Required, MaxLength(1000)]
+        [Required]
         public string Data { get; set; }
         public DateTime Time { get; set; }
-
     }
 }

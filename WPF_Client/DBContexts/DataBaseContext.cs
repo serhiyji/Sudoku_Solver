@@ -35,15 +35,5 @@ namespace WPF_Client.DBContexts
         {
             modelBuilder.Entity<SavingSudoku>().HasOne(s => s.User).WithMany(u => u.SavingSudokus).HasForeignKey(s => s.IdUser);
         }
-        public bool SaveSudoku(int IdUser, ref BetterMatrix matrix)
-        {
-            // ...
-            return false;
-        }
-        public bool LoadSudoku(int IdUser, int IdSudoku, ref BetterMatrix matrix)
-        {
-            // ...
-            return false;
-        }
     }
 }

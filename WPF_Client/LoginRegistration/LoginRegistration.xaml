@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Client.LoginRegistration"
         mc:Ignorable="d"
-        Title="LoginRegistration" Height="450" Width="800">
+        Title="LoginRegistration" Height="500" Width="400">
     <Grid>
         
     </Grid>

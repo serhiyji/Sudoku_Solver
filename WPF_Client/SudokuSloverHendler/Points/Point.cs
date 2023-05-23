@@ -22,6 +22,16 @@ namespace SudokuSloverHendler.Points
         }
         public Point(byte value) : this(value, new PosPoint()) { }
         public Point() : this(0, new PosPoint()) { }
+        public string SavePoint()
+        {
+            return $"{this.value}+{this.set.ToString()}";
+        }
+        public void LoadPoint(string data)
+        {
+            this.value = 0;
+            this.set.Clear();
+
+        }
         public static bool operator ==(Point p1, byte value)
         {
             return p1.Equals(new Point(value));
