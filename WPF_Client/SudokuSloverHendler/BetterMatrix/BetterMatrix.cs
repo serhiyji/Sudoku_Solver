@@ -74,5 +74,17 @@ namespace SudokuSloverHendler.BetterMatrix
                 }
             }
         }
+        public string SaveSudoku()
+        {
+            string res = "";
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    res += matrix[i, j].SavePoint() + ":";
+                }
+            }
+            return res;
+        }
     }
 }

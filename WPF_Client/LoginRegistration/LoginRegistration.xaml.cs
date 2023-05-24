@@ -21,6 +21,7 @@ namespace WPF_Client.LoginRegistration
         {
             InitializeComponent();
             this.model = new ViewModel();
+            this.model.OnClosedWindow += (s, e) => { this.Close(); };
             this.DataContext = model;
         }
     }

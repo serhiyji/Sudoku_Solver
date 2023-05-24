@@ -14,25 +14,67 @@ namespace WPF_Client
         private int IdUser;
         private bool IsLogined;
         private bool IsLoginContains(string login) => db.Users.Select(i => i.Login).Contains(login);
+        private bool IsSudokuContains(int IdSudoku) => db.SavingSudokus.Select(i => i.ID).Contains(IdSudoku);
         public DatabaseHandler()
         {
             this.IsLogined = false;
             this.IdUser = -1;
             this.db = new DataBaseContext();
         }
-        public bool SaveSudoku(int IdUser, ref BetterMatrix matrix)
+        public bool SaveSudoku(string name, ref BetterMatrix matrix)
         {
-            // ...
+            try
+            {
+                db.SavingSudokus.Add(new DBContexts.Entities.SavingSudoku(){
+                    Name = name,
+                    IdUser = this.IdUser,
+                    Data = matrix.SaveSudoku(),
+                    Time = DateTime.Now,
+                });
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
             return false;
         }
-        public bool SaveSudoku(int IdUser, int IdSudoku, ref BetterMatrix matrix)
+        public bool SaveSudoku(int IdSudoku, ref BetterMatrix matrix)
         {
-            // ...
+            try
+            {
+                if (!IsSudokuContains(IdSudoku)) { return false; }
+                var sud = db.SavingSudokus.Where(i => i.ID == IdSudoku);
+                if (sud.Count() == 1)
+                {
+                    sud.First().Data = matrix.SaveSudoku();
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
             return false;
         }
-        public bool LoadSudoku(int IdUser, int IdSudoku, ref BetterMatrix matrix)
+        public bool LoadSudoku(int IdSudoku, ref BetterMatrix matrix)
         {
-            // ...
+            try
+            {
+                if (!IsSudokuContains(IdSudoku)) { return false; }
+                var sud = db.SavingSudokus.Where(i => i.ID == IdSudoku);
+                if (sud.Count() == 1)
+                {
+                    matrix.LoadSudoku(sud.First().Data);
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
             return false;
         }
         public bool Login(string login, string password)
@@ -42,6 +84,7 @@ namespace WPF_Client
             {
                 this.IsLogined = true;
                 this.IdUser = users.First();
+                return true;
             }
             return false;
         }
@@ -57,8 +100,8 @@ namespace WPF_Client
                         Password = password,
                         Email = email,
                     });
+                    return true;
                 }
-                return true;
             }
             catch (Exception) { }
             return false;

@@ -5,8 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Client.LoginRegistration"
         mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=local:ViewModel}"
         Title="LoginRegistration" Height="500" Width="400">
-    <Grid>
-        
-    </Grid>
+    <DockPanel>
+        <TabControl>
+            <TabItem Header="Login">
+                <StackPanel>
+                    <TextBlock>Login</TextBlock>
+                    <DockPanel LastChildFill="True">
+                        <Border Height="10px" BorderThickness="999" DockPanel.Dock="Bottom" Margin="5"
+                                Background="{Binding Path=LoginLine, UpdateSourceTrigger=PropertyChanged}"></Border>
+                        <TextBox Text="{Binding Path=Login, UpdateSourceTrigger=PropertyChanged}">
+                            
+                        </TextBox>
+                    </DockPanel>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Register">
+                
+            </TabItem>
+        </TabControl>
+    </DockPanel>
 </Window>
