@@ -17,10 +17,6 @@ namespace WPF_Client
     [AddINotifyPropertyChangedInterface]
     public partial class ViewModel
     {
-        // Bools
-        public bool IsOpenSignInOrSignUp { get; set; }
-        public bool IsSignIn { get; set; }
-        public int? UserId { get; set; }
         // Matrix
         private CursorPosition cursorPosition;
         private BetterMatrix matrix;
@@ -29,7 +25,14 @@ namespace WPF_Client
         public bool IsExecute => Solution.Instance.IsExecute;
         public ObservableCollection<SudokuSloverHendler.Points.Point> points { get; set; }
         public IEnumerable<SudokuSloverHendler.Points.Point> Points => points;
+
+        // SudokusList
+        private ObservableCollection<string> sudokus { get; set; }
+        public IEnumerable<string> Sudokus => sudokus;
+
         // Buttons
+        public bool IsOpenSignInOrSignUp => DatabaseHandler.Instance.IsLogined;
+
         private RelayCommand SignInCommand;
         private RelayCommand SignUpCommand;
         private RelayCommand SignOutCommand;

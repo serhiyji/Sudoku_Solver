@@ -12,7 +12,7 @@ namespace WPF_Client
     {
         private DataBaseContext db;
         private int IdUser;
-        private bool IsLogined;
+        public bool IsLogined { get; private set; }
         private bool IsLoginContains(string login) => db.Users.Select(i => i.Login).Contains(login);
         private bool IsSudokuContains(int IdSudoku) => db.SavingSudokus.Select(i => i.ID).Contains(IdSudoku);
         public DatabaseHandler()
@@ -109,10 +109,18 @@ namespace WPF_Client
         public void LogOut()
         {
             this.IsLogined = false;
+            this.IdUser = -1;
         }
         public IEnumerable<(int id, string name)> GetSudokuByUser()
         {
-            return (IEnumerable<(int id, string name)>)this.db.SavingSudokus.Where(s => s.IdUser == IdUser).Select(i => new { id = i.ID, name = i.Name });
+            if (IsLogined)
+            {
+                return (IEnumerable<(int id, string name)>)this.db.SavingSudokus.Where(s => s.IdUser == IdUser).Select(i => new { id = i.ID, name = i.Name });
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

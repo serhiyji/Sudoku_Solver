@@ -25,10 +25,6 @@ namespace WPF_Client
     {
         public ViewModel()
         {
-            this.IsOpenSignInOrSignUp = false;
-            this.IsSignIn = false;
-            this.UserId = null;
-
             this.matrix = new BetterMatrix();
             this.slover = new SudokuSlover(ref this.matrix);
             this.cursorPosition = new CursorPosition(ref matrix, 4, 4);
@@ -84,35 +80,28 @@ namespace WPF_Client
         }
 
         #region Buttons Handlers
-        private async void SignInBtnClick()
+        private void SignInBtnClick()
+        {
+            OpenLoginRegister(1);
+        }
+        private void SignUpBtnClick()
+        {
+            OpenLoginRegister(2);
+        }
+        private async void OpenLoginRegister(int idtab)
         {
             await Task.Run(() =>
             {
                 Application.Current.Dispatcher.Invoke(() =>
                 {
-                    this.IsOpenSignInOrSignUp = true;
-                    WPF_Client.LoginRegistration.LoginRegistration loginWindow = new WPF_Client.LoginRegistration.LoginRegistration();
+                    WPF_Client.LoginRegistration.LoginRegistration loginWindow = new WPF_Client.LoginRegistration.LoginRegistration(idtab);
                     loginWindow.ShowDialog();
-                    loginWindow.Closed += (s, e) =>
-                    {
-                        Application.Current.Dispatcher.Invoke(() =>
-                        {
-                            this.IsOpenSignInOrSignUp = false;
-                            // ...
-                        });
-                    };
                 });
             });
         }
-
-
-        private void SignUpBtnClick()
-        {
-
-        }
         private void SignOutBtnClick()
         {
-
+            DatabaseHandler.Instance.LogOut();
         }
         private void NextHintBtnClick()
         {
