@@ -21,6 +21,16 @@ namespace SudokuSloverHendler.BetterMatrix
                 }
             }
         }
+        public void ClearMatrix()
+        {
+            for (int i = 0; i < size; i++)
+            {
+                for (int j = 0; j < size; j++)
+                {
+                    this.SetValue(new PosPoint(i, j), 0);
+                }
+            }
+        }
         private Set<byte> GetPossibleValuesInPosPoint(PosPoint pos_p)
         {
             Set<byte> set1 = new Set<byte>(this.GetSetHorizontalLine(pos_p.i));

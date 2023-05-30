@@ -36,6 +36,10 @@ namespace WPF_Client
 
         private RelayCommand SignInUpCommand;
         private RelayCommand SignOutCommand;
+
+        public ICommand SignInUpCmd => SignInUpCommand;
+        public ICommand SignOutCmd => SignOutCommand;
+
         private RelayCommand NextHintCommand;
         private RelayCommand ExecuteCommand;
         private RelayCommand SloveUpToCommand;
@@ -45,8 +49,10 @@ namespace WPF_Client
         public ICommand ExecuteCmd => ExecuteCommand;
         public ICommand SloveUpToCmd => SloveUpToCommand;
         public ICommand CancelCmd => CancelCommand;
-        public ICommand SignInUpCmd => SignInUpCommand;
-        public ICommand SignOutCmd => SignOutCommand;
+
+        private RelayCommand ClearMatrixCommand;
+
+        public ICommand ClearMatrixCmd => ClearMatrixCommand;
 
         private RelayCommand UpCommand;
         private RelayCommand DownCommand;

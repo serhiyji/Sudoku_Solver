@@ -37,12 +37,14 @@ namespace WPF_Client
         private void BindingButtons()
         {
             this.SignInUpCommand = new RelayCommand((i) => this.SignInUpBtnClick(), (i) => !IsOpenSignInOrSignUp);
-            this.SignOutCommand = new RelayCommand((i) => this.SignOutBtnClick(), (i) => true);
+            this.SignOutCommand = new RelayCommand((i) => this.SignOutBtnClick(), (i) => IsOpenSignInOrSignUp);
 
             this.NextHintCommand = new RelayCommand((i) => NextHintBtnClick(), (i) => !this.IsExecute);
             this.ExecuteCommand = new RelayCommand((i) => ExecuteBtnClick(), (i) => this.IsExecute);
             this.SloveUpToCommand = new RelayCommand((i) => SloveUpToBtnClick(), (i) => true);
             this.CancelCommand = new RelayCommand((i) => CancelBtnClick(), (i) => this.IsExecute);
+
+            this.ClearMatrixCommand = new RelayCommand((i) => ClearMatrixBtnClick(), (i) => true);
 
             this.UpCommand = new RelayCommand((i) => this.cursorPosition.SetPosition(Side.Up), (i) => true);
             this.DownCommand = new RelayCommand((i) => this.cursorPosition.SetPosition(Side.Down), (i) => true);
@@ -104,6 +106,10 @@ namespace WPF_Client
         private void SignOutBtnClick()
         {
             DatabaseHandler.Instance.LogOut();
+        }
+        private void ClearMatrixBtnClick()
+        {
+            this.matrix.ClearMatrix();
         }
 
         #region Solution

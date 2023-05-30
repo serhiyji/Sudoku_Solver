@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPF_Client"
         d:DataContext="{d:DesignInstance Type=local:ViewModel}"
         mc:Ignorable="d"
-        Title="Головне вікно" Height="600" Width="500">
+        Title="Головне вікно" Height="650" Width="500">
 
     <Window.InputBindings>
         <KeyBinding Command="{Binding Path=UpCmd}" Key="W"/>
@@ -106,6 +106,8 @@
                           Header="Slove up to"></MenuItem>
                 <MenuItem Command="{Binding Path=CancelCmd, UpdateSourceTrigger=PropertyChanged}" 
                           Header="Cancel"></MenuItem>
+                <MenuItem Command="{Binding Path=ClearMatrixCmd, UpdateSourceTrigger=PropertyChanged}"
+                          Header="Clear Matrix"></MenuItem>
             </MenuItem>
         </Menu>
         
@@ -135,8 +137,7 @@
                     <!--матриця-->
                     <Grid>
                         <ItemsControl 
-                            ItemsSource="{Binding Path=Points, UpdateSourceTrigger=PropertyChanged}"
-                            >
+                            ItemsSource="{Binding Path=Points, UpdateSourceTrigger=PropertyChanged}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Grid>
@@ -148,44 +149,44 @@
                                                        FontSize="25"
                                                                 Text="{Binding Path=Value, UpdateSourceTrigger=PropertyChanged}"
                                                                 ></TextBlock>
-
                                         </Border>
+                                        
                                         <UniformGrid Columns="3" Rows="3" Margin="2">
                                             <Border CornerRadius="999">
                                                 <TextBlock TextAlignment="Center"
-                                                           Text="{Binding Path=Val1, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                                                Text="{Binding Path=Val1, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                             </Border>
                                             <Border CornerRadius="999">
                                                 <TextBlock TextAlignment="Center"
-                                                           Text="{Binding Path=Val2, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                                                Text="{Binding Path=Val2, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                             </Border>
                                             <Border CornerRadius="999">
                                                 <TextBlock TextAlignment="Center"
-                                                           Text="{Binding Path=Val3, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                                                Text="{Binding Path=Val3, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                             </Border>
                                             <Border CornerRadius="999">
                                                 <TextBlock TextAlignment="Center"
-                                                           Text="{Binding Path=Val4, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                                                Text="{Binding Path=Val4, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                             </Border>
                                             <Border CornerRadius="999">
                                                 <TextBlock TextAlignment="Center"
-                                                           Text="{Binding Path=Val5, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                                                Text="{Binding Path=Val5, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                             </Border>
                                             <Border CornerRadius="999">
                                                 <TextBlock TextAlignment="Center"
-                                                           Text="{Binding Path=Val6, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                                                Text="{Binding Path=Val6, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                             </Border>
                                             <Border CornerRadius="999">
                                                 <TextBlock TextAlignment="Center"
-                                                           Text="{Binding Path=Val7, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                                                Text="{Binding Path=Val7, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                             </Border>
                                             <Border CornerRadius="999">
                                                 <TextBlock TextAlignment="Center"
-                                                           Text="{Binding Path=Val8, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                                                Text="{Binding Path=Val8, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                             </Border>
                                             <Border CornerRadius="999">
                                                 <TextBlock TextAlignment="Center"
-                                                           Text="{Binding Path=Val9, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                                                Text="{Binding Path=Val9, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                             </Border>
                                         </UniformGrid>
                                     </Grid>
@@ -197,8 +198,8 @@
                                 <ItemsPanelTemplate>
                                     <UniformGrid Columns="9" Rows="9"></UniformGrid>
                                 </ItemsPanelTemplate>
-
                             </ItemsControl.ItemsPanel>
+                            
                         </ItemsControl>
                     </Grid>
                     <UniformGrid Columns="9" Rows="1">

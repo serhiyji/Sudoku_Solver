@@ -100,7 +100,8 @@ namespace WPF_Client
                         Password = password,
                         Email = email,
                     });
-                    return true;
+                    db.SaveChanges();
+                    return this.Login(login, password);
                 }
             }
             catch (Exception) { }
