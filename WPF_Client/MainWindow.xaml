@@ -28,7 +28,7 @@
         <KeyBinding Command="{Binding Path=NumPad7Cmd}" Key="NumPad7"></KeyBinding>
         <KeyBinding Command="{Binding Path=NumPad8Cmd}" Key="NumPad8"></KeyBinding>
         <KeyBinding Command="{Binding Path=NumPad9Cmd}" Key="NumPad9"></KeyBinding>
-        
+
         <KeyBinding Command="{Binding Path=NumPad0Cmd}" Key="D0"></KeyBinding>
         <KeyBinding Command="{Binding Path=NumPad0Cmd}" Key="Delete"></KeyBinding>
         <KeyBinding Command="{Binding Path=NumPad1Cmd}" Key="D1"></KeyBinding>
@@ -40,12 +40,10 @@
         <KeyBinding Command="{Binding Path=NumPad7Cmd}" Key="D7"></KeyBinding>
         <KeyBinding Command="{Binding Path=NumPad8Cmd}" Key="D8"></KeyBinding>
         <KeyBinding Command="{Binding Path=NumPad9Cmd}" Key="D9"></KeyBinding>
+
+        <KeyBinding Command="{Binding Path=NewRandomSudokuCmd}" Modifiers="Ctrl+Shift" Key="N"></KeyBinding>
     </Window.InputBindings>
 
-    <Window.CommandBindings>
-                
-    </Window.CommandBindings>
-    
     <Window.Resources>
         <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
             <Setter Property="Margin" Value="5"></Setter>

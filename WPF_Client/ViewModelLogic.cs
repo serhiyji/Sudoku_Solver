@@ -154,7 +154,7 @@ namespace WPF_Client
         #region Menu_File
         private void NewRandomSudokuBtnClick() 
         {
-            
+            MessageBox.Show("/");
         }
         private void OpenSudokuFromFileBtnClick()
         {
