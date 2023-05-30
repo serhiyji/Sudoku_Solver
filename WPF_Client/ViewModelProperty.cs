@@ -11,6 +11,7 @@ using SudokuSloverHendler;
 using SudokuSloverHendler.BetterMatrix;
 using SudokuSloverHendler.Coordinates;
 using WPF_Client.Expansion;
+using System.Windows.Controls;
 
 namespace WPF_Client
 {
@@ -33,8 +34,7 @@ namespace WPF_Client
         // Buttons
         public bool IsOpenSignInOrSignUp => DatabaseHandler.Instance.IsLogined;
 
-        private RelayCommand SignInCommand;
-        private RelayCommand SignUpCommand;
+        private RelayCommand SignInUpCommand;
         private RelayCommand SignOutCommand;
         private RelayCommand NextHintCommand;
         private RelayCommand ExecuteCommand;
@@ -44,9 +44,8 @@ namespace WPF_Client
         public ICommand NextHintCmd => NextHintCommand;
         public ICommand ExecuteCmd => ExecuteCommand;
         public ICommand SloveUpToCmd => SloveUpToCommand;
-        public ICommand Cancel => CancelCommand;
-        public ICommand SignInCmd => SignInCommand;
-        public ICommand SignUpCmd => SignUpCommand;
+        public ICommand CancelCmd => CancelCommand;
+        public ICommand SignInUpCmd => SignInUpCommand;
         public ICommand SignOutCmd => SignOutCommand;
 
         private RelayCommand UpCommand;
@@ -80,5 +79,23 @@ namespace WPF_Client
         public ICommand NumPad7Cmd => NumPad7Command;
         public ICommand NumPad8Cmd => NumPad8Command;
         public ICommand NumPad9Cmd => NumPad9Command;
+
+        private RelayCommand NewRandomSudokuCommand;
+        private RelayCommand OpenSudokuFromFileCommand;
+        private RelayCommand SaveSudokuInFileCommand;
+        private RelayCommand SaveAsSudokuInFileCommand;
+        private RelayCommand OpenSudokuFromDataBaseCommand;
+        private RelayCommand SaveSudokuInDataBaseCommand;
+        private RelayCommand SaveAsSudokuInDataBaseCommand;
+        private RelayCommand QuitCommand;
+
+        public ICommand NewRandomSudokuCmd => NewRandomSudokuCommand;
+        public ICommand OpenSudokuFromFileCmd => OpenSudokuFromFileCommand;
+        public ICommand SaveSudokuInFileCmd => SaveSudokuInFileCommand;
+        public ICommand SaveAsSudokuInFileCmd => SaveAsSudokuInFileCommand;
+        public ICommand OpenSudokuFromDataBaseCmd => OpenSudokuFromDataBaseCommand;
+        public ICommand SaveSudokuInDataBaseCmd => SaveSudokuInDataBaseCommand;
+        public ICommand SaveAsSudokuInDataBaseCmd => SaveAsSudokuInDataBaseCommand;
+        public ICommand QuitCmd => QuitCommand;
     }
 }

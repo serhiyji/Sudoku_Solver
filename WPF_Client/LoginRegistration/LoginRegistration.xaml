@@ -6,24 +6,83 @@
         xmlns:local="clr-namespace:WPF_Client.LoginRegistration"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=local:ViewModel}"
-        Title="LoginRegistration" Height="500" Width="400">
-    <DockPanel>
-        <TabControl>
-            <TabItem Header="Login">
+        Title="Вхід / Реєстрація" Height="450" Width="350">
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Padding" Value="2"></Setter>
+        </Style>
+    </Window.Resources>
+    <DockPanel LastChildFill="True">
+
+        <StackPanel>
+            <GroupBox Header="Вхід" Margin="5" Padding="5">
                 <StackPanel>
-                    <TextBlock>Login</TextBlock>
+                    <TextBlock Margin="2" TextAlignment="Center">Логін</TextBlock>
                     <DockPanel LastChildFill="True">
-                        <Border Height="10px" BorderThickness="999" DockPanel.Dock="Bottom" Margin="5"
-                                Background="{Binding Path=LoginLine, UpdateSourceTrigger=PropertyChanged}"></Border>
-                        <TextBox Text="{Binding Path=Login, UpdateSourceTrigger=PropertyChanged}">
-                            
+                        <Border Height="2px" DockPanel.Dock="Bottom" Margin="5, 1"
+                                Background="{Binding Path=LoginLine, UpdateSourceTrigger=PropertyChanged}">
+
+                        </Border>
+                        <TextBox
+                            Text="{Binding Path=Login, UpdateSourceTrigger=PropertyChanged}">
                         </TextBox>
                     </DockPanel>
+                    <TextBlock Margin="7" TextAlignment="Center">Пароль</TextBlock>
+                    <DockPanel>
+                        <Border Height="2px" DockPanel.Dock="Bottom" Margin="5, 1"
+                        Background="{Binding Path=PasswordLine, UpdateSourceTrigger=PropertyChanged}">
+
+                        </Border>
+                        <TextBox Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged}">
+
+                        </TextBox>
+                    </DockPanel>
+                    <DockPanel>
+                        <Button Margin="0, 5" Padding="2" 
+                    Command="{Binding Path=LoginCmd, UpdateSourceTrigger=PropertyChanged}">Ввійти</Button>
+                    </DockPanel>
                 </StackPanel>
-            </TabItem>
-            <TabItem Header="Register">
-                
-            </TabItem>
-        </TabControl>
+            </GroupBox>
+            
+            <GroupBox Header="Реєстрація" Margin="5" Padding="5">
+                <StackPanel>
+                    <TextBlock Margin="2" TextAlignment="Center">Логін</TextBlock>
+                    <DockPanel LastChildFill="True">
+                        <Border Height="2px" DockPanel.Dock="Bottom" Margin="5, 1"
+                                Background="{Binding Path=LoginLine, UpdateSourceTrigger=PropertyChanged}">
+
+                        </Border>
+                        <TextBox
+                            Text="{Binding Path=Login, UpdateSourceTrigger=PropertyChanged}">
+                        </TextBox>
+                    </DockPanel>
+                    <TextBlock Margin="7" TextAlignment="Center">Пароль</TextBlock>
+                    <DockPanel>
+                        <Border Height="2px" DockPanel.Dock="Bottom" Margin="5, 1"
+                        Background="{Binding Path=PasswordLine, UpdateSourceTrigger=PropertyChanged}">
+
+                        </Border>
+                        <TextBox Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged}">
+
+                        </TextBox>
+                    </DockPanel>
+                    <TextBlock Margin="7" TextAlignment="Center">Пошта</TextBlock>
+                    <DockPanel>
+                        <Border Height="2px" DockPanel.Dock="Bottom" Margin="5, 1"
+                        Background="{Binding Path=EmailLine, UpdateSourceTrigger=PropertyChanged}">
+
+                        </Border>
+                        <TextBox Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged}">
+
+                        </TextBox>
+                    </DockPanel>
+                    <DockPanel>
+                        <Button Margin="0, 5" Padding="2" 
+                    Command="{Binding Path=RegistrationCmd, UpdateSourceTrigger=PropertyChanged}">Зареєструватись</Button>
+                    </DockPanel>
+                </StackPanel>
+            </GroupBox>
+
+        </StackPanel>
     </DockPanel>
 </Window>

@@ -27,7 +27,7 @@ namespace WPF_Client
         {
             this.matrix = new BetterMatrix();
             this.slover = new SudokuSlover(ref this.matrix);
-            this.cursorPosition = new CursorPosition(ref matrix, 4, 4);
+            this.cursorPosition = new CursorPosition(ref matrix, 5, 4);
             this.points = new ObservableCollection<SudokuSloverHendler.Points.Point>();
 
             this.BindingButtons();
@@ -36,8 +36,7 @@ namespace WPF_Client
 
         private void BindingButtons()
         {
-            this.SignInCommand = new RelayCommand((i) => this.SignInBtnClick(), (i) => !IsOpenSignInOrSignUp);
-            this.SignUpCommand = new RelayCommand((i) => this.SignUpBtnClick(), (i) => !IsOpenSignInOrSignUp);
+            this.SignInUpCommand = new RelayCommand((i) => this.SignInUpBtnClick(), (i) => !IsOpenSignInOrSignUp);
             this.SignOutCommand = new RelayCommand((i) => this.SignOutBtnClick(), (i) => true);
 
             this.NextHintCommand = new RelayCommand((i) => NextHintBtnClick(), (i) => !this.IsExecute);
@@ -60,6 +59,16 @@ namespace WPF_Client
             this.NumPad7Command = new RelayCommand((i) => this.SetValue(7), (i) => !this.IsExecute);
             this.NumPad8Command = new RelayCommand((i) => this.SetValue(8), (i) => !this.IsExecute);
             this.NumPad9Command = new RelayCommand((i) => this.SetValue(9), (i) => !this.IsExecute);
+
+            this.NewRandomSudokuCommand = new RelayCommand((i) => this.NewRandomSudokuBtnClick(), (i) => true);
+            this.OpenSudokuFromFileCommand = new RelayCommand((i) => this.OpenSudokuFromFileBtnClick(), (i) => true);
+            this.SaveSudokuInFileCommand = new RelayCommand((i) => this.SaveSudokuInFileBtnClick(), (i) => true);
+            this.SaveAsSudokuInFileCommand = new RelayCommand((i) => this.SaveAsSudokuInFileBtnClick(), (i) => true);
+            this.OpenSudokuFromDataBaseCommand = new RelayCommand((i) => this.OpenSudokuFromDataBaseBtnClick(), (i) => true);
+            this.SaveSudokuInDataBaseCommand = new RelayCommand((i) => this.SaveSudokuInDataBaseBtnClick(), (i) => true);
+            this.SaveAsSudokuInDataBaseCommand = new RelayCommand((i) => this.SaveAsSudokuInDataBaseBtnClick(), (i) => true);
+            this.QuitCommand = new RelayCommand((i) => this.QuitBtnClick(), (i) => true);
+
         }
 
         private void BindGridToBetterMatrix()
@@ -80,21 +89,14 @@ namespace WPF_Client
         }
 
         #region Buttons Handlers
-        private void SignInBtnClick()
-        {
-            OpenLoginRegister(1);
-        }
-        private void SignUpBtnClick()
-        {
-            OpenLoginRegister(2);
-        }
-        private async void OpenLoginRegister(int idtab)
+
+        private async void SignInUpBtnClick()
         {
             await Task.Run(() =>
             {
                 Application.Current.Dispatcher.Invoke(() =>
                 {
-                    WPF_Client.LoginRegistration.LoginRegistration loginWindow = new WPF_Client.LoginRegistration.LoginRegistration(idtab);
+                    WPF_Client.LoginRegistration.LoginRegistration loginWindow = new WPF_Client.LoginRegistration.LoginRegistration();
                     loginWindow.ShowDialog();
                 });
             });
@@ -103,6 +105,8 @@ namespace WPF_Client
         {
             DatabaseHandler.Instance.LogOut();
         }
+
+        #region Solution
         private void NextHintBtnClick()
         {
             Intersections intersection = this.slover.NextSlover();
@@ -116,7 +120,7 @@ namespace WPF_Client
         {
             Solution.Instance.IsExecute = false;
             bool res = this.slover.Intersections_Handler(Solution.Instance.Intersection);
-            MessageBox.Show(res.ToString());
+            //MessageBox.Show(res.ToString());
             Solution.Instance.Intersection.SetDefoltValues();
         }
         private void SloveUpToBtnClick()
@@ -139,6 +143,43 @@ namespace WPF_Client
             Solution.Instance.IsExecute = false;
             Solution.Instance.Intersection.SetDefoltValues();
         }
+        #endregion
+
+        #region Menu_File
+        private void NewRandomSudokuBtnClick() 
+        {
+            
+        }
+        private void OpenSudokuFromFileBtnClick()
+        {
+
+        }
+        private void SaveSudokuInFileBtnClick()
+        {
+
+        }
+        private void SaveAsSudokuInFileBtnClick()
+        {
+
+        }
+        private void OpenSudokuFromDataBaseBtnClick()
+        {
+
+        }
+        private void SaveSudokuInDataBaseBtnClick()
+        {
+
+        }
+        private void SaveAsSudokuInDataBaseBtnClick()
+        {
+
+        }
+        private void QuitBtnClick()
+        {
+
+        }
+        #endregion
+
         #endregion
     }
 }

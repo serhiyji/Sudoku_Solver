@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPF_Client"
         d:DataContext="{d:DesignInstance Type=local:ViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="500">
+        Title="Головне вікно" Height="600" Width="500">
 
     <Window.InputBindings>
         <KeyBinding Command="{Binding Path=UpCmd}" Key="W"/>
@@ -39,8 +39,11 @@
         <KeyBinding Command="{Binding Path=NumPad7Cmd}" Key="D7"></KeyBinding>
         <KeyBinding Command="{Binding Path=NumPad8Cmd}" Key="D8"></KeyBinding>
         <KeyBinding Command="{Binding Path=NumPad9Cmd}" Key="D9"></KeyBinding>
-        
     </Window.InputBindings>
+
+    <Window.CommandBindings>
+        
+    </Window.CommandBindings>
     
     <Window.Resources>
         <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
@@ -54,22 +57,73 @@
     </Window.Resources>
     
     <DockPanel LastChildFill="True">
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <MenuItem Command="{Binding Path=NewRandomSudokuCmd, UpdateSourceTrigger=PropertyChanged}"
+                    Header="New Random Sudoku"></MenuItem>
+                <Separator/>
+                <MenuItem Command="{Binding Path=OpenSudokuFromFileCmd, UpdateSourceTrigger=PropertyChanged}"
+                    Header="Open Sudoku From File"></MenuItem>
+                <MenuItem Command="{Binding Path=SaveSudokuInFileCmd, UpdateSourceTrigger=PropertyChanged}"
+                    Header="Save Sudoku In File"></MenuItem>
+                <MenuItem Command="{Binding Path=SaveAsSudokuInFileCmd, UpdateSourceTrigger=PropertyChanged}"
+                    Header="Save As Sudoku In File"></MenuItem>
+                <Separator/>
+                <MenuItem Command="{Binding Path=OpenSudokuFromDataBaseCmd, UpdateSourceTrigger=PropertyChanged}"
+                    Header="Open Sudoku From DataBase"></MenuItem>
+                <MenuItem Command="{Binding Path=SaveSudokuInDataBaseCmd, UpdateSourceTrigger=PropertyChanged}"
+                    Header="Save Sudoku In DataBase"></MenuItem>
+                <MenuItem Command="{Binding Path=SaveAsSudokuInDataBaseCmd, UpdateSourceTrigger=PropertyChanged}"
+                    Header="Save As Sudoku In DataBase"></MenuItem>
+                <Separator/>
+                <MenuItem Command="{Binding Path=QuitCmd, UpdateSourceTrigger=PropertyChanged}"
+                    Header="Quit"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Moving">
+                <MenuItem Command="{Binding Path=UpCmd, UpdateSourceTrigger=PropertyChanged}" 
+                          Header="Up"></MenuItem>
+                <MenuItem Command="{Binding Path=DownCmd, UpdateSourceTrigger=PropertyChanged}" 
+                          Header="Down"></MenuItem>
+                <MenuItem Command="{Binding Path=LeftCmd, UpdateSourceTrigger=PropertyChanged}" 
+                          Header="Left"></MenuItem>
+                <MenuItem Command="{Binding Path=RightCmd, UpdateSourceTrigger=PropertyChanged}" 
+                          Header="Rigth"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Sign In/Up/Out">
+                <MenuItem Command="{Binding Path=SignInUpCmd, UpdateSourceTrigger=PropertyChanged}" 
+                          Header="Sign In"></MenuItem>
+                <MenuItem Command="{Binding Path=SignInUpCmd, UpdateSourceTrigger=PropertyChanged}" 
+                          Header="Sign Up"></MenuItem>
+                <MenuItem Command="{Binding Path=SignOutCmd, UpdateSourceTrigger=PropertyChanged}" 
+                          Header="Sign Out"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Solution">
+                <MenuItem Command="{Binding Path=NextHintCmd, UpdateSourceTrigger=PropertyChanged}" 
+                          Header="Next Hint"></MenuItem>
+                <MenuItem Command="{Binding Path=ExecuteCmd, UpdateSourceTrigger=PropertyChanged}" 
+                          Header="Execute"></MenuItem>
+                <MenuItem Command="{Binding Path=SloveUpToCmd, UpdateSourceTrigger=PropertyChanged}" 
+                          Header="Slove up to"></MenuItem>
+                <MenuItem Command="{Binding Path=CancelCmd, UpdateSourceTrigger=PropertyChanged}" 
+                          Header="Cancel"></MenuItem>
+            </MenuItem>
+        </Menu>
+        
         <DockPanel>
             
             <!--верх-->
             <DockPanel DockPanel.Dock="Top" LastChildFill="False">
-                <Button DockPanel.Dock="Right" Command="{Binding Path=SignInCmd, UpdateSourceTrigger=PropertyChanged}">Sign in</Button>
-                <Button DockPanel.Dock="Right" Command="{Binding Path=SignUpCmd, UpdateSourceTrigger=PropertyChanged}">Sign up</Button>
+                <Button DockPanel.Dock="Right" Command="{Binding Path=SignOutCmd, UpdateSourceTrigger=PropertyChanged}">Вийти</Button>
+                <Button DockPanel.Dock="Right" Command="{Binding Path=SignInUpCmd, UpdateSourceTrigger=PropertyChanged}">Увійти / Зареєструватись</Button>
             </DockPanel>
             
             <!--низ-->
-            
             <DockPanel DockPanel.Dock="Bottom" LastChildFill="True">
                 <UniformGrid Columns="2" Rows="2" DockPanel.Dock="Right">
-                    <Button Command="{Binding Path=NextHintCmd, UpdateSourceTrigger=PropertyChanged}">Next Hint</Button>
-                    <Button Command="{Binding Path=ExecuteCmd, UpdateSourceTrigger=PropertyChanged}">Execute</Button>
-                    <Button Command="{Binding Path=SloveUpToCmd, UpdateSourceTrigger=PropertyChanged}">Slove up to</Button>
-                    <Button Command="{Binding Path=Cancel, UpdateSourceTrigger=PropertyChanged}">Cancel</Button>
+                    <Button Command="{Binding Path=NextHintCmd, UpdateSourceTrigger=PropertyChanged}">Наступне рішення</Button>
+                    <Button Command="{Binding Path=ExecuteCmd, UpdateSourceTrigger=PropertyChanged}">Застосувати рішення</Button>
+                    <Button Command="{Binding Path=SloveUpToCmd, UpdateSourceTrigger=PropertyChanged}">Вирішити  до  кінця</Button>
+                    <Button Command="{Binding Path=CancelCmd, UpdateSourceTrigger=PropertyChanged}">Відмінити</Button>
                 </UniformGrid>
                 <TextBlock TextAlignment="Center" Margin="5"
                            Text="{Binding Path=Intersection.NameMethodSlover, UpdateSourceTrigger=PropertyChanged}"></TextBlock>

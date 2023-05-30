@@ -17,7 +17,7 @@ namespace WPF_Client.LoginRegistration
     public partial class LoginRegistration : Window
     {
         ViewModel model;
-        public LoginRegistration(int idtab)
+        public LoginRegistration()
         {
             InitializeComponent();
             this.model = new ViewModel();

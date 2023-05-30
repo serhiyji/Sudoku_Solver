@@ -27,6 +27,7 @@ namespace SudokuSloverHendler.Coordinates
 			this.matrix = matrix;
 			I = _i;
 			J = _j;
+			this.SetPosition(Side.Up);
 		}
 		public void SetPosition(Side side)
 		{
