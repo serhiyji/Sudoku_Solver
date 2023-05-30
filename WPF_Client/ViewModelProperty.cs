@@ -27,6 +27,9 @@ namespace WPF_Client
         public ObservableCollection<SudokuSloverHendler.Points.Point> points { get; set; }
         public IEnumerable<SudokuSloverHendler.Points.Point> Points => points;
 
+        // Window control
+        public event EventHandler CloseWindow;
+
         // SudokusList
         private ObservableCollection<string> sudokus { get; set; }
         public IEnumerable<string> Sudokus => sudokus;

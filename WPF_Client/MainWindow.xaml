@@ -30,6 +30,7 @@
         <KeyBinding Command="{Binding Path=NumPad9Cmd}" Key="NumPad9"></KeyBinding>
         
         <KeyBinding Command="{Binding Path=NumPad0Cmd}" Key="D0"></KeyBinding>
+        <KeyBinding Command="{Binding Path=NumPad0Cmd}" Key="Delete"></KeyBinding>
         <KeyBinding Command="{Binding Path=NumPad1Cmd}" Key="D1"></KeyBinding>
         <KeyBinding Command="{Binding Path=NumPad2Cmd}" Key="D2"></KeyBinding>
         <KeyBinding Command="{Binding Path=NumPad3Cmd}" Key="D3"></KeyBinding>
@@ -42,7 +43,7 @@
     </Window.InputBindings>
 
     <Window.CommandBindings>
-        
+                
     </Window.CommandBindings>
     
     <Window.Resources>

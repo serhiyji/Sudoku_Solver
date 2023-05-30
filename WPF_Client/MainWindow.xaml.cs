@@ -22,9 +22,8 @@ namespace WPF_Client
         {
             InitializeComponent();
             model = new ViewModel();
+            model.CloseWindow += (s, e) => { this.Close(); };
             this.DataContext = model;
-            //this.PreviewKeyUp += (s, e) => { };
-            //this.InputBindings.Add();
         }
     }
 }

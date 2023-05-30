@@ -182,7 +182,7 @@ namespace WPF_Client
         }
         private void QuitBtnClick()
         {
-
+            this.CloseWindow(null, new EventArgs());
         }
         #endregion
 
