@@ -36,8 +36,8 @@ namespace WPF_Client
 
         private void BindingButtons()
         {
-            this.SignInUpCommand = new RelayCommand((i) => this.SignInUpBtnClick(), (i) => !IsOpenSignInOrSignUp);
-            this.SignOutCommand = new RelayCommand((i) => this.SignOutBtnClick(), (i) => IsOpenSignInOrSignUp);
+            this.SignInUpCommand = new RelayCommand((i) => this.SignInUpBtnClick(), (i) => !DatabaseHandler.Instance.IsLogined);
+            this.SignOutCommand = new RelayCommand((i) => this.SignOutBtnClick(), (i) => DatabaseHandler.Instance.IsLogined);
 
             this.NextHintCommand = new RelayCommand((i) => NextHintBtnClick(), (i) => !this.IsExecute);
             this.ExecuteCommand = new RelayCommand((i) => ExecuteBtnClick(), (i) => this.IsExecute);
@@ -66,9 +66,9 @@ namespace WPF_Client
             this.OpenSudokuFromFileCommand = new RelayCommand((i) => this.OpenSudokuFromFileBtnClick(), (i) => true);
             this.SaveSudokuInFileCommand = new RelayCommand((i) => this.SaveSudokuInFileBtnClick(), (i) => true);
             this.SaveAsSudokuInFileCommand = new RelayCommand((i) => this.SaveAsSudokuInFileBtnClick(), (i) => true);
-            this.OpenSudokuFromDataBaseCommand = new RelayCommand((i) => this.OpenSudokuFromDataBaseBtnClick(), (i) => true);
-            this.SaveSudokuInDataBaseCommand = new RelayCommand((i) => this.SaveSudokuInDataBaseBtnClick(), (i) => true);
-            this.SaveAsSudokuInDataBaseCommand = new RelayCommand((i) => this.SaveAsSudokuInDataBaseBtnClick(), (i) => true);
+            this.OpenSudokuFromDataBaseCommand = new RelayCommand((i) => this.OpenSudokuFromDataBaseBtnClick(), (i) => DatabaseHandler.Instance.IsLogined);
+            this.SaveSudokuInDataBaseCommand = new RelayCommand((i) => this.SaveSudokuInDataBaseBtnClick(), (i) => DatabaseHandler.Instance.IsLogined);
+            this.SaveAsSudokuInDataBaseCommand = new RelayCommand((i) => this.SaveAsSudokuInDataBaseBtnClick(), (i) => DatabaseHandler.Instance.IsLogined);
             this.QuitCommand = new RelayCommand((i) => this.QuitBtnClick(), (i) => true);
 
         }

@@ -21,17 +21,23 @@ namespace WPF_Client.LoginRegistration
         #region Props
         private static SolidColorBrush CORRECT = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
         private static SolidColorBrush DONT_CORRECT = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
-        public string Login { get; set; }
-        public string Password { get; set; }
-        public string Email { get; set; }
+        public string Login_L { get; set; }
+        public string Login_R { get; set; }
+        public string Password_L { get; set; }
+        public string Password_R { get; set; }
+        public string Email_R { get; set; }
         
-        public bool IsLoginValid => Login != null && Login.Count() >= 5 && Login.Count() <= 64;
-        public bool IsPasswordValid => Password != null && Password.Count() >= 5 && Password.Count() <= 64;
-        public bool IsEmailValid => Email != null && new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").Match(Email).Success;
+        public bool IsLoginValid_L => Login_L != null && Login_L.Count() >= 5 && Login_L.Count() <= 64;
+        public bool IsLoginValid_R => Login_R != null && Login_R.Count() >= 5 && Login_R.Count() <= 64;
+        public bool IsPasswordValid_L => Password_L != null && Password_L.Count() >= 5 && Password_L.Count() <= 64;
+        public bool IsPasswordValid_R => Password_R != null && Password_R.Count() >= 5 && Password_R.Count() <= 64;
+        public bool IsEmailValid_R => Email_R != null && new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").Match(Email_R).Success;
         
-        public SolidColorBrush LoginLine => IsLoginValid ? CORRECT : DONT_CORRECT;
-        public SolidColorBrush PasswordLine => IsPasswordValid ? CORRECT : DONT_CORRECT;
-        public SolidColorBrush EmailLine => IsEmailValid ? CORRECT : DONT_CORRECT;
+        public SolidColorBrush LoginLine_L => IsLoginValid_L ? CORRECT : DONT_CORRECT;
+        public SolidColorBrush LoginLine_R => IsLoginValid_R ? CORRECT : DONT_CORRECT;
+        public SolidColorBrush PasswordLine_L => IsPasswordValid_L ? CORRECT : DONT_CORRECT;
+        public SolidColorBrush PasswordLine_R => IsPasswordValid_R ? CORRECT : DONT_CORRECT;
+        public SolidColorBrush EmailLine_R => IsEmailValid_R ? CORRECT : DONT_CORRECT;
         
         private RelayCommand LoginCommand;
         private RelayCommand RegistrationCommand;
@@ -43,17 +49,19 @@ namespace WPF_Client.LoginRegistration
 
         public ViewModel()
         {
-            this.Login = "";
-            this.Password = "";
-            this.Email = "";
-            this.LoginCommand = new RelayCommand((i) => this.LoginBtnClick(), (i) => IsLoginValid && IsPasswordValid);
-            this.RegistrationCommand = new RelayCommand((i) => this.RegistrationBtnClick(), (i) => IsLoginValid && IsPasswordValid && IsEmailValid);
+            this.Login_L = "";
+            this.Login_R = "";
+            this.Password_L = "";
+            this.Password_R = "";
+            this.Email_R = "";
+            this.LoginCommand = new RelayCommand((i) => this.LoginBtnClick(), (i) => IsLoginValid_L && IsPasswordValid_L);
+            this.RegistrationCommand = new RelayCommand((i) => this.RegistrationBtnClick(), (i) => IsLoginValid_R && IsPasswordValid_R && IsEmailValid_R);
         }
 
         #region Buttons Handlers
         private void LoginBtnClick()
         {
-            if (DatabaseHandler.Instance.Login(this.Login, this.Password))
+            if (DatabaseHandler.Instance.Login(this.Login_L, this.Password_L))
             {
                 this.CloseWindow();
             }
@@ -64,7 +72,7 @@ namespace WPF_Client.LoginRegistration
         }
         private void RegistrationBtnClick()
         {
-            if (DatabaseHandler.Instance.Registration(this.Login, this.Password, this.Email))
+            if (DatabaseHandler.Instance.Registration(this.Login_R, this.Password_R, this.Email_R))
             {
                 this.CloseWindow();
             }

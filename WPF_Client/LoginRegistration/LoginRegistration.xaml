@@ -20,20 +20,20 @@
                     <TextBlock Margin="2" TextAlignment="Center">Логін</TextBlock>
                     <DockPanel LastChildFill="True">
                         <Border Height="2px" DockPanel.Dock="Bottom" Margin="5, 1"
-                                Background="{Binding Path=LoginLine, UpdateSourceTrigger=PropertyChanged}">
+                                Background="{Binding Path=LoginLine_L, UpdateSourceTrigger=PropertyChanged}">
 
                         </Border>
                         <TextBox
-                            Text="{Binding Path=Login, UpdateSourceTrigger=PropertyChanged}">
+                            Text="{Binding Path=Login_L, UpdateSourceTrigger=PropertyChanged}">
                         </TextBox>
                     </DockPanel>
                     <TextBlock Margin="7" TextAlignment="Center">Пароль</TextBlock>
                     <DockPanel>
                         <Border Height="2px" DockPanel.Dock="Bottom" Margin="5, 1"
-                        Background="{Binding Path=PasswordLine, UpdateSourceTrigger=PropertyChanged}">
+                        Background="{Binding Path=PasswordLine_L, UpdateSourceTrigger=PropertyChanged}">
 
                         </Border>
-                        <TextBox Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged}">
+                        <TextBox Text="{Binding Path=Password_L, UpdateSourceTrigger=PropertyChanged}">
 
                         </TextBox>
                     </DockPanel>
@@ -49,30 +49,30 @@
                     <TextBlock Margin="2" TextAlignment="Center">Логін</TextBlock>
                     <DockPanel LastChildFill="True">
                         <Border Height="2px" DockPanel.Dock="Bottom" Margin="5, 1"
-                                Background="{Binding Path=LoginLine, UpdateSourceTrigger=PropertyChanged}">
+                                Background="{Binding Path=LoginLine_R, UpdateSourceTrigger=PropertyChanged}">
 
                         </Border>
                         <TextBox
-                            Text="{Binding Path=Login, UpdateSourceTrigger=PropertyChanged}">
+                            Text="{Binding Path=Login_R, UpdateSourceTrigger=PropertyChanged}">
                         </TextBox>
                     </DockPanel>
                     <TextBlock Margin="7" TextAlignment="Center">Пароль</TextBlock>
                     <DockPanel>
                         <Border Height="2px" DockPanel.Dock="Bottom" Margin="5, 1"
-                        Background="{Binding Path=PasswordLine, UpdateSourceTrigger=PropertyChanged}">
+                        Background="{Binding Path=PasswordLine_R, UpdateSourceTrigger=PropertyChanged}">
 
                         </Border>
-                        <TextBox Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged}">
+                        <TextBox Text="{Binding Path=Password_R, UpdateSourceTrigger=PropertyChanged}">
 
                         </TextBox>
                     </DockPanel>
                     <TextBlock Margin="7" TextAlignment="Center">Пошта</TextBlock>
                     <DockPanel>
                         <Border Height="2px" DockPanel.Dock="Bottom" Margin="5, 1"
-                        Background="{Binding Path=EmailLine, UpdateSourceTrigger=PropertyChanged}">
+                        Background="{Binding Path=EmailLine_R, UpdateSourceTrigger=PropertyChanged}">
 
                         </Border>
-                        <TextBox Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged}">
+                        <TextBox Text="{Binding Path=Email_R, UpdateSourceTrigger=PropertyChanged}">
 
                         </TextBox>
                     </DockPanel>

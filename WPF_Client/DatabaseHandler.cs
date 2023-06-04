@@ -1,17 +1,21 @@
-﻿using SudokuSloverHendler.BetterMatrix;
+﻿using PropertyChanged;
+using SudokuSloverHendler.BetterMatrix;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using WPF_Client.DBContexts;
 
 namespace WPF_Client
 {
+    [AddINotifyPropertyChangedInterface]
     public class DatabaseHandler : Expansion.SingletonClass<DatabaseHandler>
     {
         private DataBaseContext db;
-        private int IdUser;
+        public int IdUser { get;private set; }
+        public string NameUser { get;private set; }
         public bool IsLogined { get; private set; }
         private bool IsLoginContains(string login) => db.Users.Select(i => i.Login).Contains(login);
         private bool IsSudokuContains(int IdSudoku) => db.SavingSudokus.Select(i => i.ID).Contains(IdSudoku);
@@ -19,10 +23,12 @@ namespace WPF_Client
         {
             this.IsLogined = false;
             this.IdUser = -1;
+            this.NameUser = "";
             this.db = new DataBaseContext();
         }
         public bool SaveSudoku(string name, ref BetterMatrix matrix)
         {
+            if (!IsLogined) { return false; }
             try
             {
                 db.SavingSudokus.Add(new DBContexts.Entities.SavingSudoku(){
@@ -42,6 +48,7 @@ namespace WPF_Client
         }
         public bool SaveSudoku(int IdSudoku, ref BetterMatrix matrix)
         {
+            if (!IsLogined) { return false; }
             try
             {
                 if (!IsSudokuContains(IdSudoku)) { return false; }
@@ -79,11 +86,12 @@ namespace WPF_Client
         }
         public bool Login(string login, string password)
         {
-            IEnumerable<int> users = db.Users.Where(i => i.Login == login && i.Password == password).Select(i => i.ID);
+            IEnumerable<DBContexts.Entities.User> users = db.Users.Where(i => i.Login == login && i.Password == password);
             if (users.Count() == 1)
             {
                 this.IsLogined = true;
-                this.IdUser = users.First();
+                this.IdUser = users.First().ID;
+                this.NameUser = users.First().Login;
                 return true;
             }
             return false;

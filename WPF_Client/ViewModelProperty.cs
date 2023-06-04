@@ -24,6 +24,7 @@ namespace WPF_Client
         private SudokuSlover slover;
         public Intersections Intersection => Solution.Instance.Intersection;
         public bool IsExecute => Solution.Instance.IsExecute;
+        public string TitleMainWindow => $"Main window " + ((DatabaseHandler.Instance.IsLogined) ? $":: Logined - {DatabaseHandler.Instance.NameUser}" : "");
         public ObservableCollection<SudokuSloverHendler.Points.Point> points { get; set; }
         public IEnumerable<SudokuSloverHendler.Points.Point> Points => points;
 
@@ -35,7 +36,6 @@ namespace WPF_Client
         public IEnumerable<string> Sudokus => sudokus;
 
         // Buttons
-        public bool IsOpenSignInOrSignUp => DatabaseHandler.Instance.IsLogined;
 
         private RelayCommand SignInUpCommand;
         private RelayCommand SignOutCommand;
