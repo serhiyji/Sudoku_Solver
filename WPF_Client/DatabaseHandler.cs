@@ -119,6 +119,7 @@ namespace WPF_Client
         {
             this.IsLogined = false;
             this.IdUser = -1;
+            this.NameUser = "";
         }
         public IEnumerable<DBContexts.Entities.SavingSudoku> GetSudokuByUser()
         {

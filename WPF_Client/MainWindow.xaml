@@ -132,6 +132,27 @@
                 <TextBlock TextAlignment="Center" Margin="5"
                            Text="{Binding Path=Intersection.NameMethodSlover, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
             </DockPanel>
+            
+            <!--//-->
+            <DockPanel DockPanel.Dock="Left" LastChildFill="True">
+                <UniformGrid DockPanel.Dock="Bottom">
+                    <Button Command="{Binding Path=UpdateListSavingSudukusCmd, UpdateSourceTrigger=PropertyChanged}">
+                        Update List</Button>
+                </UniformGrid>
+                <ListBox 
+                    ItemsSource="{Binding Path=Sudokus, UpdateSourceTrigger=PropertyChanged}"
+                    Margin="5" ScrollViewer.HorizontalScrollBarVisibility="Auto" HorizontalContentAlignment="Stretch">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <DockPanel HorizontalAlignment="Stretch" LastChildFill="True">
+                                <TextBlock DockPanel.Dock="Right" Text="{Binding Path=_Time, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                                <TextBlock Text="{Binding Path=Name}"></TextBlock>
+                            
+                            </DockPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </DockPanel>
 
             <Border Margin="5"
                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch">

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WPF_Client.DBContexts.Entities
 {
-    public class SavingSudoku
+    public partial class SavingSudoku
     {
         [Key]
         public int ID { get; set; }
@@ -18,5 +18,11 @@ namespace WPF_Client.DBContexts.Entities
         [Required]
         public string Data { get; set; }
         public DateTime Time { get; set; }
+    }
+
+    // For View
+    public partial class SavingSudoku
+    {
+        public string _Time => Time.ToShortDateString() + " " +Time.ToShortTimeString();
     }
 }
