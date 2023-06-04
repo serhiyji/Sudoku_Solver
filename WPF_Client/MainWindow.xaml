@@ -75,6 +75,9 @@
                 <MenuItem Command="{Binding Path=SaveAsSudokuInDataBaseCmd, UpdateSourceTrigger=PropertyChanged}"
                     Header="Save As Sudoku In DataBase"></MenuItem>
                 <Separator/>
+                <MenuItem Command="{Binding Path=UpdateListSavingSudukusCmd, UpdateSourceTrigger=PropertyChanged}"
+                          Header="Update List Savidg Sudokus"></MenuItem>
+                <Separator/>
                 <MenuItem Command="{Binding Path=QuitCmd, UpdateSourceTrigger=PropertyChanged}"
                     Header="Quit"></MenuItem>
             </MenuItem>

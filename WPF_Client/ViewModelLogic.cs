@@ -29,6 +29,7 @@ namespace WPF_Client
             this.slover = new SudokuSlover(ref this.matrix);
             this.cursorPosition = new CursorPosition(ref matrix, 5, 4);
             this.points = new ObservableCollection<SudokuSloverHendler.Points.Point>();
+            this.sudokus = new ObservableCollection<DBContexts.Entities.SavingSudoku>();
 
             this.BindingButtons();
             this.BindGridToBetterMatrix();
@@ -64,13 +65,18 @@ namespace WPF_Client
 
             this.NewRandomSudokuCommand = new RelayCommand((i) => this.NewRandomSudokuBtnClick(), (i) => true);
             this.OpenSudokuFromFileCommand = new RelayCommand((i) => this.OpenSudokuFromFileBtnClick(), (i) => true);
-            this.SaveSudokuInFileCommand = new RelayCommand((i) => this.SaveSudokuInFileBtnClick(), (i) => true);
+            this.SaveSudokuInFileCommand = new RelayCommand((i) => this.SaveSudokuInFileBtnClick(), 
+                (i) => SudokuSavingHandler.Instance.IsSudokuFromFile);
             this.SaveAsSudokuInFileCommand = new RelayCommand((i) => this.SaveAsSudokuInFileBtnClick(), (i) => true);
-            this.OpenSudokuFromDataBaseCommand = new RelayCommand((i) => this.OpenSudokuFromDataBaseBtnClick(), (i) => DatabaseHandler.Instance.IsLogined);
-            this.SaveSudokuInDataBaseCommand = new RelayCommand((i) => this.SaveSudokuInDataBaseBtnClick(), (i) => DatabaseHandler.Instance.IsLogined);
-            this.SaveAsSudokuInDataBaseCommand = new RelayCommand((i) => this.SaveAsSudokuInDataBaseBtnClick(), (i) => DatabaseHandler.Instance.IsLogined);
+            this.OpenSudokuFromDataBaseCommand = new RelayCommand((i) => this.OpenSudokuFromDataBaseBtnClick(), 
+                (i) => DatabaseHandler.Instance.IsLogined);
+            this.SaveSudokuInDataBaseCommand = new RelayCommand((i) => this.SaveSudokuInDataBaseBtnClick(), 
+                (i) => DatabaseHandler.Instance.IsLogined && SudokuSavingHandler.Instance.IsSudokuFromDatabase);
+            this.SaveAsSudokuInDataBaseCommand = new RelayCommand((i) => this.SaveAsSudokuInDataBaseBtnClick(), 
+                (i) => DatabaseHandler.Instance.IsLogined);
+            this.UpdateListSavingSudukusCommand = new RelayCommand((i) => UpdateListSavingSudukusBtnClick(), 
+                (i) => DatabaseHandler.Instance.IsLogined);
             this.QuitCommand = new RelayCommand((i) => this.QuitBtnClick(), (i) => true);
-
         }
 
         private void BindGridToBetterMatrix()
@@ -154,11 +160,11 @@ namespace WPF_Client
         #region Menu_File
         private void NewRandomSudokuBtnClick() 
         {
-            MessageBox.Show("/");
+            
         }
         private void OpenSudokuFromFileBtnClick()
         {
-
+            SudokuSavingHandler.Instance.LoadSudokuFromFile();
         }
         private void SaveSudokuInFileBtnClick()
         {
@@ -170,7 +176,7 @@ namespace WPF_Client
         }
         private void OpenSudokuFromDataBaseBtnClick()
         {
-
+            SudokuSavingHandler.Instance.LoadSudokuFromDataBase(0);
         }
         private void SaveSudokuInDataBaseBtnClick()
         {
@@ -179,6 +185,14 @@ namespace WPF_Client
         private void SaveAsSudokuInDataBaseBtnClick()
         {
 
+        }
+        private void UpdateListSavingSudukusBtnClick()
+        {
+            this.sudokus.Clear();
+            foreach (DBContexts.Entities.SavingSudoku sud in DatabaseHandler.Instance.GetSudokuByUser())
+            {
+                this.sudokus.Add(sud);
+            }
         }
         private void QuitBtnClick()
         {

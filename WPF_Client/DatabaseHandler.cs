@@ -120,16 +120,9 @@ namespace WPF_Client
             this.IsLogined = false;
             this.IdUser = -1;
         }
-        public IEnumerable<(int id, string name)> GetSudokuByUser()
+        public IEnumerable<DBContexts.Entities.SavingSudoku> GetSudokuByUser()
         {
-            if (IsLogined)
-            {
-                return (IEnumerable<(int id, string name)>)this.db.SavingSudokus.Where(s => s.IdUser == IdUser).Select(i => new { id = i.ID, name = i.Name });
-            }
-            else
-            {
-                return null;
-            }
+            return IsLogined ? this.db.SavingSudokus.Where(s => s.IdUser == IdUser) : new List<DBContexts.Entities.SavingSudoku>();
         }
     }
 }

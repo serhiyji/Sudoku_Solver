@@ -25,15 +25,15 @@ namespace WPF_Client
         public Intersections Intersection => Solution.Instance.Intersection;
         public bool IsExecute => Solution.Instance.IsExecute;
         public string TitleMainWindow => $"Main window " + ((DatabaseHandler.Instance.IsLogined) ? $":: Logined - {DatabaseHandler.Instance.NameUser}" : "");
-        public ObservableCollection<SudokuSloverHendler.Points.Point> points { get; set; }
+        private ObservableCollection<SudokuSloverHendler.Points.Point> points { get; set; }
         public IEnumerable<SudokuSloverHendler.Points.Point> Points => points;
 
         // Window control
         public event EventHandler CloseWindow;
 
         // SudokusList
-        private ObservableCollection<string> sudokus { get; set; }
-        public IEnumerable<string> Sudokus => sudokus;
+        private ObservableCollection<DBContexts.Entities.SavingSudoku> sudokus { get; set; }
+        public IEnumerable<DBContexts.Entities.SavingSudoku> Sudokus => sudokus;
 
         // Buttons
 
@@ -96,6 +96,7 @@ namespace WPF_Client
         private RelayCommand OpenSudokuFromDataBaseCommand;
         private RelayCommand SaveSudokuInDataBaseCommand;
         private RelayCommand SaveAsSudokuInDataBaseCommand;
+        private RelayCommand UpdateListSavingSudukusCommand;
         private RelayCommand QuitCommand;
 
         public ICommand NewRandomSudokuCmd => NewRandomSudokuCommand;
@@ -105,6 +106,7 @@ namespace WPF_Client
         public ICommand OpenSudokuFromDataBaseCmd => OpenSudokuFromDataBaseCommand;
         public ICommand SaveSudokuInDataBaseCmd => SaveSudokuInDataBaseCommand;
         public ICommand SaveAsSudokuInDataBaseCmd => SaveAsSudokuInDataBaseCommand;
+        public ICommand UpdateListSavingSudukusCmd => UpdateListSavingSudukusCommand;
         public ICommand QuitCmd => QuitCommand;
     }
 }

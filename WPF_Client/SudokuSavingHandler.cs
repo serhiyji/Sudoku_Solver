@@ -9,12 +9,19 @@ namespace WPF_Client
 {
     public class SudokuSavingHandler : Expansion.SingletonClass<SudokuSavingHandler>
     {
+        public bool IsSudokuFromFile { get; private set; }
+        public string PathToFile { get; private set; }
+        public string NameFile { get; private set; }
+        public bool IsSudokuFromDatabase { get; private set; }
         
         public SudokuSavingHandler()
         {
-            
+            this.IsSudokuFromFile = false;
+            this.PathToFile = null;
+            this.NameFile = null;
+            this.IsSudokuFromDatabase = false;   
         }
-        public void SaveAsSudokuInFile()
+        public void SaveAsSudokuInFile(ref BetterMatrix matrix)
         {
 
         }
@@ -34,9 +41,11 @@ namespace WPF_Client
         {
 
         }
-        public void LoadSudokuFromDataBase()
+        public void LoadSudokuFromDataBase(int IsSudoku)
         {
 
         }
+
+
     }
 }
