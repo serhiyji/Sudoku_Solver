@@ -177,7 +177,7 @@ namespace WPF_Client
         }
         private void OpenSudokuFromDataBaseBtnClick()
         {
-            SudokuSavingHandler.Instance.LoadSudokuFromDataBase(0);
+            
         }
         private void SaveSudokuInDataBaseBtnClick()
         {

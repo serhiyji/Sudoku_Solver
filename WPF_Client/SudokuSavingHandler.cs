@@ -61,7 +61,7 @@ namespace WPF_Client
         {
 
         }
-        public void LoadSudokuFromDataBase(int IsSudoku)
+        public void LoadSudokuFromDataBase()
         {
 
         }
