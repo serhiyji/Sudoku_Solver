@@ -118,7 +118,6 @@ namespace SudokuSloverHendler.BetterMatrix
         // Hidden
         private Intersections GetHiddenPairInRange(PosPoint pos1, PosPoint pos2)
         {
-            Arrange<Intersections> pairs = new Arrange<Intersections>();
             for (byte num1 = 0; num1 < 10; num1++)
             {
                 for (byte num2 = 1; num2 < 10; num2++)

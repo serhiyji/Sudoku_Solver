@@ -62,16 +62,23 @@ namespace SudokuSloverHendler.BetterMatrix
         }
         public void LoadSudoku(string data)
         {
-            var dat = data.Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
-            if (dat.Count() != size * size) return;
-            int k = 0;
-            for (int i = 0; i < matrix.GetLength(0); i++)
+            try
             {
-                for (int j = 0; j < matrix.GetLength(1); j++)
+                var dat = data.Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
+                if (dat.Count() != size * size) return;
+                int k = 0;
+                for (int i = 0; i < matrix.GetLength(0); i++)
                 {
-                    matrix[i, j].LoadPoint(dat[k]);
-                    k++;
+                    for (int j = 0; j < matrix.GetLength(1); j++)
+                    {
+                        this.SetValue(new PosPoint(i, j), byte.Parse(dat[k]));
+                        k++;
+                    }
                 }
+            }
+            catch (Exception)
+            {
+
             }
         }
         public string SaveSudoku()
@@ -81,7 +88,7 @@ namespace SudokuSloverHendler.BetterMatrix
             {
                 for (int j = 0; j < matrix.GetLength(1); j++)
                 {
-                    res += matrix[i, j].SavePoint() + ":";
+                    res += matrix[i, j].value + ":";
                 }
             }
             return res;

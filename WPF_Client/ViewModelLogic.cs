@@ -18,6 +18,7 @@ using SudokuSloverHendler.BetterMatrix;
 using SudokuSloverHendler.Coordinates;
 using SudokuSloverHendler.Points;
 using WPF_Client.Expansion;
+using System.Runtime.CompilerServices;
 
 namespace WPF_Client
 {
@@ -164,15 +165,15 @@ namespace WPF_Client
         }
         private void OpenSudokuFromFileBtnClick()
         {
-            SudokuSavingHandler.Instance.LoadSudokuFromFile();
+            SudokuSavingHandler.Instance.LoadSudokuFromFile(ref this.matrix);
         }
         private void SaveSudokuInFileBtnClick()
         {
-
+            SudokuSavingHandler.Instance.SaveSudokuInFile(ref this.matrix);
         }
         private void SaveAsSudokuInFileBtnClick()
         {
-
+            SudokuSavingHandler.Instance.SaveAsSudokuInFile(ref this.matrix);
         }
         private void OpenSudokuFromDataBaseBtnClick()
         {

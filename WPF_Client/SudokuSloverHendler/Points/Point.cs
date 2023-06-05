@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Media;
 using PropertyChanged;
@@ -25,12 +26,6 @@ namespace SudokuSloverHendler.Points
         public string SavePoint()
         {
             return $"{this.value}+{this.set.ToString()}";
-        }
-        public void LoadPoint(string data)
-        {
-            this.value = 0;
-            this.set.Clear();
-
         }
         public static bool operator ==(Point p1, byte value)
         {
