@@ -42,6 +42,8 @@
         <KeyBinding Command="{Binding Path=NumPad9Cmd}" Key="D9"></KeyBinding>
 
         <KeyBinding Command="{Binding Path=NewRandomSudokuCmd}" Modifiers="Ctrl+Shift" Key="N"></KeyBinding>
+
+        <KeyBinding Command="{Binding Path=OpenCloseListSudokusCmd}" Key="Esc"></KeyBinding>
     </Window.InputBindings>
 
     <Window.Resources>
@@ -117,7 +119,8 @@
             
             <!--верх-->
             <DockPanel DockPanel.Dock="Top" LastChildFill="False">
-                <Button Command="{Binding Path=OpenCloseListSudokusCmd, UpdateSourceTrigger=PropertyChanged}">Open/Close list</Button>
+                <Button Content="{Binding Path=TextBtnOpenCloseSudoku, UpdateSourceTrigger=PropertyChanged}"
+                    Command="{Binding Path=OpenCloseListSudokusCmd, UpdateSourceTrigger=PropertyChanged}"></Button>
                 <Button DockPanel.Dock="Right" Command="{Binding Path=SignOutCmd, UpdateSourceTrigger=PropertyChanged}">Sign out</Button>
                 <Button DockPanel.Dock="Right" Command="{Binding Path=SignInUpCmd, UpdateSourceTrigger=PropertyChanged}">Sign In / Up</Button>
             </DockPanel>
@@ -140,19 +143,7 @@
                     <Button Command="{Binding Path=UpdateListSavingSudukusCmd, UpdateSourceTrigger=PropertyChanged}">
                         Update List</Button>
                 </UniformGrid>
-                <ListBox 
-                    ItemsSource="{Binding Path=Sudokus, UpdateSourceTrigger=PropertyChanged}"
-                    Margin="5" ScrollViewer.HorizontalScrollBarVisibility="Auto" HorizontalContentAlignment="Stretch">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <DockPanel HorizontalAlignment="Stretch" LastChildFill="True">
-                                <TextBlock DockPanel.Dock="Right" Text="{Binding Path=_Time, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
-                                <TextBlock Text="{Binding Path=Name}"></TextBlock>
-                            
-                            </DockPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                
             </DockPanel>-->
 
             <Grid>
@@ -266,8 +257,32 @@
                     </Grid>
                 </Border>
                 <DockPanel Visibility="{Binding Path=VisibilityListSudokus, UpdateSourceTrigger=PropertyChanged}" 
-                           Margin="12" Background="#99000000">
-                    
+                           Margin="12">
+                    <UniformGrid DockPanel.Dock="Bottom" Columns="3" Rows="1">
+                        <Button Command="{Binding Path=OpenSudokuFromDataBaseCmd, UpdateSourceTrigger=PropertyChanged}">Load</Button>
+                        <Button Command="{Binding Path=SaveSudokuInDataBaseCmd, UpdateSourceTrigger=PropertyChanged}">Save</Button>
+                        <Button Command="{Binding Path=DeleteItemFromSudokusCmd, UpdateSourceTrigger=PropertyChanged}">Delete</Button>
+                    </UniformGrid>
+                    <DockPanel DockPanel.Dock="Bottom" LastChildFill="True">
+                        <Button DockPanel.Dock="Right"
+                            Command="{Binding Path=SaveAsSudokuInDataBaseCmd, UpdateSourceTrigger=PropertyChanged}">SaveAs</Button>
+                        <TextBox Margin="5" Padding="2" TextAlignment="Left"
+                                 Text="{Binding Path=nameSudokuInput, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                    </DockPanel>
+                    <ListBox
+                    SelectedItem="{Binding Path=SelectedSudoku, UpdateSourceTrigger=PropertyChanged}"
+                    ItemsSource="{Binding Path=Sudokus, UpdateSourceTrigger=PropertyChanged}"
+                    Margin="5" ScrollViewer.HorizontalScrollBarVisibility="Auto" HorizontalContentAlignment="Stretch">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <DockPanel HorizontalAlignment="Stretch" LastChildFill="True">
+                                    <TextBlock DockPanel.Dock="Right" Text="{Binding Path=_Time, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                                    <TextBlock Text="{Binding Path=Name}"></TextBlock>
+
+                                </DockPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </DockPanel>
             </Grid>
             

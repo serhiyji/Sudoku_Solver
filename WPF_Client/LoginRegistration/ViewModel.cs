@@ -49,9 +49,9 @@ namespace WPF_Client.LoginRegistration
 
         public ViewModel()
         {
-            this.Login_L = "";
+            this.Login_L = "qwerty";
             this.Login_R = "";
-            this.Password_L = "";
+            this.Password_L = "qwerty";
             this.Password_R = "";
             this.Email_R = "";
             this.LoginCommand = new RelayCommand((i) => this.LoginBtnClick(), (i) => IsLoginValid_L && IsPasswordValid_L);

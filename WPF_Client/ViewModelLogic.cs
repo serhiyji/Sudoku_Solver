@@ -30,6 +30,7 @@ namespace WPF_Client
             this.points = new ObservableCollection<SudokuSloverHendler.Points.Point>();
             this.sudokus = new ObservableCollection<DBContexts.Entities.SavingSudoku>();
             this.VisibilityListSudokus = Visibility.Hidden;
+            this.nameSudokuInput = "";
 
             this.BindingButtons();
             this.BindGridToBetterMatrix();
@@ -69,17 +70,19 @@ namespace WPF_Client
                 (i) => SudokuSavingHandler.Instance.IsSudokuFromFile);
             this.SaveAsSudokuInFileCommand = new RelayCommand((i) => this.SaveAsSudokuInFileBtnClick(), (i) => true);
             this.OpenSudokuFromDataBaseCommand = new RelayCommand((i) => this.OpenSudokuFromDataBaseBtnClick(), 
-                (i) => DatabaseHandler.Instance.IsLogined);
+                (i) => DatabaseHandler.Instance.IsLogined && this.IsSelectedItemSudokus);
             this.SaveSudokuInDataBaseCommand = new RelayCommand((i) => this.SaveSudokuInDataBaseBtnClick(), 
                 (i) => DatabaseHandler.Instance.IsLogined && SudokuSavingHandler.Instance.IsSudokuFromDatabase);
             this.SaveAsSudokuInDataBaseCommand = new RelayCommand((i) => this.SaveAsSudokuInDataBaseBtnClick(), 
+                (i) => DatabaseHandler.Instance.IsLogined && this.nameSudokuInput != null && this.nameSudokuInput.Length > 5);
+            this.OpenCloseListSudokusCommand = new RelayCommand((i) => OpenCloseListSudokusBtnClick(), 
                 (i) => DatabaseHandler.Instance.IsLogined);
             this.UpdateListSavingSudukusCommand = new RelayCommand((i) => UpdateListSavingSudukusBtnClick(), 
                 (i) => DatabaseHandler.Instance.IsLogined);
+            this.DeleteItemFromSudokusCommand = new RelayCommand((i) => DeleteItemFromSudokusBtnClick(), 
+                (i) => DatabaseHandler.Instance.IsLogined && this.IsSelectedItemSudokus);
             this.QuitCommand = new RelayCommand((i) => this.QuitBtnClick(), (i) => true);
 
-            this.OpenCloseListSudokusCommand = new RelayCommand((i) => OpenCloseListSudokusBtnClick(), 
-                (i) => DatabaseHandler.Instance.IsLogined);
         }
 
         private void BindGridToBetterMatrix()
@@ -114,6 +117,7 @@ namespace WPF_Client
         }
         private void SignOutBtnClick()
         {
+            this.VisibilityListSudokus = Visibility.Hidden;
             DatabaseHandler.Instance.LogOut();
         }
         private void ClearMatrixBtnClick()
@@ -123,6 +127,10 @@ namespace WPF_Client
         private void OpenCloseListSudokusBtnClick()
         {
             this.VisibilityListSudokus = (VisibilityListSudokus == Visibility.Visible) ? Visibility.Hidden : Visibility.Visible;
+            if (this.VisibilityListSudokus == Visibility.Visible)
+            {
+                this.UpdateListSavingSudukusBtnClick();
+            }
         }
 
         #region Solution
@@ -184,16 +192,19 @@ namespace WPF_Client
         }
         private void OpenSudokuFromDataBaseBtnClick()
         {
-            SudokuSavingHandler.Instance.LoadSudokuFromDataBase(ref this.matrix);
+            SudokuSavingHandler.Instance.LoadSudokuFromDataBase(this.SelectedSudoku.ID, ref this.matrix);
+            this.UpdateListSavingSudukusBtnClick();
         }
         private void SaveSudokuInDataBaseBtnClick()
         {
             SudokuSavingHandler.Instance.SaveSudokuInDataBase(ref this.matrix);
+            this.UpdateListSavingSudukusBtnClick();
         }
         private void SaveAsSudokuInDataBaseBtnClick()
         {
-            string nameSudoku = "//";
-            SudokuSavingHandler.Instance.SaveAsSudokuInDataBase(nameSudoku ,ref this.matrix);
+            SudokuSavingHandler.Instance.SaveAsSudokuInDataBase(this.nameSudokuInput ,ref this.matrix);
+            this.UpdateListSavingSudukusBtnClick();
+            this.nameSudokuInput = "";
         }
         private void UpdateListSavingSudukusBtnClick()
         {
@@ -202,6 +213,11 @@ namespace WPF_Client
             {
                 this.sudokus.Add(sud);
             }
+        }
+        private void DeleteItemFromSudokusBtnClick()
+        {
+            DatabaseHandler.Instance.DeleteSudoku(this.SelectedSudoku.ID);
+            this.UpdateListSavingSudukusBtnClick();
         }
         private void QuitBtnClick()
         {

@@ -41,8 +41,10 @@ namespace WPF_Client
             get { return selectedSudoku; }
             set { selectedSudoku = value; }
         }
+        public bool IsSelectedItemSudokus => SelectedSudoku != null;
         public Visibility VisibilityListSudokus { get; set; }
-
+        public string TextBtnOpenCloseSudoku => this.VisibilityListSudokus == Visibility.Hidden ? "Open List Sudokus" : "Close List Sudokus";
+        public string nameSudokuInput { get; set; }
 
         // Buttons
 
@@ -105,7 +107,9 @@ namespace WPF_Client
         private RelayCommand OpenSudokuFromDataBaseCommand;
         private RelayCommand SaveSudokuInDataBaseCommand;
         private RelayCommand SaveAsSudokuInDataBaseCommand;
+        private RelayCommand OpenCloseListSudokusCommand;
         private RelayCommand UpdateListSavingSudukusCommand;
+        private RelayCommand DeleteItemFromSudokusCommand;
         private RelayCommand QuitCommand;
 
         public ICommand NewRandomSudokuCmd => NewRandomSudokuCommand;
@@ -115,11 +119,11 @@ namespace WPF_Client
         public ICommand OpenSudokuFromDataBaseCmd => OpenSudokuFromDataBaseCommand;
         public ICommand SaveSudokuInDataBaseCmd => SaveSudokuInDataBaseCommand;
         public ICommand SaveAsSudokuInDataBaseCmd => SaveAsSudokuInDataBaseCommand;
+        public ICommand OpenCloseListSudokusCmd => OpenCloseListSudokusCommand;
         public ICommand UpdateListSavingSudukusCmd => UpdateListSavingSudukusCommand;
+        public ICommand DeleteItemFromSudokusCmd => DeleteItemFromSudokusCommand;
         public ICommand QuitCmd => QuitCommand;
 
-        private RelayCommand OpenCloseListSudokusCommand;
 
-        public ICommand OpenCloseListSudokusCmd => OpenCloseListSudokusCommand;
     }
 }

@@ -66,10 +66,14 @@ namespace WPF_Client
         {
             DatabaseHandler.Instance.SaveSudoku(this.IdSudokuInDatabase, ref matrix);
         }
-        public void LoadSudokuFromDataBase(ref BetterMatrix matrix)
+        public void LoadSudokuFromDataBase(int idsudoku, ref BetterMatrix matrix)
         {
-            DatabaseHandler.Instance.LoadSudoku(2, ref matrix);
-            this.SwapPropAccess(File: false, Database: true);
+            int newid = DatabaseHandler.Instance.LoadSudoku(idsudoku, ref matrix);
+            if (newid >= 0)
+            {
+                this.IdSudokuInDatabase = newid;
+                this.SwapPropAccess(File: false, Database: true);
+            }
         }
         private void SaveToFile(string filePath, string data)
         {

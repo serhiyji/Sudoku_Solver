@@ -68,23 +68,23 @@ namespace WPF_Client
             }
             return false;
         }
-        public bool LoadSudoku(int IdSudoku, ref BetterMatrix matrix)
+        public int LoadSudoku(int IdSudoku, ref BetterMatrix matrix)
         {
             try
             {
-                if (!IsSudokuContains(IdSudoku)) { return false; }
+                if (!IsSudokuContains(IdSudoku)) { return -1; }
                 var sud = db.SavingSudokus.Where(i => i.ID == IdSudoku);
                 if (sud.Count() == 1)
                 {
                     matrix.LoadSudoku(sud.First().Data);
-                    return true;
+                    return sud.First().ID;
                 }
             }
             catch (Exception)
             {
-                return false;
+                return -1;
             }
-            return false;
+            return -1;
         }
         public bool Login(string login, string password)
         {
@@ -115,6 +115,17 @@ namespace WPF_Client
                 }
             }
             catch (Exception) { }
+            return false;
+        }
+        public bool DeleteSudoku(int IdSudoku)
+        {
+            try
+            {
+                db.SavingSudokus.Remove(db.SavingSudokus.Where(s => s.ID == IdSudoku).First());
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception){}
             return false;
         }
         public void LogOut()
