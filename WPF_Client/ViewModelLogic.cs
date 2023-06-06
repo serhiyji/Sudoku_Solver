@@ -183,8 +183,9 @@ namespace WPF_Client
         {
             SudokuSavingHandler.Instance.SaveSudokuInDataBase(ref this.matrix);
         }
-        private void SaveAsSudokuInDataBaseBtnClick(string nameSudoku)
+        private void SaveAsSudokuInDataBaseBtnClick()
         {
+            string nameSudoku = "//";
             SudokuSavingHandler.Instance.SaveAsSudokuInDataBase(nameSudoku ,ref this.matrix);
         }
         private void UpdateListSavingSudukusBtnClick()
