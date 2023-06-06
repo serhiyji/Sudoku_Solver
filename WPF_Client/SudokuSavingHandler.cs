@@ -13,14 +13,16 @@ namespace WPF_Client
     public class SudokuSavingHandler : Expansion.SingletonClass<SudokuSavingHandler>
     {
         public bool IsSudokuFromFile { get; private set; }
-        public string FullPath { get; set; }
+        public string FullPath { get; private set; }
         public bool IsSudokuFromDatabase { get; private set; }
-        
+        public int IdSudokuInDatabase { get; private set; }
+
         public SudokuSavingHandler()
         {
             this.IsSudokuFromFile = false;
             this.FullPath = "";
-            this.IsSudokuFromDatabase = false;   
+            this.IsSudokuFromDatabase = false;
+            this.IdSudokuInDatabase = -1;
         }
         public void SaveAsSudokuInFile(ref BetterMatrix matrix)
         {
@@ -31,8 +33,7 @@ namespace WPF_Client
             {
                 this.FullPath = saveFileDialog.FileName;
                 this.SaveToFile(this.FullPath, matrix.SaveSudoku());
-                this.IsSudokuFromFile = true;
-                this.IsSudokuFromDatabase = false;
+                this.SwapPropAccess(File: true, Database: false);
             }
         }
         public void SaveSudokuInFile(ref BetterMatrix matrix)
@@ -49,21 +50,26 @@ namespace WPF_Client
                 this.FullPath = openFileDialog.FileName;
                 string fileContent = File.ReadAllText(this.FullPath);
                 matrix.LoadSudoku(fileContent);
-                this.IsSudokuFromFile = true;
-                this.IsSudokuFromDatabase = false;
+                this.SwapPropAccess(File: true, Database: false);
             }
         }
-        public void SaveAsSudokuInDataBase()
+        public void SaveAsSudokuInDataBase(string nameSudoku, ref BetterMatrix matrix)
         {
-
+            int newid = DatabaseHandler.Instance.SaveSudoku(nameSudoku, ref matrix);
+            if (newid >= 0)
+            {
+                this.IdSudokuInDatabase = newid;
+                this.SwapPropAccess(File: false, Database: true);
+            }
         }
-        public void SaveSudokuInDataBase()
+        public void SaveSudokuInDataBase(ref BetterMatrix matrix)
         {
-
+            DatabaseHandler.Instance.SaveSudoku(this.IdSudokuInDatabase, ref matrix);
         }
-        public void LoadSudokuFromDataBase()
+        public void LoadSudokuFromDataBase(ref BetterMatrix matrix)
         {
-
+            DatabaseHandler.Instance.LoadSudoku(2, ref matrix);
+            this.SwapPropAccess(File: false, Database: true);
         }
         private void SaveToFile(string filePath, string data)
         {
@@ -72,6 +78,11 @@ namespace WPF_Client
                 File.WriteAllText(filePath, data);
             }
             catch (Exception) { }
+        }
+        private void SwapPropAccess(bool File = false, bool Database = false)
+        {
+            this.IsSudokuFromFile = File;
+            this.IsSudokuFromDatabase = Database;
         }
     }
 }

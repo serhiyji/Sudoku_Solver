@@ -34,6 +34,14 @@ namespace WPF_Client
         private ObservableCollection<DBContexts.Entities.SavingSudoku> sudokus { get; set; }
         public IEnumerable<DBContexts.Entities.SavingSudoku> Sudokus => sudokus;
 
+        private DBContexts.Entities.SavingSudoku selectedSudoku;
+        public DBContexts.Entities.SavingSudoku SelectedSudoku
+        {
+            get { return selectedSudoku; }
+            set { selectedSudoku = value; }
+        }
+
+
         // Buttons
 
         private RelayCommand SignInUpCommand;

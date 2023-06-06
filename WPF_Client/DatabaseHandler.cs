@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+
 using WPF_Client.DBContexts;
 
 namespace WPF_Client
@@ -26,25 +27,26 @@ namespace WPF_Client
             this.NameUser = "";
             this.db = new DataBaseContext();
         }
-        public bool SaveSudoku(string name, ref BetterMatrix matrix)
+        public int SaveSudoku(string nameSudoku, ref BetterMatrix matrix)
         {
-            if (!IsLogined) { return false; }
+            if (!IsLogined) { return -1; }
             try
             {
                 db.SavingSudokus.Add(new DBContexts.Entities.SavingSudoku(){
-                    Name = name,
+                    Name = nameSudoku,
                     IdUser = this.IdUser,
                     Data = matrix.SaveSudoku(),
                     Time = DateTime.Now,
                 });
                 db.SaveChanges();
-                return true;
+                return db.SavingSudokus.Where(s => s.IdUser == this.IdUser && s.Name == nameSudoku).First().ID;
             }
             catch (Exception)
             {
-                return false;
+                return -1;
             }
-            return false;
+            return -1;
+
         }
         public bool SaveSudoku(int IdSudoku, ref BetterMatrix matrix)
         {
