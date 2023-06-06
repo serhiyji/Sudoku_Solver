@@ -71,10 +71,7 @@ namespace WPF_Client
             {
                 File.WriteAllText(filePath, data);
             }
-            catch (Exception)
-            {
-
-            }
+            catch (Exception) { }
         }
     }
 }
