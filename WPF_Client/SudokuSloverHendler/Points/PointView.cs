@@ -5,15 +5,21 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Media;
+using System.Windows;
 
 namespace SudokuSloverHendler.Points
 {
     [AddINotifyPropertyChangedInterface]
     public partial class Point
     {
-        private static SolidColorBrush EmptyColor = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
-        private static SolidColorBrush SelectedColor = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
+        public static SolidColorBrush EmptyColor = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
+        public static SolidColorBrush SelectedColor = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
+
+        public static SolidColorBrush GreenColor = new SolidColorBrush(Color.FromArgb(255, 0, 255, 0));
+        public static SolidColorBrush RedColor = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
+        public static SolidColorBrush BlueColor = new SolidColorBrush(Color.FromArgb(255, 0, 0, 255));
 
         public bool IsSelected { get; set; }
         public string Value => (value == 0) ? "" : value.ToString();
@@ -27,9 +33,25 @@ namespace SudokuSloverHendler.Points
         public string Val7 => (this.set.Contains(7)) ? "7" : "";
         public string Val8 => (this.set.Contains(8)) ? "8" : "";
         public string Val9 => (this.set.Contains(9)) ? "9" : "";
+
+
+        public SolidColorBrush CVal1;
+        public SolidColorBrush CVal2;
+        public SolidColorBrush CVal3;
+        public SolidColorBrush CVal4;
+        public SolidColorBrush CVal5;
+        public SolidColorBrush CVal6;
+        public SolidColorBrush CVal7;
+        public SolidColorBrush CVal8;
+        public SolidColorBrush CVal9;
         private void SetViewProp()
         {
             this.IsSelected = false;
+            this.SetToDefoltStatusItem();
+        }
+        public void SetToDefoltStatusItem()
+        {
+            
         }
     }
 }
