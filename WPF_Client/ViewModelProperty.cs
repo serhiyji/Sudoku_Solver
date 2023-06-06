@@ -12,6 +12,7 @@ using SudokuSloverHendler.BetterMatrix;
 using SudokuSloverHendler.Coordinates;
 using WPF_Client.Expansion;
 using System.Windows.Controls;
+using System.Windows;
 
 namespace WPF_Client
 {
@@ -40,6 +41,7 @@ namespace WPF_Client
             get { return selectedSudoku; }
             set { selectedSudoku = value; }
         }
+        public Visibility VisibilityListSudokus { get; set; }
 
 
         // Buttons
@@ -115,5 +117,9 @@ namespace WPF_Client
         public ICommand SaveAsSudokuInDataBaseCmd => SaveAsSudokuInDataBaseCommand;
         public ICommand UpdateListSavingSudukusCmd => UpdateListSavingSudukusCommand;
         public ICommand QuitCmd => QuitCommand;
+
+        private RelayCommand OpenCloseListSudokusCommand;
+
+        public ICommand OpenCloseListSudokusCmd => OpenCloseListSudokusCommand;
     }
 }

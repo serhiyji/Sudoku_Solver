@@ -16,9 +16,7 @@ using System.Windows.Threading;
 using SudokuSloverHendler;
 using SudokuSloverHendler.BetterMatrix;
 using SudokuSloverHendler.Coordinates;
-using SudokuSloverHendler.Points;
 using WPF_Client.Expansion;
-using System.Runtime.CompilerServices;
 
 namespace WPF_Client
 {
@@ -28,9 +26,10 @@ namespace WPF_Client
         {
             this.matrix = new BetterMatrix();
             this.slover = new SudokuSlover(ref this.matrix);
-            this.cursorPosition = new CursorPosition(ref matrix, 5, 4);
+            this.cursorPosition = new CursorPosition(ref matrix, 4, 4);
             this.points = new ObservableCollection<SudokuSloverHendler.Points.Point>();
             this.sudokus = new ObservableCollection<DBContexts.Entities.SavingSudoku>();
+            this.VisibilityListSudokus = Visibility.Hidden;
 
             this.BindingButtons();
             this.BindGridToBetterMatrix();
@@ -78,6 +77,9 @@ namespace WPF_Client
             this.UpdateListSavingSudukusCommand = new RelayCommand((i) => UpdateListSavingSudukusBtnClick(), 
                 (i) => DatabaseHandler.Instance.IsLogined);
             this.QuitCommand = new RelayCommand((i) => this.QuitBtnClick(), (i) => true);
+
+            this.OpenCloseListSudokusCommand = new RelayCommand((i) => OpenCloseListSudokusBtnClick(), 
+                (i) => DatabaseHandler.Instance.IsLogined);
         }
 
         private void BindGridToBetterMatrix()
@@ -117,6 +119,10 @@ namespace WPF_Client
         private void ClearMatrixBtnClick()
         {
             this.matrix.ClearMatrix();
+        }
+        private void OpenCloseListSudokusBtnClick()
+        {
+            this.VisibilityListSudokus = (VisibilityListSudokus == Visibility.Visible) ? Visibility.Hidden : Visibility.Visible;
         }
 
         #region Solution
@@ -161,7 +167,8 @@ namespace WPF_Client
         #region Menu_File
         private void NewRandomSudokuBtnClick() 
         {
-            
+            SudokuSavingHandler.Instance.ToFalse();
+            // ...
         }
         private void OpenSudokuFromFileBtnClick()
         {

@@ -27,27 +27,35 @@ namespace SudokuSloverHendler.Coordinates
 			this.matrix = matrix;
 			I = _i;
 			J = _j;
-			this.SetPosition(Side.Up);
+			this.SetPosition(null);
 		}
-		public void SetPosition(Side side)
+		public void SetPosition(Side? side)
 		{
 			matrix.matrix[I, J].IsSelected = false;
-			switch (side)
+			try
 			{
-				case Side.Up:
-					I = (I > 0) ? I - 1 : 8;
-					break;
-				case Side.Down:
-					I = (I < 8) ? I + 1 : 0;
-					break;
-				case Side.Left:
-					J = (J > 0) ? J - 1 : 8;
-					break;
-				case Side.Right:
-					J = (J < 8) ? J + 1 : 0;
-					break;
-				default:
-					break;
+				switch (side)
+				{
+					case Side.Up:
+						I = (I > 0) ? I - 1 : 8;
+						break;
+					case Side.Down:
+						I = (I < 8) ? I + 1 : 0;
+						break;
+					case Side.Left:
+						J = (J > 0) ? J - 1 : 8;
+						break;
+					case Side.Right:
+						J = (J < 8) ? J + 1 : 0;
+						break;
+					default:
+						break;
+				}
+			}
+			catch (Exception)
+			{
+
+				throw;
 			}
 			matrix.matrix[I, J].IsSelected = true;
 		}

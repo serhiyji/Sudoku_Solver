@@ -84,5 +84,6 @@ namespace WPF_Client
             this.IsSudokuFromFile = File;
             this.IsSudokuFromDatabase = Database;
         }
+        public void ToFalse() => SwapPropAccess(false, false);
     }
 }
