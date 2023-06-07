@@ -34,24 +34,22 @@ namespace SudokuSloverHendler.Points
         public string Val8 => (this.set.Contains(8)) ? "8" : "";
         public string Val9 => (this.set.Contains(9)) ? "9" : "";
 
-
-        public SolidColorBrush CVal1;
-        public SolidColorBrush CVal2;
-        public SolidColorBrush CVal3;
-        public SolidColorBrush CVal4;
-        public SolidColorBrush CVal5;
-        public SolidColorBrush CVal6;
-        public SolidColorBrush CVal7;
-        public SolidColorBrush CVal8;
-        public SolidColorBrush CVal9;
+        public ObservableCollection<SolidColorBrush> solidColorBrushes { get; set; }
         private void SetViewProp()
         {
             this.IsSelected = false;
-            this.SetToDefoltStatusItem();
+            this.solidColorBrushes = new ObservableCollection<SolidColorBrush>();
+            for (int i = 0; i < 9; i++)
+            {
+                this.solidColorBrushes.Add(EmptyColor);
+            }
         }
         public void SetToDefoltStatusItem()
         {
-            
+            for (int i = 0; i < this.solidColorBrushes.Count; i++)
+            {
+                this.solidColorBrushes[i] = EmptyColor;
+            }
         }
     }
 }

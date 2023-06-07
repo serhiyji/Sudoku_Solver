@@ -172,39 +172,39 @@
                                             </Border>
                                         
                                             <UniformGrid Columns="3" Rows="3" Margin="2">
-                                                <Border CornerRadius="999" Background="{Binding Path=CVal1, UpdateSourceTrigger=PropertyChanged}">
+                                                <Border CornerRadius="999" Background="{Binding Path=solidColorBrushes[0], UpdateSourceTrigger=PropertyChanged}">
                                                     <TextBlock TextAlignment="Center"
                                                     Text="{Binding Path=Val1, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                                 </Border>
-                                                <Border CornerRadius="999" Background="{Binding Path=CVal2, UpdateSourceTrigger=PropertyChanged}">
+                                                <Border CornerRadius="999" Background="{Binding Path=solidColorBrushes[1], UpdateSourceTrigger=PropertyChanged}">
                                                     <TextBlock TextAlignment="Center"
                                                     Text="{Binding Path=Val2, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                                 </Border>
-                                                <Border CornerRadius="999" Background="{Binding Path=CVal3, UpdateSourceTrigger=PropertyChanged}">
+                                                <Border CornerRadius="999" Background="{Binding Path=solidColorBrushes[2], UpdateSourceTrigger=PropertyChanged}">
                                                     <TextBlock TextAlignment="Center"
                                                     Text="{Binding Path=Val3, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                                 </Border>
-                                                <Border CornerRadius="999" Background="{Binding Path=CVal4, UpdateSourceTrigger=PropertyChanged}">
+                                                <Border CornerRadius="999" Background="{Binding Path=solidColorBrushes[3], UpdateSourceTrigger=PropertyChanged}">
                                                     <TextBlock TextAlignment="Center"
                                                     Text="{Binding Path=Val4, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                                 </Border>
-                                                <Border CornerRadius="999" Background="{Binding Path=CVal5, UpdateSourceTrigger=PropertyChanged}">
+                                                <Border CornerRadius="999" Background="{Binding Path=solidColorBrushes[4], UpdateSourceTrigger=PropertyChanged}">
                                                     <TextBlock TextAlignment="Center"
                                                     Text="{Binding Path=Val5, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                                 </Border>
-                                                <Border CornerRadius="999" Background="{Binding Path=CVal6, UpdateSourceTrigger=PropertyChanged}">
+                                                <Border CornerRadius="999" Background="{Binding Path=solidColorBrushes[5], UpdateSourceTrigger=PropertyChanged}">
                                                     <TextBlock TextAlignment="Center"
                                                     Text="{Binding Path=Val6, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                                 </Border>
-                                                <Border CornerRadius="999" Background="{Binding Path=CVal7, UpdateSourceTrigger=PropertyChanged}">
+                                                <Border CornerRadius="999" Background="{Binding Path=solidColorBrushes[6], UpdateSourceTrigger=PropertyChanged}">
                                                     <TextBlock TextAlignment="Center"
                                                     Text="{Binding Path=Val7, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                                 </Border>
-                                                <Border CornerRadius="999" Background="{Binding Path=CVal8, UpdateSourceTrigger=PropertyChanged}">
+                                                <Border CornerRadius="999" Background="{Binding Path=solidColorBrushes[7], UpdateSourceTrigger=PropertyChanged}">
                                                     <TextBlock TextAlignment="Center"
                                                     Text="{Binding Path=Val8, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                                 </Border>
-                                                <Border CornerRadius="999" Background="{Binding Path=CVal9, UpdateSourceTrigger=PropertyChanged}">
+                                                <Border CornerRadius="999" Background="{Binding Path=solidColorBrushes[8], UpdateSourceTrigger=PropertyChanged}">
                                                     <TextBlock TextAlignment="Center"
                                                     Text="{Binding Path=Val9, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                                 </Border>

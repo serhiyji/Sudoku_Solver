@@ -122,6 +122,7 @@ namespace WPF_Client
         }
         private void ClearMatrixBtnClick()
         {
+            SudokuSavingHandler.Instance.ToFalse();
             this.matrix.ClearMatrix();
         }
         private void OpenCloseListSudokusBtnClick()
