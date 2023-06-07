@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Documents;
 using Microsoft.VisualBasic;
 using PropertyChanged;
@@ -81,7 +82,8 @@ namespace SudokuSloverHendler
             }
             else
             {
-
+                this.GreenPointsSet(matrix);
+                this.RedPointsSet(matrix);
             }
         }
         public void DeSelectSolution(ref SudokuSloverHendler.BetterMatrix.BetterMatrix matrix)
@@ -117,6 +119,62 @@ namespace SudokuSloverHendler
                 }
             }
             return false;
+        }
+        private void GreenPointsSet(BetterMatrix.BetterMatrix matrix)
+        {
+            foreach (var item in this.PosPoints)
+            {
+                foreach (var val in this.values)
+                {
+                    if (matrix.matrix[item.i, item.j].set.Contains(val))
+                    {
+                        matrix.matrix[item.i, item.j].PossibleValues[val - 1] = Point.GreenColor;
+                    }
+                }
+                if (!this.ChangedPosPoints.Contains(item))
+                {
+                    this.ChangedPosPoints.Add(item);
+                }
+            }
+        }
+        private void RedPointsSet(BetterMatrix.BetterMatrix matrix)
+        {
+            if (IsSingleValue) return;
+            bool hl = SudokuSlover.IsPosPointsInHorizontalLine(this.PosPoints),
+                vl = SudokuSlover.IsPosPointsInVerticalLine(this.PosPoints),
+                sq = SudokuSlover.IsOneSquareInArrPospoint(this.PosPoints);
+            Set<PosPoint> pospoint = new Set<PosPoint>(this.PosPoints);
+            Func<byte, Set<PosPoint>, bool> func = (value, RedPoints) =>
+            {
+                foreach (PosPoint item in RedPoints.Where(item => matrix[item].set.Contains(value)))
+                {
+                    matrix.matrix[item.i, item.j].PossibleValues[value - 1] = Point.RedColor;
+                    if (!this.ChangedPosPoints.Contains(item))
+                    {
+                        this.ChangedPosPoints.Add(item);
+                    }
+                }
+                return false;
+            };
+
+            foreach (byte value in this.values)
+            {
+                if (hl)
+                {
+                    Set<PosPoint> RedPoints = new Set<PosPoint>(matrix.GetPossPosPointsInHorizontalLine(this.PosPoints[0].i, value)) - pospoint;
+                    func?.Invoke(value, RedPoints);
+                }
+                if (vl)
+                {
+                    Set<PosPoint> RedPoints = new Set<PosPoint>(matrix.GetPossPosPointsInVerticalLine(this.PosPoints[0].j, value)) - pospoint;
+                    func?.Invoke(value, RedPoints);
+                }
+                if (sq)
+                {
+                    Set<PosPoint> RedPoints = new Set<PosPoint>(matrix.GetPossPosPointsInSquare(new PosSquare(this.PosPoints[0]), value)) - pospoint;
+                    func?.Invoke(value, RedPoints);
+                }
+            }
         }
 
         /*public static bool operator ==(Intersections inter1, Intersections inter2)
