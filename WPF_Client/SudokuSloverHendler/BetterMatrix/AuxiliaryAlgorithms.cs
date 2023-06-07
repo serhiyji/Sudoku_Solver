@@ -57,7 +57,7 @@ namespace SudokuSloverHendler.BetterMatrix
         public bool IsOnePossibleValueInPosPoint(PosPoint pos_p)
         { return this.matrix[pos_p.i, pos_p.j].set.Count() == 1; }
         public byte GetFirstValueSetInPosPoint(PosPoint pos_p)
-        { return this.matrix[pos_p.i, pos_p.j].set[0]; }
+        { return this.matrix[pos_p.i, pos_p.j].set.Count > 0 ? this.matrix[pos_p.i, pos_p.j].set[0] : (byte)0; }
 
         private Arrange<PosPoint> GetPossPosPointsInRange(PosPoint pos1, PosPoint pos2, byte value)
         {

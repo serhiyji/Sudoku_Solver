@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Windows.Documents;
 using Microsoft.VisualBasic;
 using PropertyChanged;
+using SudokuSloverHendler.BetterMatrix;
 using SudokuSloverHendler.Collections;
 using SudokuSloverHendler.Coordinates;
 using SudokuSloverHendler.Points;
@@ -21,6 +24,10 @@ namespace SudokuSloverHendler
         public Arrange<PosPoint> PosPoints { get; set; }
         public Set<byte> values { get; set; }
 
+
+        // 
+        private List<PosPoint> ChangedPosPoints;
+
         public Intersections()
         {
             SetDefoltValues();
@@ -35,6 +42,7 @@ namespace SudokuSloverHendler
             PosPointNewValue = posPointNewValue;
             PosPoints = posPoints;
             this.values = values;
+            this.ChangedPosPoints = new List<PosPoint>();
         }
 
         public Intersections(Arrange<PosPoint> ArrPos, Set<byte> SetValues) : this()
@@ -51,6 +59,7 @@ namespace SudokuSloverHendler
             PosPointNewValue = new PosPoint();
             PosPoints = new Arrange<PosPoint>();
             values = new Set<byte>();
+            this.ChangedPosPoints = new List<PosPoint>();
         }
         public void SetValues(Intersections intersection)
         {
@@ -61,6 +70,26 @@ namespace SudokuSloverHendler
             this.PosPointNewValue.j = intersection.PosPointNewValue.j;
             this.PosPoints = intersection.PosPoints;
             this.values = intersection.values;
+        }
+        public void SelectSolution(ref SudokuSloverHendler.BetterMatrix.BetterMatrix matrix)
+        {
+            this.ChangedPosPoints.Clear();
+            if (IsSingleValue)
+            {
+                matrix[this.PosPointNewValue].PossibleValues[this.NewValue - 1] = Point.GreenColor;
+                this.ChangedPosPoints.Add(this.PosPointNewValue);
+            }
+            else
+            {
+
+            }
+        }
+        public void DeSelectSolution(ref SudokuSloverHendler.BetterMatrix.BetterMatrix matrix)
+        {
+            foreach (var item in this.ChangedPosPoints)
+            {
+                matrix.matrix[item.i, item.j].SetToDefoltStatusItem();
+            }
         }
         public bool IsValid(BetterMatrix.BetterMatrix matrix)
         {
@@ -89,7 +118,8 @@ namespace SudokuSloverHendler
             }
             return false;
         }
-        public static bool operator ==(Intersections inter1, Intersections inter2)
+
+        /*public static bool operator ==(Intersections inter1, Intersections inter2)
         {
             if (inter1 is null || inter2 is null) { return false; }
             return inter1.Equals(inter2);
@@ -106,7 +136,7 @@ namespace SudokuSloverHendler
             return true;
             //Intersections inter = (Intersections)obj;
             //return this.PosPoints == inter.PosPoints && this.values == inter.values;
-        }
+        }*/
 
         public override int GetHashCode()
         {

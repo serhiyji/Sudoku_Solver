@@ -109,11 +109,13 @@ namespace SudokuSloverHendler
                 if (this.matrix.IsOneNullInHorizontalLine(i))
                 {
                     PosPoint pos_p = this.matrix.GetPosPointNullHorizontalLine(i);
+                    byte NewValue_ = this.matrix.GetFirstValueSetInPosPoint(pos_p);
+                    if (NewValue_ == 0) continue;
                     return new Intersections()
                     {
                         NameMethodSlover = "Full_House",
                         IsSingleValue = true,
-                        NewValue = this.matrix.GetFirstValueSetInPosPoint(pos_p),
+                        NewValue = NewValue_,
                         PosPointNewValue = pos_p
                     };
                 }
@@ -124,11 +126,13 @@ namespace SudokuSloverHendler
                 if (this.matrix.IsOneNullInVerticallLine(i))
                 {
                     PosPoint pos_p = this.matrix.GetPosPointNullVerticalLine(i);
+                    byte NewValue_ = this.matrix.GetFirstValueSetInPosPoint(pos_p);
+                    if (NewValue_ == 0) continue;
                     return new Intersections()
                     {
                         NameMethodSlover = "Full_House",
                         IsSingleValue = true,
-                        NewValue = this.matrix.GetFirstValueSetInPosPoint(pos_p),
+                        NewValue = NewValue_,
                         PosPointNewValue = pos_p
                     };
                 }
@@ -142,11 +146,13 @@ namespace SudokuSloverHendler
                     if (this.matrix.IsOneNullInSquare(pos_s))
                     {
                         PosPoint pos_p = this.matrix.GetPosPointNullSquare(pos_s);
+                        byte NewValue_ = this.matrix.GetFirstValueSetInPosPoint(pos_p);
+                        if (NewValue_ == 0) continue;
                         return new Intersections()
                         {
                             NameMethodSlover = "Full_House",
                             IsSingleValue = true,
-                            NewValue = this.matrix.GetFirstValueSetInPosPoint(pos_p),
+                            NewValue = NewValue_,
                             PosPointNewValue = pos_p
                         };
                     }
@@ -163,11 +169,13 @@ namespace SudokuSloverHendler
                     PosPoint pos_p = new PosPoint(i, j);
                     if (this.matrix.IsNullInPosPoint(pos_p) && this.matrix.IsOnePossibleValueInPosPoint(pos_p))
                     {
+                        byte NewValue_ = this.matrix.GetFirstValueSetInPosPoint(pos_p);
+                        if (NewValue_ == 0) continue;
                         return new Intersections()
                         {
                             NameMethodSlover = "Naked_Single",
                             IsSingleValue = true,
-                            NewValue = this.matrix.GetFirstValueSetInPosPoint(pos_p),
+                            NewValue = NewValue_,
                             PosPointNewValue = pos_p
                         };
                     }

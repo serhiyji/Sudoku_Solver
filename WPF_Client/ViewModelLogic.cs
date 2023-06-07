@@ -142,12 +142,14 @@ namespace WPF_Client
             {
                 Solution.Instance.IsExecute = true;
                 Solution.Instance.Intersection.SetValues(intersection);
+                Solution.Instance.Intersection.SelectSolution(ref this.matrix);
             }
         }
         private void ExecuteBtnClick()
         {
             Solution.Instance.IsExecute = false;
             bool res = this.slover.Intersections_Handler(Solution.Instance.Intersection);
+            Solution.Instance.Intersection.DeSelectSolution(ref this.matrix);
             //MessageBox.Show(res.ToString());
             Solution.Instance.Intersection.SetDefoltValues();
         }
@@ -169,6 +171,7 @@ namespace WPF_Client
         private void CancelBtnClick()
         {
             Solution.Instance.IsExecute = false;
+            Solution.Instance.Intersection.DeSelectSolution(ref this.matrix);
             Solution.Instance.Intersection.SetDefoltValues();
         }
         #endregion
