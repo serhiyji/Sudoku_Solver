@@ -31,6 +31,7 @@ namespace SudokuSloverHendler.BetterMatrix
                     this.SetValue(new PosPoint(i, j), 0);
                 }
             }
+            this.SetPossibleValues();
         }
         private Set<byte> GetPossibleValuesInPosPoint(PosPoint pos_p)
         {

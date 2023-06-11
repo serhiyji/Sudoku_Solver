@@ -9,6 +9,7 @@ namespace SudokuSloverHendler.BetterMatrix
 {
     public partial class BetterMatrix : Matrix<Point>
     {
+        private Matrix<byte> __example = new Matrix<byte>();
         public BetterMatrix() : base(false)
         {
             for (int i = 0; i < matrix.GetLength(0); i++)
@@ -18,6 +19,20 @@ namespace SudokuSloverHendler.BetterMatrix
                     this.matrix[i, j] = new Point(0, new PosPoint(i, j));
                 }
             }
+            __example.matrix = new byte[,]
+            {
+                { 9, 7, 4, 8, 2, 5, 3, 1, 6 },
+                { 6, 8, 5, 9, 3, 1, 4, 2, 7 },
+                { 2, 1, 3, 6, 4, 7, 8, 5, 9 },
+
+                { 5, 3, 7, 2, 8, 6, 1, 9, 4 },
+                { 4, 6, 8, 7, 1, 9, 2, 3, 5 },
+                { 1, 2, 9, 3, 5, 4, 6, 7, 8 },
+
+                { 3, 5, 2, 4, 7, 8, 9, 6, 1 },
+                { 7, 4, 6, 1, 9, 2, 5, 8, 3 },
+                { 8, 9, 1, 5, 6, 3, 7, 4, 2 }
+            };
         }
         public void SetValue(PosPoint pos_p, byte value)
         {
@@ -59,6 +74,24 @@ namespace SudokuSloverHendler.BetterMatrix
                     this.matrix[i, j].value = (byte)mat.matrix[i, j];
                 }
             }
+        }
+        
+        public void GenerateNewSudoku(int interest = 35)
+        {
+            Matrix<byte> mat = __example;
+            Random rand = new Random();
+            this.ClearMatrix();
+            for (int i = 0; i < mat.matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < mat.matrix.GetLength(1); j++)
+                {
+                    if (rand.Next(0, 100) <= interest)
+                    {
+                        this.SetValue(new PosPoint(i, j), mat.matrix[i, j]);
+                    }
+                }
+            }
+            this.SetPossibleValues();
         }
         public void LoadSudoku(string data)
         {

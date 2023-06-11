@@ -30,7 +30,6 @@ namespace SudokuSloverHendler.BetterMatrix
                         {
                             return intersection;
                         }
-                        //Intersections para = new Intersections(new Arrange<PosPoint>(pos[i], pos[j]), this.GetPossValueInPosPoint(pos[i]));
                     }
                 }
             }
@@ -64,7 +63,6 @@ namespace SudokuSloverHendler.BetterMatrix
                                 {
                                     return intersection;
                                 }
-                                //Intersections triple = new Intersections(new Arrange<PosPoint>(pos[i1], pos[i2], pos[i3]), all);
                             }
                         }
                     }
@@ -106,7 +104,6 @@ namespace SudokuSloverHendler.BetterMatrix
                                     {
                                         return intersection;
                                     }
-                                    //Intersections quadruple = new Intersections(new Arrange<PosPoint>(pos[i1], pos[i2], pos[i3], pos[i4]), all);
                                 }
                             }
                         }
@@ -141,7 +138,6 @@ namespace SudokuSloverHendler.BetterMatrix
                                 {
                                     return intersection;
                                 }
-                                //Intersections para = new Intersections(new Arrange<PosPoint>(arr1[0], arr1[1]), new Set<byte>(num1, num2));
                             }
                         }
                     }
@@ -197,7 +193,6 @@ namespace SudokuSloverHendler.BetterMatrix
                                     {
                                         return intersection;
                                     }
-                                    //Intersections triple = new Intersections(poss_num, values);
                                 }
                             }
                         }
@@ -259,7 +254,6 @@ namespace SudokuSloverHendler.BetterMatrix
                                         {
                                             return intersection;
                                         }
-                                        //Intersections quadruple = new Intersections(poss_num, values);
                                     }
                                 }
                             }

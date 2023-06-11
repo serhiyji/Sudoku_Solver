@@ -123,7 +123,5 @@ namespace WPF_Client
         public ICommand UpdateListSavingSudukusCmd => UpdateListSavingSudukusCommand;
         public ICommand DeleteItemFromSudokusCmd => DeleteItemFromSudokusCommand;
         public ICommand QuitCmd => QuitCommand;
-
-
     }
 }

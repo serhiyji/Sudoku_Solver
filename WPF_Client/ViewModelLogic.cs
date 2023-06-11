@@ -180,7 +180,8 @@ namespace WPF_Client
         private void NewRandomSudokuBtnClick() 
         {
             SudokuSavingHandler.Instance.ToFalse();
-            // ...
+            this.VisibilityListSudokus = Visibility.Hidden;
+            this.matrix.GenerateNewSudoku();
         }
         private void OpenSudokuFromFileBtnClick()
         {
