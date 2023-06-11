@@ -4,7 +4,6 @@ using System.Linq;
 using System.Windows.Documents;
 using Microsoft.VisualBasic;
 using PropertyChanged;
-using SudokuSloverHendler.BetterMatrix;
 using SudokuSloverHendler.Collections;
 using SudokuSloverHendler.Coordinates;
 using SudokuSloverHendler.Points;
@@ -19,8 +18,10 @@ namespace SudokuSloverHendler
         // 
         public byte NewValue { get; set; }
         public PosPoint PosPointNewValue { get; set; }
-        // 
+        //
+        public (bool pos, bool sq, bool hl, bool vl) IS { get; set; }
 
+        //
 
         public Arrange<PosPoint> PosPoints { get; set; }
         public Set<byte> values { get; set; }
@@ -43,6 +44,7 @@ namespace SudokuSloverHendler
             PosPointNewValue = posPointNewValue;
             PosPoints = posPoints;
             this.values = values;
+            IS = (true, true, true, true);
             this.ChangedPosPoints = new List<PosPoint>();
         }
 
@@ -60,6 +62,7 @@ namespace SudokuSloverHendler
             PosPointNewValue = new PosPoint();
             PosPoints = new Arrange<PosPoint>();
             values = new Set<byte>();
+            IS = (true, true, true, true);
             this.ChangedPosPoints = new List<PosPoint>();
         }
         public void SetValues(Intersections intersection)
@@ -71,6 +74,7 @@ namespace SudokuSloverHendler
             this.PosPointNewValue.j = intersection.PosPointNewValue.j;
             this.PosPoints = intersection.PosPoints;
             this.values = intersection.values;
+            this.IS = intersection.IS;
         }
         public void SelectSolution(ref SudokuSloverHendler.BetterMatrix.BetterMatrix matrix)
         {
@@ -104,15 +108,15 @@ namespace SudokuSloverHendler
                     sq = SudokuSlover.IsOneSquareInArrPospoint(this.PosPoints);
                 foreach (byte item in this.values)
                 {
-                    if (hl && matrix.GetCountPossiblePosPointInHorizontalLine(PosPoints[0].i, item) > count)
+                    if (hl && matrix.GetCountPossiblePosPointInHorizontalLine(PosPoints[0].i, item) > count && IS.hl)
                     {
                         return true;
                     }
-                    else if (vl && matrix.GetCountPossiblePosPointInVerticalLine(PosPoints[0].j, item) > count)
+                    else if (vl && matrix.GetCountPossiblePosPointInVerticalLine(PosPoints[0].j, item) > count && IS.vl)
                     {
                         return true;
                     }
-                    else if (sq && matrix.GetCountPossiblePosPointInSquare(new PosSquare(this.PosPoints[0]), item) > count)
+                    else if (sq && matrix.GetCountPossiblePosPointInSquare(new PosSquare(this.PosPoints[0]), item) > count && IS.sq)
                     {
                         return true;
                     }

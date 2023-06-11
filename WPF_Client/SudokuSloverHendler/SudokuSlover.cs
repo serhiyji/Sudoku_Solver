@@ -81,18 +81,21 @@ namespace SudokuSloverHendler
             else
             {
                 bool total = false;
-                if (pos)
+                if (pos && inter.IS.pos)
                 {
                     for (int i = 0; i < inter.PosPoints.Count(); i++)
                     {
                         total = this.matrix.ClearValuesInSetInPosPoint(inter.PosPoints[i], this.matrix.GetPossValueInPosPoint(inter.PosPoints[i]) - inter.values) || total;
                     }
                 }
-                total = (sq) ? (IsOneSquareInArrPospoint(inter.PosPoints)) ?
+
+                total = (sq && inter.IS.sq) ? (IsOneSquareInArrPospoint(inter.PosPoints)) ?
                     this.matrix.ClearValuesInSetInSquare(new PosSquare(inter.PosPoints[0]), inter.values, inter.PosPoints) || total : total : total;
-                total = (lh) ? (IsPosPointsInHorizontalLine(inter.PosPoints)) ?
+
+                total = (lh && inter.IS.hl) ? (IsPosPointsInHorizontalLine(inter.PosPoints)) ?
                     this.matrix.ClearValuesInSetInHorizontalLine(inter.PosPoints[0].i, inter.values, inter.PosPoints) || total : total : total;
-                total = (lv) ? (IsPosPointsInVerticalLine(inter.PosPoints)) ?
+
+                total = (lv && inter.IS.vl) ? (IsPosPointsInVerticalLine(inter.PosPoints)) ?
                     this.matrix.ClearValuesInSetInVerticalLine(inter.PosPoints[0].j, inter.values, inter.PosPoints) || total : total : total;
 
                 return total;
@@ -263,7 +266,7 @@ namespace SudokuSloverHendler
         }
         private Intersections Locked_Candidates_Type_Pointing()
         {
-            /*for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
                 {
@@ -273,37 +276,65 @@ namespace SudokuSloverHendler
                         int size_ = this.matrix.GetCountPossiblePosPointInSquare(pos_s, value);
                         if (size_ == 3 || size_ == 2)
                         {
-                            //Arrange<PosPoint> arr = this.matrix.GetPossPosPointsInSquare(pos_s, value);
-                            //bool t_i = this.IsPosPointsInHorizontalLine(arr), t_j = this.IsPosPointsInVerticalLine(arr);
-                            //total = (t_i) ? this.matrix.ClearValueInSetInHorizontalLine(arr[0].i, value, arr) || total :
-                            //        (t_j) ? this.matrix.ClearValueInSetInVerticalLine(arr[0].j, value, arr) || total : total;
-                            return null;
+                            Intersections intersection = new Intersections()
+                            {
+                                NameMethodSlover = "Locked_Candidates_Type_Pointing",
+                                IsSingleValue = false,
+                                PosPoints = this.matrix.GetPossPosPointsInSquare(pos_s, value),
+                                values = new Set<byte>(value),
+                                IS = (false, false, true, true)
+                            };
+                            if (intersection.IsValid(this.matrix))
+                            {
+                                return intersection;
+                            }
                         }
                     }
                 }
-            }*/
+            }
             return null;
         }
         private Intersections Locked_Candidates_Type_Claiming()
         {
-            /*for (byte value = 1; value < 10; value++)
+            for (byte value = 1; value < 10; value++)
             {
                 for (int i = 0; i < 9; i++)
                 {
-                    //int count_h = this.matrix.GetCountPossiblePosPointInHorizontalLine(i, value);
-                    //if (count_h <= 3 && count_h >= 2)
-                    //{
-                    //    Arrange<PosPoint> arr = this.matrix.GetPossPosPointsInHorizontalLine(i, value);
-                    //    total = (this.IsOneSquareInArrPospoint(arr)) ? this.matrix.ClearValueInSetInSquare(new PosSquare(arr[0]), value, arr) || total : total;
-                    //}
-                    //int count_v = this.matrix.GetCountPossiblePosPointInVerticalLine(i, value);
-                    //if (count_v <= 3 && count_v >= 2)
-                    //{
-                    //    Arrange<PosPoint> arr = this.matrix.GetPossPosPointsInVerticalLine(i, value);
-                    //    total = (this.IsOneSquareInArrPospoint(arr)) ? this.matrix.ClearValueInSetInSquare(new PosSquare(arr[0]), value, arr) || total : total;
-                    //}
+                    int count_h = this.matrix.GetCountPossiblePosPointInHorizontalLine(i, value);
+                    if (count_h <= 3 && count_h >= 2)
+                    {
+                        Intersections intersection = new Intersections()
+                        {
+                            NameMethodSlover = "Locked_Candidates_Type_Claiming",
+                            IsSingleValue = false,
+                            PosPoints = this.matrix.GetPossPosPointsInHorizontalLine(i, value),
+                            values = new Set<byte>(value),
+                            IS = (false, true, false, false)
+                        };
+                        if (intersection.IsValid(this.matrix))
+                        {
+                            return intersection;
+                        }
+                    }
+
+                    int count_v = this.matrix.GetCountPossiblePosPointInVerticalLine(i, value);
+                    if (count_v <= 3 && count_v >= 2)
+                    {
+                        Intersections intersection = new Intersections()
+                        {
+                            NameMethodSlover = "Locked_Candidates_Type_Claiming",
+                            IsSingleValue = false,
+                            PosPoints = this.matrix.GetPossPosPointsInVerticalLine(i, value),
+                            values = new Set<byte>(value),
+                            IS = (false, true, false, false)
+                        };
+                        if (intersection.IsValid(this.matrix))
+                        {
+                            return intersection;
+                        }
+                    }
                 }
-            }*/
+            }
             return null;
         }
         private Intersections Naked_Pair()
@@ -325,8 +356,6 @@ namespace SudokuSloverHendler
                 if (!(triple_h is null)) { return triple_h; }
                 Intersections triple_v = this.matrix.GetLockedTripleInVerticalLine(i);
                 if (!(triple_v is null)) { return triple_v; }
-                //this.Intersections_Handler(triple_h, false, false, true, false);
-                //this.Intersections_Handler(triple_v, false, false, false, true);
             }
             return null;
         }
@@ -338,8 +367,6 @@ namespace SudokuSloverHendler
                 if (!(quadruple_h is null)) { return quadruple_h; }
                 Intersections quadruple_v = this.matrix.GetNakedQuadrupleInVerticalLine(i);
                 if (!(quadruple_v is null)) { return quadruple_v; }
-                //this.Intersections_Handler(quadruple_h, false, false, true, false);
-                //this.Intersections_Handler(quadruple_v, false, false, false, true);
             }
             for (int i = 0; i < 3; i++)
             {
@@ -347,7 +374,6 @@ namespace SudokuSloverHendler
                 {
                     Intersections quadruple_s = this.matrix.GetNakedQuadrupleInSquare(new PosSquare(i, j));
                     if (!(quadruple_s is null)) { return quadruple_s; }
-                    //this.Intersections_Handler(quadruple_s, false, true, false, false);
                 }
             }
             return null;
@@ -361,8 +387,6 @@ namespace SudokuSloverHendler
                 if (!(pair_h is null)) { return pair_h; }
                 Intersections pair_v = this.matrix.GetHiddenPairInVerticalLine(i);
                 if (!(pair_v is null)) { return pair_v; }
-                //this.Intersections_Handler(pair_h, true, false, true, false);
-                //this.Intersections_Handler(pair_v, true, false, false, true);
             }
             for (int si = 0; si < 3; si++)
             {
@@ -370,7 +394,6 @@ namespace SudokuSloverHendler
                 {
                     Intersections pair = this.matrix.GetHiddenPairInSquare(new PosSquare(si, sj));
                     if (!(pair is null)) { return pair; }
-                    //this.Intersections_Handler(pairs, true, true, false, false);
                 }
             }
             return null;
@@ -383,8 +406,6 @@ namespace SudokuSloverHendler
                 if (!(triple_h is null)) { return triple_h; };
                 Intersections triple_v = this.matrix.GetHiddenTripleInVerticalLine(i);
                 if (!(triple_v is null)) { return triple_v; };
-                //this.Intersections_Handler(triple_h, true, false, false, false);
-                //this.Intersections_Handler(triple_v, true, false, false, false);
             }
             for (int si = 0; si < 3; si++)
             {
@@ -392,7 +413,6 @@ namespace SudokuSloverHendler
                 {
                     Intersections triple = this.matrix.GetHiddenTripleInSquare(new PosSquare(si, sj));
                     if (!(triple is null)) { return triple; };
-                    //this.Intersections_Handler(triple, true, false, false, false);
                 }
             }
             return null;
@@ -405,8 +425,6 @@ namespace SudokuSloverHendler
                 if (!(quadruple_h is null)) { return quadruple_h; };
                 Intersections quadruple_v = this.matrix.GetHiddenQuadrupleInVerticalLine(i);
                 if (!(quadruple_v is null)) { return quadruple_v; };
-                //this.Intersections_Handler(quadruple_h, true, false, false, false);
-                //this.Intersections_Handler(quadruple_v, true, false, false, false);
             }
             for (int si = 0; si < 3; si++)
             {
@@ -414,7 +432,6 @@ namespace SudokuSloverHendler
                 {
                     Intersections quadruple_s = this.matrix.GetHiddenQuadrupleInSquare(new PosSquare(si, sj));
                     if(!(quadruple_s is null)) { return quadruple_s; };
-                    //this.Intersections_Handler(quadruple_s, true, false, false, false);
                 }
             }
             return null;
