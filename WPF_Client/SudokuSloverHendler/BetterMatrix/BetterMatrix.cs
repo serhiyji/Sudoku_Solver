@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Documents;
 using SudokuSloverHendler.Collections;
 using SudokuSloverHendler.Coordinates;
 using SudokuSloverHendler.Matrix;
@@ -75,20 +77,22 @@ namespace SudokuSloverHendler.BetterMatrix
                 }
             }
         }
-        public void GenerateNewSudoku(int interest = 70)
+        public void GenerateNewSudoku(int count = 0)
         {
             Random rand = new Random();
             this.ClearMatrix();
             Matrix<byte> mat = __example;
             mat.ToMixMatrix();
-            for (int i = 0; i < mat.matrix.GetLength(0); i++)
+            for (int c = 0; c < count; c++)
             {
-                for (int j = 0; j < mat.matrix.GetLength(1); j++)
+                int i = rand.Next(0, 9), j = rand.Next(0, 9);
+                if (this.matrix[i, j].value == 0)
                 {
-                    if (rand.Next(0, 100) <= interest)
-                    {
-                        this.SetValue(new PosPoint(i, j), mat.matrix[i, j]);
-                    }
+                    this.SetValue(new PosPoint(i, j), mat.matrix[i, j]);
+                }
+                else
+                {
+                    c--;
                 }
             }
             this.SetPossibleValues();

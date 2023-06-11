@@ -185,7 +185,7 @@ namespace WPF_Client
         {
             SudokuSavingHandler.Instance.ToFalse();
             this.VisibilityListSudokus = Visibility.Hidden;
-            this.matrix.GenerateNewSudoku();
+            this.matrix.GenerateNewSudoku(40);
         }
         private void OpenSudokuFromFileBtnClick()
         {
