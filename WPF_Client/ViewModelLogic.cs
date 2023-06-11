@@ -99,7 +99,7 @@ namespace WPF_Client
 
         private void SetValue(byte value)
         {
-            matrix.SetValue(new PosPoint(cursorPosition.I, cursorPosition.J), value);
+            matrix.SetValue(new PosPoint(this.cursorPosition.I, this.cursorPosition.J), value);
         }
 
         #region Buttons Handlers
@@ -143,6 +143,10 @@ namespace WPF_Client
                 Solution.Instance.IsExecute = true;
                 Solution.Instance.Intersection.SetValues(intersection);
                 Solution.Instance.Intersection.SelectSolution(ref this.matrix);
+            }
+            else
+            {
+                MessageBox.Show("no solution was found");
             }
         }
         private void ExecuteBtnClick()

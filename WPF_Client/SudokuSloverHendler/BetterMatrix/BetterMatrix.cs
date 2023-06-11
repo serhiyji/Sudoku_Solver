@@ -21,17 +21,17 @@ namespace SudokuSloverHendler.BetterMatrix
             }
             __example.matrix = new byte[,]
             {
-                { 9, 7, 4, 8, 2, 5, 3, 1, 6 },
-                { 6, 8, 5, 9, 3, 1, 4, 2, 7 },
-                { 2, 1, 3, 6, 4, 7, 8, 5, 9 },
+                { 1, 2, 3, 7, 8, 9, 4, 5, 6 },
+                { 4, 5, 6, 1, 2, 3, 7, 8, 9 },
+                { 7, 8, 9, 4, 5, 6, 1, 2, 3 },
 
-                { 5, 3, 7, 2, 8, 6, 1, 9, 4 },
-                { 4, 6, 8, 7, 1, 9, 2, 3, 5 },
-                { 1, 2, 9, 3, 5, 4, 6, 7, 8 },
+                { 2, 3, 1, 8, 9, 7, 5, 6, 4 },
+                { 5, 6, 4, 2, 3, 1, 8, 9, 7 },
+                { 8, 9, 7, 5, 6, 4, 2, 3, 1 },
 
-                { 3, 5, 2, 4, 7, 8, 9, 6, 1 },
-                { 7, 4, 6, 1, 9, 2, 5, 8, 3 },
-                { 8, 9, 1, 5, 6, 3, 7, 4, 2 }
+                { 3, 1, 2, 6, 4, 5, 9, 7, 8 },
+                { 6, 4, 5, 9, 7, 8, 3, 1, 2 },
+                { 9, 7, 8, 3, 1, 2, 6, 4, 5 }
             };
         }
         public void SetValue(PosPoint pos_p, byte value)
@@ -52,7 +52,7 @@ namespace SudokuSloverHendler.BetterMatrix
                     if (this.matrix[pos_p.i, pos_p.j].set.Contains(value))
                     {
                         this.matrix[pos_p.i, pos_p.j].value = value;
-                        this.matrix[pos_p.i, pos_p.j].set -= new Set<byte>(1 , 2, 3, 4, 5, 6, 7, 8, 9);
+                        this.matrix[pos_p.i, pos_p.j].set -= new Set<byte>(1, 2, 3, 4, 5, 6, 7, 8, 9);
                         this.ClearValueInSetInHorizontalLine(pos_p.i, value);
                         this.ClearValueInSetInVerticalLine(pos_p.j, value);
                         this.ClearValueInSetInSquare(new PosSquare(pos_p), value);
@@ -75,12 +75,12 @@ namespace SudokuSloverHendler.BetterMatrix
                 }
             }
         }
-        
-        public void GenerateNewSudoku(int interest = 35)
+        public void GenerateNewSudoku(int interest = 70)
         {
-            Matrix<byte> mat = __example;
             Random rand = new Random();
             this.ClearMatrix();
+            Matrix<byte> mat = __example;
+            mat.ToMixMatrix();
             for (int i = 0; i < mat.matrix.GetLength(0); i++)
             {
                 for (int j = 0; j < mat.matrix.GetLength(1); j++)
