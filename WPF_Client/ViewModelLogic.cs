@@ -225,7 +225,14 @@ namespace WPF_Client
         }
         private void DeleteItemFromSudokusBtnClick()
         {
-            DatabaseHandler.Instance.DeleteSudoku(this.SelectedSudoku.ID);
+            try
+            {
+                DatabaseHandler.Instance.DeleteSudoku(this.SelectedSudoku.ID);
+            }
+            catch (Exceptions.ExceptionConnectDatabase ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             this.UpdateListSavingSudukusBtnClick();
         }
         private void QuitBtnClick()

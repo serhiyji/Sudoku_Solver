@@ -41,9 +41,9 @@ namespace WPF_Client
                 db.SaveChanges();
                 return db.SavingSudokus.Where(s => s.IdUser == this.IdUser && s.Name == nameSudoku).First().ID;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return -1;
+                throw new Exceptions.ExceptionConnectDatabase("Судоку не була збережена / Відсутнє зєднання з інтернетом");
             }
             return -1;
 
@@ -62,9 +62,9 @@ namespace WPF_Client
                     return true;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return false;
+                throw new Exceptions.ExceptionConnectDatabase("Судоку не була збережена / Відсутнє зєднання з інтернетом");
             }
             return false;
         }
@@ -88,13 +88,20 @@ namespace WPF_Client
         }
         public bool Login(string login, string password)
         {
-            IEnumerable<DBContexts.Entities.User> users = db.Users.Where(i => i.Login == login && i.Password == password);
-            if (users.Count() == 1)
+            try
             {
-                this.IsLogined = true;
-                this.IdUser = users.First().ID;
-                this.NameUser = users.First().Login;
-                return true;
+                IEnumerable<DBContexts.Entities.User> users = db.Users.Where(i => i.Login == login && i.Password == password);
+                if (users.Count() == 1)
+                {
+                    this.IdUser = users.First().ID;
+                    this.NameUser = users.First().Login;
+                    this.IsLogined = true;
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exceptions.ExceptionConnectDatabase("Вхід не відбувся / Відсутнє зєднання з інтернетом");
             }
             return false;
         }
@@ -111,10 +118,14 @@ namespace WPF_Client
                         Email = email,
                     });
                     db.SaveChanges();
-                    return this.Login(login, password);
+                    try
+                    {
+                        return this.Login(login, password);
+                    }
+                    catch (Exceptions.ExceptionConnectDatabase ex) { throw ex; }
                 }
             }
-            catch (Exception) { }
+            catch (Exception ex) { throw new Exceptions.ExceptionConnectDatabase("Реєстрація не відбулась / Відсутнє зєднання з інтернетом"); }
             return false;
         }
         public bool DeleteSudoku(int IdSudoku)
@@ -125,7 +136,7 @@ namespace WPF_Client
                 db.SaveChanges();
                 return true;
             }
-            catch (Exception){}
+            catch (Exception ex) { throw new Exceptions.ExceptionConnectDatabase("Судоку не була збережена / Відсутнє зєднання з інтернетом"); }
             return false;
         }
         public void LogOut()

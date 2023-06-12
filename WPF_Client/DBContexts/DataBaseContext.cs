@@ -26,7 +26,7 @@ namespace WPF_Client.DBContexts
                                         Integrated Security = false; 
                                         User ID = sudokudatabase74; 
                                         Password = Td710y~?BE6J;
-                                        Connect Timeout = 30; Encrypt = False;
+                                        Connect Timeout = 5; Encrypt = False;
                                         TrustServerCertificate = False;
                                         ApplicationIntent = ReadWrite;
                                         MultiSubnetFailover = False;");

@@ -55,16 +55,30 @@ namespace WPF_Client
         }
         public void SaveAsSudokuInDataBase(string nameSudoku, ref BetterMatrix matrix)
         {
-            int newid = DatabaseHandler.Instance.SaveSudoku(nameSudoku, ref matrix);
-            if (newid >= 0)
+            try
             {
-                this.IdSudokuInDatabase = newid;
-                this.SwapPropAccess(File: false, Database: true);
+                int newid = DatabaseHandler.Instance.SaveSudoku(nameSudoku, ref matrix);
+                if (newid >= 0)
+                {
+                    this.IdSudokuInDatabase = newid;
+                    this.SwapPropAccess(File: false, Database: true);
+                }
+            }
+            catch (Exceptions.ExceptionConnectDatabase ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         public void SaveSudokuInDataBase(ref BetterMatrix matrix)
         {
-            DatabaseHandler.Instance.SaveSudoku(this.IdSudokuInDatabase, ref matrix);
+            try
+            {
+                DatabaseHandler.Instance.SaveSudoku(this.IdSudokuInDatabase, ref matrix);
+            }
+            catch (Exceptions.ExceptionConnectDatabase ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         public void LoadSudokuFromDataBase(int idsudoku, ref BetterMatrix matrix)
         {

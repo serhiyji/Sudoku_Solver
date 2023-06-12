@@ -61,24 +61,38 @@ namespace WPF_Client.LoginRegistration
         #region Buttons Handlers
         private void LoginBtnClick()
         {
-            if (DatabaseHandler.Instance.Login(this.Login_L, this.Password_L))
+            try
             {
-                this.CloseWindow();
+                if (DatabaseHandler.Instance.Login(this.Login_L, this.Password_L))
+                {
+                    this.CloseWindow();
+                }
+                else
+                {
+                    MessageBox.Show("Invalid login or/and password");
+                }
             }
-            else
+            catch (Exceptions.ExceptionConnectDatabase ex)
             {
-                MessageBox.Show("Invalid login or/and password");
+                MessageBox.Show(ex.Message);
             }
         }
         private void RegistrationBtnClick()
         {
-            if (DatabaseHandler.Instance.Registration(this.Login_R, this.Password_R, this.Email_R))
+            try
             {
-                this.CloseWindow();
+                if (DatabaseHandler.Instance.Registration(this.Login_R, this.Password_R, this.Email_R))
+                {
+                    this.CloseWindow();
+                }
+                else
+                {
+                    // ...
+                }
             }
-            else
+            catch (Exceptions.ExceptionConnectDatabase ex)
             {
-                // ...
+                MessageBox.Show(ex.Message);
             }
         }
         #endregion
