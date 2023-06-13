@@ -59,59 +59,59 @@
     
     <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top">
-            <MenuItem Header="File">
+            <MenuItem Header="Файл">
                 <MenuItem Command="{Binding Path=NewRandomSudokuCmd, UpdateSourceTrigger=PropertyChanged}"
-                    Header="New Random Sudoku"></MenuItem>
+                    Header="Згенерувати судоку"></MenuItem>
                 <Separator/>
                 <MenuItem Command="{Binding Path=OpenSudokuFromFileCmd, UpdateSourceTrigger=PropertyChanged}"
-                    Header="Open Sudoku From File"></MenuItem>
+                    Header="Відкрити судоку з файлу"></MenuItem>
                 <MenuItem Command="{Binding Path=SaveSudokuInFileCmd, UpdateSourceTrigger=PropertyChanged}"
-                    Header="Save Sudoku In File"></MenuItem>
+                    Header="Зберегти судоку в файл"></MenuItem>
                 <MenuItem Command="{Binding Path=SaveAsSudokuInFileCmd, UpdateSourceTrigger=PropertyChanged}"
-                    Header="Save As Sudoku In File"></MenuItem>
+                    Header="Зберегти Як судоку в файл"></MenuItem>
                 <Separator/>
                 <MenuItem Command="{Binding Path=OpenSudokuFromDataBaseCmd, UpdateSourceTrigger=PropertyChanged}"
-                    Header="Open Sudoku From DataBase"></MenuItem>
+                    Header="Відкрити судоку з бази даних"></MenuItem>
                 <MenuItem Command="{Binding Path=SaveSudokuInDataBaseCmd, UpdateSourceTrigger=PropertyChanged}"
-                    Header="Save Sudoku In DataBase"></MenuItem>
+                    Header="Зберегти судоку в базу даних"></MenuItem>
                 <MenuItem Command="{Binding Path=SaveAsSudokuInDataBaseCmd, UpdateSourceTrigger=PropertyChanged}"
-                    Header="Save As Sudoku In DataBase"></MenuItem>
+                    Header="Зберегти Як судоку в базу даних"></MenuItem>
                 <Separator/>
                 <MenuItem Command="{Binding Path=UpdateListSavingSudukusCmd, UpdateSourceTrigger=PropertyChanged}"
-                          Header="Update List Savidg Sudokus"></MenuItem>
+                          Header="Оновити список збережених судоку"></MenuItem>
                 <Separator/>
                 <MenuItem Command="{Binding Path=QuitCmd, UpdateSourceTrigger=PropertyChanged}"
-                    Header="Quit"></MenuItem>
+                    Header="Вийти"></MenuItem>
             </MenuItem>
-            <MenuItem Header="Moving">
+            <MenuItem Header="Курсор">
                 <MenuItem Command="{Binding Path=UpCmd, UpdateSourceTrigger=PropertyChanged}" 
-                          Header="Up"></MenuItem>
+                          Header="Вверх"></MenuItem>
                 <MenuItem Command="{Binding Path=DownCmd, UpdateSourceTrigger=PropertyChanged}" 
-                          Header="Down"></MenuItem>
+                          Header="Вниз"></MenuItem>
                 <MenuItem Command="{Binding Path=LeftCmd, UpdateSourceTrigger=PropertyChanged}" 
-                          Header="Left"></MenuItem>
+                          Header="Вліво"></MenuItem>
                 <MenuItem Command="{Binding Path=RightCmd, UpdateSourceTrigger=PropertyChanged}" 
-                          Header="Rigth"></MenuItem>
+                          Header="Вправо"></MenuItem>
             </MenuItem>
-            <MenuItem Header="Sign In/Up/Out">
+            <MenuItem Header="Акаунт">
                 <MenuItem Command="{Binding Path=SignInUpCmd, UpdateSourceTrigger=PropertyChanged}" 
-                          Header="Sign In"></MenuItem>
+                          Header="Ввійти"></MenuItem>
                 <MenuItem Command="{Binding Path=SignInUpCmd, UpdateSourceTrigger=PropertyChanged}" 
-                          Header="Sign Up"></MenuItem>
+                          Header="Зареєструватись"></MenuItem>
                 <MenuItem Command="{Binding Path=SignOutCmd, UpdateSourceTrigger=PropertyChanged}" 
-                          Header="Sign Out"></MenuItem>
+                          Header="Вийти"></MenuItem>
             </MenuItem>
-            <MenuItem Header="Solution">
+            <MenuItem Header="Рішення">
                 <MenuItem Command="{Binding Path=NextHintCmd, UpdateSourceTrigger=PropertyChanged}" 
-                          Header="Next Hint"></MenuItem>
+                          Header="Наступне рішення"></MenuItem>
                 <MenuItem Command="{Binding Path=ExecuteCmd, UpdateSourceTrigger=PropertyChanged}" 
-                          Header="Execute"></MenuItem>
+                          Header="Застосувати рішення"></MenuItem>
                 <MenuItem Command="{Binding Path=SloveUpToCmd, UpdateSourceTrigger=PropertyChanged}" 
-                          Header="Slove up to"></MenuItem>
+                          Header="Вирішити до кінця"></MenuItem>
                 <MenuItem Command="{Binding Path=CancelCmd, UpdateSourceTrigger=PropertyChanged}" 
-                          Header="Cancel"></MenuItem>
+                          Header="Відмінити рішення"></MenuItem>
                 <MenuItem Command="{Binding Path=ClearMatrixCmd, UpdateSourceTrigger=PropertyChanged}"
-                          Header="Clear Matrix"></MenuItem>
+                          Header="Очистити матрицю"></MenuItem>
             </MenuItem>
         </Menu>
         
@@ -121,8 +121,8 @@
             <DockPanel DockPanel.Dock="Top" LastChildFill="False">
                 <Button Content="{Binding Path=TextBtnOpenCloseSudoku, UpdateSourceTrigger=PropertyChanged}"
                     Command="{Binding Path=OpenCloseListSudokusCmd, UpdateSourceTrigger=PropertyChanged}"></Button>
-                <Button DockPanel.Dock="Right" Command="{Binding Path=SignOutCmd, UpdateSourceTrigger=PropertyChanged}">Sign out</Button>
-                <Button DockPanel.Dock="Right" Command="{Binding Path=SignInUpCmd, UpdateSourceTrigger=PropertyChanged}">Sign In / Up</Button>
+                <Button DockPanel.Dock="Right" Command="{Binding Path=SignOutCmd, UpdateSourceTrigger=PropertyChanged}">Вийти</Button>
+                <Button DockPanel.Dock="Right" Command="{Binding Path=SignInUpCmd, UpdateSourceTrigger=PropertyChanged}">Ввійти / Реєстрація</Button>
             </DockPanel>
             
             <!--низ-->
@@ -150,11 +150,12 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Border Grid.ColumnSpan="2"
+                <Border Grid.ColumnSpan="3"
                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <Grid>
                         <!--матриця-->
@@ -260,15 +261,15 @@
                     </Grid>
                 </Border>
                 <DockPanel Visibility="{Binding Path=VisibilityListSudokus, UpdateSourceTrigger=PropertyChanged}" 
-                           Margin="12">
+                           Margin="12" Grid.ColumnSpan="2">
                     <UniformGrid DockPanel.Dock="Bottom" Columns="3" Rows="1">
-                        <Button Command="{Binding Path=OpenSudokuFromDataBaseCmd, UpdateSourceTrigger=PropertyChanged}">Load</Button>
-                        <Button Command="{Binding Path=SaveSudokuInDataBaseCmd, UpdateSourceTrigger=PropertyChanged}">Save</Button>
-                        <Button Command="{Binding Path=DeleteItemFromSudokusCmd, UpdateSourceTrigger=PropertyChanged}">Delete</Button>
+                        <Button Command="{Binding Path=OpenSudokuFromDataBaseCmd, UpdateSourceTrigger=PropertyChanged}">Завантажити</Button>
+                        <Button Command="{Binding Path=SaveSudokuInDataBaseCmd, UpdateSourceTrigger=PropertyChanged}">Зберегти</Button>
+                        <Button Command="{Binding Path=DeleteItemFromSudokusCmd, UpdateSourceTrigger=PropertyChanged}">Видалити</Button>
                     </UniformGrid>
                     <DockPanel DockPanel.Dock="Bottom" LastChildFill="True">
                         <Button DockPanel.Dock="Right"
-                            Command="{Binding Path=SaveAsSudokuInDataBaseCmd, UpdateSourceTrigger=PropertyChanged}">SaveAs</Button>
+                            Command="{Binding Path=SaveAsSudokuInDataBaseCmd, UpdateSourceTrigger=PropertyChanged}">Збергти як</Button>
                         <TextBox Margin="5" Padding="2" TextAlignment="Left"
                                  Text="{Binding Path=nameSudokuInput, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                     </DockPanel>

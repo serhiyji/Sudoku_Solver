@@ -43,7 +43,7 @@ namespace WPF_Client
         }
         public bool IsSelectedItemSudokus => SelectedSudoku != null;
         public Visibility VisibilityListSudokus { get; set; }
-        public string TextBtnOpenCloseSudoku => this.VisibilityListSudokus == Visibility.Hidden ? "Open List Sudokus" : "Close List Sudokus";
+        public string TextBtnOpenCloseSudoku => this.VisibilityListSudokus == Visibility.Hidden ? "Відкрити список судоку" : "Закрити список судоку";
         public string nameSudokuInput { get; set; }
 
         // Buttons
