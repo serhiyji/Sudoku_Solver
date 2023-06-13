@@ -1,0 +1,16 @@
+﻿<Window x:Class="WPF_Client.DescriptionAlgorithms.WindowDescription"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_Client.DescriptionAlgorithms"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=local:WindowDescription}"
+        Title="Вікно деталей про алгоритм" Height="650" Width="500">
+    <StackPanel Margin="5">
+        <TextBlock TextAlignment="Center" Text="{Binding Path=AlgorithmString, UpdateSourceTrigger=PropertyChanged}">
+            
+        </TextBlock>
+        <TextBlock Text="{Binding Path=Description, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+    </StackPanel>
+</Window>

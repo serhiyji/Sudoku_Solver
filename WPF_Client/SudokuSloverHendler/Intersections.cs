@@ -10,9 +10,19 @@ using SudokuSloverHendler.Points;
 
 namespace SudokuSloverHendler
 {
+    public enum AlgorithmSudokuSlover
+    {
+        None,
+        Full_House, Naked_Single, Hidden_Single,
+        Locked_Pair, Locked_Triple,
+        Locked_Candidates_Type_Pointing, Locked_Candidates_Type_Claiming,
+        Naked_Pair, Naked_Triple, Naked_Quadruple,
+        Hidden_Pair, Hidden_Triple, Hidden_Quadruple
+    }
     [AddINotifyPropertyChangedInterface]
     public partial class Intersections
     {
+        public AlgorithmSudokuSlover algorithm { get; set; }
         public string NameMethodSlover { get; set; }
         public bool IsSingleValue { get; set; }
         // 
@@ -44,6 +54,7 @@ namespace SudokuSloverHendler
             PosPointNewValue = posPointNewValue;
             PosPoints = posPoints;
             this.values = values;
+            this.algorithm = AlgorithmSudokuSlover.None;
             IS = (true, true, true, true);
             this.ChangedPosPoints = new List<PosPoint>();
         }
@@ -63,6 +74,7 @@ namespace SudokuSloverHendler
             PosPoints = new Arrange<PosPoint>();
             values = new Set<byte>();
             IS = (true, true, true, true);
+            this.algorithm = AlgorithmSudokuSlover.None;
             this.ChangedPosPoints = new List<PosPoint>();
         }
         public void SetValues(Intersections intersection)
@@ -75,6 +87,7 @@ namespace SudokuSloverHendler
             this.PosPoints = intersection.PosPoints;
             this.values = intersection.values;
             this.IS = intersection.IS;
+            this.algorithm = intersection.algorithm;
         }
         public void SelectSolution(ref SudokuSloverHendler.BetterMatrix.BetterMatrix matrix)
         {

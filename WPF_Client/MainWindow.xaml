@@ -127,24 +127,32 @@
             
             <!--низ-->
             <DockPanel DockPanel.Dock="Bottom" LastChildFill="True">
-                <UniformGrid Columns="2" Rows="2" DockPanel.Dock="Right">
-                    <Button Command="{Binding Path=NextHintCmd, UpdateSourceTrigger=PropertyChanged}">Наступне рішення</Button>
-                    <Button Command="{Binding Path=ExecuteCmd, UpdateSourceTrigger=PropertyChanged}">Застосувати рішення</Button>
-                    <Button Command="{Binding Path=SloveUpToCmd, UpdateSourceTrigger=PropertyChanged}">Вирішити  до  кінця</Button>
-                    <Button Command="{Binding Path=CancelCmd, UpdateSourceTrigger=PropertyChanged}">Відмінити</Button>
-                </UniformGrid>
+                <Grid DockPanel.Dock="Right">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Column="0" Grid.Row="0"
+                        Command="{Binding Path=NextHintCmd, UpdateSourceTrigger=PropertyChanged}">Наступне рішення</Button>
+                    <Button Grid.Column="1" Grid.Row="0"
+                        Command="{Binding Path=ExecuteCmd, UpdateSourceTrigger=PropertyChanged}">Застосувати рішення</Button>
+                    <Button Grid.Column="0" Grid.Row="1"
+                            Command="{Binding Path=SloveUpToCmd, UpdateSourceTrigger=PropertyChanged}">Вирішити  до  кінця</Button>
+
+                    <UniformGrid Grid.Row="1" Grid.Column="1" Columns="2" Rows="1">
+                        <Button Grid.Column="0" 
+                                Command="{Binding Path=CancelCmd, UpdateSourceTrigger=PropertyChanged}">Відмінити</Button>
+                        <Button Grid.Column="1" 
+                                Command="{Binding Path=OpenDescriptionCmd, UpdateSourceTrigger=PropertyChanged}">Інфо</Button>
+                    </UniformGrid>
+                </Grid>
                 <TextBlock TextAlignment="Center" Margin="5"
                            Text="{Binding Path=Intersection.NameMethodSlover, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
             </DockPanel>
-            
-            <!--//--><!--
-            <DockPanel DockPanel.Dock="Left" LastChildFill="True">
-                <UniformGrid DockPanel.Dock="Bottom">
-                    <Button Command="{Binding Path=UpdateListSavingSudukusCmd, UpdateSourceTrigger=PropertyChanged}">
-                        Update List</Button>
-                </UniformGrid>
-                
-            </DockPanel>-->
 
             <Grid Margin="5" >
                 <Grid.ColumnDefinitions>

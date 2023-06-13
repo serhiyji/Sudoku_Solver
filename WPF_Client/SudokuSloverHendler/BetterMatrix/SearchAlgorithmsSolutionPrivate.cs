@@ -22,6 +22,7 @@ namespace SudokuSloverHendler.BetterMatrix
                     {
                         Intersections intersection = new Intersections()
                         {
+                            algorithm = AlgorithmSudokuSlover.Locked_Pair,
                             NameMethodSlover = $"Locked Pair {new Arrange<PosPoint>(pos[i], pos[j])} : {this.GetPossValueInPosPoint(pos[i])}",
                             IsSingleValue = false,
                             PosPoints = new Arrange<PosPoint>(pos[i], pos[j]),
@@ -55,6 +56,7 @@ namespace SudokuSloverHendler.BetterMatrix
                             {
                                 Intersections intersection = new Intersections()
                                 {
+                                    algorithm = AlgorithmSudokuSlover.Locked_Triple,
                                     NameMethodSlover = "Locked Triple",
                                     IsSingleValue = false,
                                     PosPoints = new Arrange<PosPoint>(pos[i1], pos[i2], pos[i3]),
@@ -96,6 +98,7 @@ namespace SudokuSloverHendler.BetterMatrix
                                 {
                                     Intersections intersection = new Intersections()
                                     {
+                                        algorithm = AlgorithmSudokuSlover.Naked_Quadruple,
                                         NameMethodSlover = "Naked Quadruple",
                                         IsSingleValue = false,
                                         PosPoints = new Arrange<PosPoint>(pos[i1], pos[i2], pos[i3], pos[i4]),
@@ -130,6 +133,7 @@ namespace SudokuSloverHendler.BetterMatrix
                             {
                                 Intersections intersection = new Intersections()
                                 {
+                                    algorithm = AlgorithmSudokuSlover.Hidden_Pair,
                                     NameMethodSlover = "Hidden Pair",
                                     IsSingleValue = false,
                                     PosPoints = new Arrange<PosPoint>(arr1[0], arr1[1]),
@@ -185,6 +189,7 @@ namespace SudokuSloverHendler.BetterMatrix
                                 {
                                     Intersections intersection = new Intersections()
                                     {
+                                        algorithm = AlgorithmSudokuSlover.Hidden_Triple,
                                         NameMethodSlover = "Hidden Triple",
                                         IsSingleValue = false,
                                         PosPoints = poss_num, 
@@ -248,6 +253,7 @@ namespace SudokuSloverHendler.BetterMatrix
                                     {
                                         Intersections intersection = new Intersections()
                                         {
+                                            algorithm = AlgorithmSudokuSlover.Hidden_Quadruple,
                                             NameMethodSlover = "Hidden Quadruple",
                                             IsSingleValue = false,
                                             PosPoints = poss_num, 

@@ -116,6 +116,7 @@ namespace SudokuSloverHendler
                     if (NewValue_ == 0) continue;
                     return new Intersections()
                     {
+                        algorithm = AlgorithmSudokuSlover.Full_House,
                         NameMethodSlover = "Full_House",
                         IsSingleValue = true,
                         NewValue = NewValue_,
@@ -133,6 +134,7 @@ namespace SudokuSloverHendler
                     if (NewValue_ == 0) continue;
                     return new Intersections()
                     {
+                        algorithm = AlgorithmSudokuSlover.Full_House,
                         NameMethodSlover = "Full_House",
                         IsSingleValue = true,
                         NewValue = NewValue_,
@@ -153,6 +155,7 @@ namespace SudokuSloverHendler
                         if (NewValue_ == 0) continue;
                         return new Intersections()
                         {
+                            algorithm = AlgorithmSudokuSlover.Full_House,
                             NameMethodSlover = "Full_House",
                             IsSingleValue = true,
                             NewValue = NewValue_,
@@ -176,6 +179,7 @@ namespace SudokuSloverHendler
                         if (NewValue_ == 0) continue;
                         return new Intersections()
                         {
+                            algorithm = AlgorithmSudokuSlover.Naked_Single,
                             NameMethodSlover = "Naked_Single",
                             IsSingleValue = true,
                             NewValue = NewValue_,
@@ -196,6 +200,7 @@ namespace SudokuSloverHendler
                     {
                         return new Intersections()
                         {
+                            algorithm = AlgorithmSudokuSlover.Hidden_Single,
                             NameMethodSlover = "Hidden_Single",
                             IsSingleValue = true,
                             NewValue = value,
@@ -209,6 +214,7 @@ namespace SudokuSloverHendler
                     {
                         return new Intersections()
                         {
+                            algorithm = AlgorithmSudokuSlover.Hidden_Single,
                             NameMethodSlover = "Hidden_Single",
                             IsSingleValue = true,
                             NewValue = value,
@@ -224,6 +230,7 @@ namespace SudokuSloverHendler
                         {
                             return new Intersections()
                             {
+                                algorithm = AlgorithmSudokuSlover.Hidden_Single,
                                 NameMethodSlover = "Hidden_Single",
                                 IsSingleValue = true,
                                 NewValue = value,
