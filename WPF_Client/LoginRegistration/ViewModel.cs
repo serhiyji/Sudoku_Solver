@@ -69,7 +69,7 @@ namespace WPF_Client.LoginRegistration
                 }
                 else
                 {
-                    MessageBox.Show("Invalid login or/and password");
+                    MessageBox.Show("Невірний логін або пароль");
                 }
             }
             catch (Exceptions.ExceptionConnectDatabase ex)

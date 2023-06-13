@@ -146,7 +146,7 @@ namespace WPF_Client
             }
             else
             {
-                MessageBox.Show("no solution was found");
+                MessageBox.Show("Рішення не було знайдено");
             }
         }
         private void ExecuteBtnClick()
