@@ -22,11 +22,12 @@ namespace WPF_Client
         private bool IsSudokuContains(int IdSudoku) => db.SavingSudokus.Select(i => i.ID).Contains(IdSudoku);
         public DatabaseHandler()
         {
+            this.db = new DataBaseContext();
             this.IsLogined = false;
             this.IdUser = -1;
             this.NameUser = "";
-            this.db = new DataBaseContext();
         }
+        
         public int SaveSudoku(string nameSudoku, ref BetterMatrix matrix)
         {
             if (!IsLogined) { return -1; }
@@ -125,7 +126,10 @@ namespace WPF_Client
                     catch (Exceptions.ExceptionConnectDatabase ex) { throw ex; }
                 }
             }
-            catch (Exception ex) { throw new Exceptions.ExceptionConnectDatabase("Реєстрація не відбулась / Відсутнє зєднання з інтернетом"); }
+            catch (Exception ex) 
+            { 
+                throw new Exceptions.ExceptionConnectDatabase("Реєстрація не відбулась / Відсутнє зєднання з інтернетом"); 
+            }
             return false;
         }
         public bool DeleteSudoku(int IdSudoku)
@@ -136,7 +140,10 @@ namespace WPF_Client
                 db.SaveChanges();
                 return true;
             }
-            catch (Exception ex) { throw new Exceptions.ExceptionConnectDatabase("Судоку не була збережена / Відсутнє зєднання з інтернетом"); }
+            catch (Exception ex) 
+            { 
+                throw new Exceptions.ExceptionConnectDatabase("Судоку не була збережена / Відсутнє зєднання з інтернетом"); 
+            }
             return false;
         }
         public void LogOut()

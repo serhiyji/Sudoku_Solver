@@ -17,7 +17,8 @@ namespace SudokuSloverHendler.BetterMatrix
             {
                 for (int j = 0; j < pos.Count(); j++)
                 {
-                    if ((pos[i] != pos[j]) && (this.matrix[pos[i].i, pos[i].j].set == this.matrix[pos[j].i, pos[j].j].set) && (this.matrix[pos[i].i, pos[i].j].set.Count() == 2))
+                    if ((pos[i] != pos[j]) && (this.matrix[pos[i].i, pos[i].j].set == this.matrix[pos[j].i, pos[j].j].set) 
+                        && (this.matrix[pos[i].i, pos[i].j].set.Count() == 2))
                     {
                         Intersections intersection = new Intersections()
                         {
@@ -219,8 +220,10 @@ namespace SudokuSloverHendler.BetterMatrix
                                 && count_num1 <= 4 && count_num1 >= 2 && count_num2 <= 4 && count_num2 >= 2
                                 && count_num3 <= 4 && count_num3 >= 2 && count_num4 <= 4 && count_num4 >= 2)
                             {
-                                Set<PosPoint> poss_num = new Set<PosPoint>(this.GetPossPosPointsInRange(pos1, pos2, num1)) + new Set<PosPoint>(this.GetPossPosPointsInRange(pos1, pos2, num2))
-                                                       + new Set<PosPoint>(this.GetPossPosPointsInRange(pos1, pos2, num3)) + new Set<PosPoint>(this.GetPossPosPointsInRange(pos1, pos2, num4));
+                                Set<PosPoint> poss_num = new Set<PosPoint>(this.GetPossPosPointsInRange(pos1, pos2, num1)) 
+                                    + new Set<PosPoint>(this.GetPossPosPointsInRange(pos1, pos2, num2))
+                                    + new Set<PosPoint>(this.GetPossPosPointsInRange(pos1, pos2, num3)) 
+                                    + new Set<PosPoint>(this.GetPossPosPointsInRange(pos1, pos2, num4));
                                 if (poss_num.Count() == 4)
                                 {
                                     Set<byte> set_other = new Set<byte>();

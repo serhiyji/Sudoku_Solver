@@ -33,9 +33,7 @@
                         Background="{Binding Path=PasswordLine_L, UpdateSourceTrigger=PropertyChanged}">
 
                         </Border>
-                        <TextBox Text="{Binding Path=Password_L, UpdateSourceTrigger=PropertyChanged}">
-
-                        </TextBox>
+                        <PasswordBox x:Name="passwordL" PasswordChar="*"/>
                     </DockPanel>
                     <DockPanel>
                         <Button Margin="0, 5" Padding="2" 
@@ -62,9 +60,8 @@
                         Background="{Binding Path=PasswordLine_R, UpdateSourceTrigger=PropertyChanged}">
 
                         </Border>
-                        <TextBox Text="{Binding Path=Password_R, UpdateSourceTrigger=PropertyChanged}">
+                        <PasswordBox x:Name="passwordR" PasswordChar="*"/>
 
-                        </TextBox>
                     </DockPanel>
                     <TextBlock Margin="7" TextAlignment="Center">Пошта</TextBlock>
                     <DockPanel>

@@ -22,6 +22,8 @@ namespace WPF_Client.LoginRegistration
             InitializeComponent();
             this.model = new ViewModel();
             this.model.OnClosedWindow += (s, e) => { this.Close(); };
+            this.passwordL.PasswordChanged += (s, e) => { this.model.PasswordLChanget(this.passwordL.Password); };
+            this.passwordR.PasswordChanged += (s, e) => { this.model.PasswordRChanget(this.passwordR.Password); };
             this.DataContext = model;
         }
     }

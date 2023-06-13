@@ -49,9 +49,9 @@ namespace WPF_Client.LoginRegistration
 
         public ViewModel()
         {
-            this.Login_L = "qwerty";
+            this.Login_L = "";
             this.Login_R = "";
-            this.Password_L = "qwerty";
+            this.Password_L = "";
             this.Password_R = "";
             this.Email_R = "";
             this.LoginCommand = new RelayCommand((i) => this.LoginBtnClick(), (i) => IsLoginValid_L && IsPasswordValid_L);
@@ -96,7 +96,8 @@ namespace WPF_Client.LoginRegistration
             }
         }
         #endregion
-
+        public void PasswordLChanget(string passwordL) => this.Password_L = passwordL;
+        public void PasswordRChanget(string passwordR) => this.Password_R = passwordR;
         public void CloseWindow()
         {
             this.OnClosedWindow(null, new EventArgs());
