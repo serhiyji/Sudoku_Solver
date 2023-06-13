@@ -59,6 +59,7 @@ namespace WPF_Client
                 if (sud.Count() == 1)
                 {
                     sud.First().Data = matrix.SaveSudoku();
+                    sud.First().Time = DateTime.Now;
                     db.SaveChanges();
                     return true;
                 }
