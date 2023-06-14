@@ -285,6 +285,7 @@ namespace SudokuSloverHendler
                         {
                             Intersections intersection = new Intersections()
                             {
+                                algorithm = AlgorithmSudokuSlover.Locked_Candidates_Type_Pointing,
                                 NameMethodSlover = "Locked_Candidates_Type_Pointing",
                                 IsSingleValue = false,
                                 PosPoints = this.matrix.GetPossPosPointsInSquare(pos_s, value),
@@ -312,6 +313,7 @@ namespace SudokuSloverHendler
                     {
                         Intersections intersection = new Intersections()
                         {
+                            algorithm = AlgorithmSudokuSlover.Locked_Candidates_Type_Claiming,
                             NameMethodSlover = "Locked_Candidates_Type_Claiming",
                             IsSingleValue = false,
                             PosPoints = this.matrix.GetPossPosPointsInHorizontalLine(i, value),

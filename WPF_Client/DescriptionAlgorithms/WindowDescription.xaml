@@ -11,6 +11,7 @@
         <TextBlock TextAlignment="Center" Text="{Binding Path=AlgorithmString, UpdateSourceTrigger=PropertyChanged}">
             
         </TextBlock>
-        <TextBlock Text="{Binding Path=Description, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+        <TextBlock TextWrapping="Wrap"
+            Text="{Binding Path=Description, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
     </StackPanel>
 </Window>
