@@ -14,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace WPF_Client.DescriptionAlgorithms
+namespace Sudoku_Slover.DescriptionAlgorithms
 {
     [AddINotifyPropertyChangedInterface]
     public partial class WindowDescription : Window

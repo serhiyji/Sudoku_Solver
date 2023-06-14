@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WPF_Client.DBContexts;
+using Sudoku_Slover.DBContexts;
 
-namespace WPF_Client.Migrations
+namespace Sudoku_Slover.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
     partial class DataBaseContextModelSnapshot : ModelSnapshot
@@ -19,7 +19,7 @@ namespace WPF_Client.Migrations
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("WPF_Client.DBContexts.Entities.SavingSudoku", b =>
+            modelBuilder.Entity("Sudoku_Slover.DBContexts.Entities.SavingSudoku", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -48,7 +48,7 @@ namespace WPF_Client.Migrations
                     b.ToTable("SavingSudokus");
                 });
 
-            modelBuilder.Entity("WPF_Client.DBContexts.Entities.User", b =>
+            modelBuilder.Entity("Sudoku_Slover.DBContexts.Entities.User", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -74,9 +74,9 @@ namespace WPF_Client.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("WPF_Client.DBContexts.Entities.SavingSudoku", b =>
+            modelBuilder.Entity("Sudoku_Slover.DBContexts.Entities.SavingSudoku", b =>
                 {
-                    b.HasOne("WPF_Client.DBContexts.Entities.User", "User")
+                    b.HasOne("Sudoku_Slover.DBContexts.Entities.User", "User")
                         .WithMany("SavingSudokus")
                         .HasForeignKey("IdUser")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -85,7 +85,7 @@ namespace WPF_Client.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("WPF_Client.DBContexts.Entities.User", b =>
+            modelBuilder.Entity("Sudoku_Slover.DBContexts.Entities.User", b =>
                 {
                     b.Navigation("SavingSudokus");
                 });

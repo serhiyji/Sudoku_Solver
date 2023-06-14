@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WPF_Client
+namespace Sudoku_Slover
 {
     public partial class MainWindow : Window
     {

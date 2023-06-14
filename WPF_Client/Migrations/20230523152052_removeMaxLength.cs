@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace WPF_Client.Migrations
+namespace Sudoku_Slover.Migrations
 {
     public partial class removeMaxLength : Migration
     {

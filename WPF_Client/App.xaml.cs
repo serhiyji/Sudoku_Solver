@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace WPF_Client
+namespace Sudoku_Slover
 {
     /// <summary>
     /// Interaction logic for App.xaml

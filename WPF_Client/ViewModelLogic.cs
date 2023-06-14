@@ -16,9 +16,9 @@ using System.Windows.Threading;
 using SudokuSloverHendler;
 using SudokuSloverHendler.BetterMatrix;
 using SudokuSloverHendler.Coordinates;
-using WPF_Client.Expansion;
+using Sudoku_Slover.Expansion;
 
-namespace WPF_Client
+namespace Sudoku_Slover
 {
     public partial class ViewModel
     {
@@ -111,7 +111,7 @@ namespace WPF_Client
             {
                 Application.Current.Dispatcher.Invoke(() =>
                 {
-                    WPF_Client.LoginRegistration.LoginRegistration loginWindow = new WPF_Client.LoginRegistration.LoginRegistration();
+                    Sudoku_Slover.LoginRegistration.LoginRegistration loginWindow = new Sudoku_Slover.LoginRegistration.LoginRegistration();
                     loginWindow.ShowDialog();
                 });
             });

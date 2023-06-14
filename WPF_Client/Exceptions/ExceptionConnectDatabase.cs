@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WPF_Client.Exceptions
+namespace Sudoku_Slover.Exceptions
 {
     [Serializable]
     public class ExceptionConnectDatabase : Exception

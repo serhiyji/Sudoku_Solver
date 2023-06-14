@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-using WPF_Client.DBContexts;
+using Sudoku_Slover.DBContexts;
 
-namespace WPF_Client
+namespace Sudoku_Slover
 {
     [AddINotifyPropertyChangedInterface]
     public class DatabaseHandler : Expansion.SingletonClass<DatabaseHandler>

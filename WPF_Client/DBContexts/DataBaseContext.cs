@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WPF_Client.DBContexts.Entities;
+using Sudoku_Slover.DBContexts.Entities;
 
-namespace WPF_Client.DBContexts
+namespace Sudoku_Slover.DBContexts
 {
     public class DataBaseContext : DbContext
     {

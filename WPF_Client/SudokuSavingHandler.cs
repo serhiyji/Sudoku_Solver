@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace WPF_Client
+namespace Sudoku_Slover
 {
     public class SudokuSavingHandler : Expansion.SingletonClass<SudokuSavingHandler>
     {

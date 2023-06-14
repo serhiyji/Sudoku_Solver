@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace WPF_Client.LoginRegistration
+namespace Sudoku_Slover.LoginRegistration
 {
     public partial class LoginRegistration : Window
     {

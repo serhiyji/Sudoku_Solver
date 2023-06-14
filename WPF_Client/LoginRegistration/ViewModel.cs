@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using WPF_Client.Expansion;
-using WPF_Client.DBContexts;
+using Sudoku_Slover.Expansion;
+using Sudoku_Slover.DBContexts;
 using System.Windows.Input;
 using System.Text.RegularExpressions;
 using System.Windows.Media;
 using System.Windows;
 
-namespace WPF_Client.LoginRegistration
+namespace Sudoku_Slover.LoginRegistration
 {
     [AddINotifyPropertyChangedInterface]
     public class ViewModel

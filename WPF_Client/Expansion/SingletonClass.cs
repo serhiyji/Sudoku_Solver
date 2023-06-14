@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WPF_Client.Expansion
+namespace Sudoku_Slover.Expansion
 {
     [AddINotifyPropertyChangedInterface]
     public abstract class SingletonClass<T> where T : class, new()

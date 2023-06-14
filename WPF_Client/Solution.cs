@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 using SudokuSloverHendler;
-using WPF_Client.Expansion;
+using Sudoku_Slover.Expansion;
 
-namespace WPF_Client
+namespace Sudoku_Slover
 {
     [AddINotifyPropertyChangedInterface]
     public class Solution : SingletonClass<Solution>

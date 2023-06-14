@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WPF_Client.DescriptionAlgorithms
+namespace Sudoku_Slover.DescriptionAlgorithms
 {
     public class DescriptionsForAlgorithmSudokuSlover : Expansion.SingletonClass<DescriptionsForAlgorithmSudokuSlover>
     {

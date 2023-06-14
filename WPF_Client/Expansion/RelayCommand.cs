@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace WPF_Client.Expansion
+namespace Sudoku_Slover.Expansion
 {
     public class RelayCommand : ICommand
     {

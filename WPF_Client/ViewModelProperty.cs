@@ -10,11 +10,11 @@ using System.Windows.Input;
 using SudokuSloverHendler;
 using SudokuSloverHendler.BetterMatrix;
 using SudokuSloverHendler.Coordinates;
-using WPF_Client.Expansion;
+using Sudoku_Slover.Expansion;
 using System.Windows.Controls;
 using System.Windows;
 
-namespace WPF_Client
+namespace Sudoku_Slover
 {
     [AddINotifyPropertyChangedInterface]
     public partial class ViewModel
