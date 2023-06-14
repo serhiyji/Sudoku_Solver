@@ -78,8 +78,10 @@ namespace WPF_Client
                 var sud = db.SavingSudokus.Where(i => i.ID == IdSudoku);
                 if (sud.Count() == 1)
                 {
-                    matrix.LoadSudoku(sud.First().Data);
-                    return sud.First().ID;
+                    if (matrix.LoadSudoku(sud.First().Data))
+                    {
+                        return sud.First().ID;
+                    }
                 }
             }
             catch (Exception)

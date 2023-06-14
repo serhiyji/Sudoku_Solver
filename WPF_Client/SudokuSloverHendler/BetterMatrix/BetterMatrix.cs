@@ -97,12 +97,12 @@ namespace SudokuSloverHendler.BetterMatrix
             }
             this.SetPossibleValues();
         }
-        public void LoadSudoku(string data)
+        public bool LoadSudoku(string data)
         {
             try
             {
                 var dat = data.Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
-                if (dat.Count() != size * size) return;
+                if (dat.Count() != size * size) return false;
                 int k = 0;
                 for (int i = 0; i < matrix.GetLength(0); i++)
                 {
@@ -112,10 +112,11 @@ namespace SudokuSloverHendler.BetterMatrix
                         k++;
                     }
                 }
+                return true;
             }
             catch (Exception)
             {
-
+                return false;
             }
         }
         public string SaveSudoku()

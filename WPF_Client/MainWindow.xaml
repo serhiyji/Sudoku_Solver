@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPF_Client"
         d:DataContext="{d:DesignInstance Type=local:ViewModel}"
         mc:Ignorable="d"
-        Title="Main Window" Height="650" Width="500">
+        Title="Головне вікно" Height="650" Width="500">
 
     <Window.InputBindings>
         <KeyBinding Command="{Binding Path=UpCmd}" Key="W"/>

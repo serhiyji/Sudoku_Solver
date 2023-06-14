@@ -43,7 +43,7 @@ namespace WPF_Client
 
             this.NextHintCommand = new RelayCommand((i) => NextHintBtnClick(), (i) => !this.IsExecute);
             this.ExecuteCommand = new RelayCommand((i) => ExecuteBtnClick(), (i) => this.IsExecute);
-            this.SloveUpToCommand = new RelayCommand((i) => SloveUpToBtnClick(), (i) => true);
+            this.SloveUpToCommand = new RelayCommand((i) => SloveUpToBtnClick(), (i) => !this.IsExecute);
             this.CancelCommand = new RelayCommand((i) => CancelBtnClick(), (i) => this.IsExecute);
             this.OpenDescriptionCommand = new RelayCommand((i) => OpenDescriptionBtnClick(), (i) => this.IsExecute);
 

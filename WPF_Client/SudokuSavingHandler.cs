@@ -49,8 +49,14 @@ namespace WPF_Client
             {
                 this.FullPath = openFileDialog.FileName;
                 string fileContent = File.ReadAllText(this.FullPath);
-                matrix.LoadSudoku(fileContent);
-                this.SwapPropAccess(File: true, Database: false);
+                if (matrix.LoadSudoku(fileContent))
+                {
+                    this.SwapPropAccess(File: true, Database: false);
+                }
+                else
+                {
+                    MessageBox.Show("Судоку не була завантажена з файлу / Файл не відповідє стандатру або був пошкоджений");
+                }
             }
         }
         public void SaveAsSudokuInDataBase(string nameSudoku, ref BetterMatrix matrix)
