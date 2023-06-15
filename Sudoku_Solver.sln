@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku_Slover", "WPF_Client\Sudoku_Slover.csproj", "{6271E8DD-E984-4586-B2E9-91E133D60D3F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku_Slover", "Sudoku_Slover\Sudoku_Slover.csproj", "{6271E8DD-E984-4586-B2E9-91E133D60D3F}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SudokuSloverSetup", "SudokuSloverSetup\SudokuSloverSetup.vdproj", "{F14C35D6-814A-4E55-B963-F4321E048BB9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,8 @@ Global
 		{6271E8DD-E984-4586-B2E9-91E133D60D3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6271E8DD-E984-4586-B2E9-91E133D60D3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6271E8DD-E984-4586-B2E9-91E133D60D3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F14C35D6-814A-4E55-B963-F4321E048BB9}.Debug|Any CPU.ActiveCfg = Debug
+		{F14C35D6-814A-4E55-B963-F4321E048BB9}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

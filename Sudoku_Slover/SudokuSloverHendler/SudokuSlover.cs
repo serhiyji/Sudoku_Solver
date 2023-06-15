@@ -1,7 +1,5 @@
-﻿using SudokuSloverHendler.BetterMatrix;
-using SudokuSloverHendler.Collections;
+﻿using SudokuSloverHendler.Collections;
 using SudokuSloverHendler.Coordinates;
-using SudokuSloverHendler.Matrix;
 using System;
 using System.Collections.Generic;
 using System.Linq;

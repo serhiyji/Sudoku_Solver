@@ -155,7 +155,6 @@ namespace Sudoku_Slover
             Solution.Instance.IsExecute = false;
             bool res = this.slover.Intersections_Handler(Solution.Instance.Intersection);
             Solution.Instance.Intersection.DeSelectSolution(ref this.matrix);
-            //MessageBox.Show(res.ToString());
             Solution.Instance.Intersection.SetDefoltValues();
         }
         private void SloveUpToBtnClick()
