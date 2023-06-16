@@ -194,25 +194,6 @@ namespace SudokuSloverHendler
             }
         }
 
-        /*public static bool operator ==(Intersections inter1, Intersections inter2)
-        {
-            if (inter1 is null || inter2 is null) { return false; }
-            return inter1.Equals(inter2);
-        }
-        public static bool operator !=(Intersections inter1, Intersections inter2)
-        {
-            if (inter1 is null || inter2 is null) { return false; }
-            return !inter1.Equals(inter2);
-        }
-        public override bool Equals(object obj)
-        {
-            if (obj == null) { return false; }
-            if (!(obj is Intersections)) { return false; }
-            return true;
-            //Intersections inter = (Intersections)obj;
-            //return this.PosPoints == inter.PosPoints && this.values == inter.values;
-        }*/
-
         public override int GetHashCode()
         {
             return base.GetHashCode();
