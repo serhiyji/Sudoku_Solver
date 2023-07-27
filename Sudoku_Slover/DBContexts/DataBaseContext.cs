@@ -21,15 +21,14 @@ namespace Sudoku_Slover.DBContexts
         {
             base.OnConfiguring(optionsBuilder);
 
-            optionsBuilder.UseSqlServer(@"Data Source = den1.mssql8.gear.host;
-                                        Initial Catalog = sudokudatabase74;
-                                        Integrated Security = false; 
-                                        User ID = sudokudatabase74; 
-                                        Password = Td710y~?BE6J;
-                                        Connect Timeout = 5; Encrypt = False;
-                                        TrustServerCertificate = False;
-                                        ApplicationIntent = ReadWrite;
-                                        MultiSubnetFailover = False;");
+            optionsBuilder.UseSqlServer(@"
+                    Data Source=DESKTOP-BH18TPA\SQLEXPRESS;
+                    Initial Catalog=sudokudatabase;
+                    Integrated Security=True;
+                    Connect Timeout=30;Encrypt=False;
+                    Trust Server Certificate=False;
+                    Application Intent=ReadWrite;
+                    Multi Subnet Failover=False");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

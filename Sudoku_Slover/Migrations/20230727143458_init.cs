@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Sudoku_Slover.Migrations
 {
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -30,7 +30,7 @@ namespace Sudoku_Slover.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdUser = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
-                    Data = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    Data = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Time = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>

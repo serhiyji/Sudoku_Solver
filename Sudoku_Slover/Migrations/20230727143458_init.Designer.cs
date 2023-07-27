@@ -10,8 +10,8 @@ using Sudoku_Slover.DBContexts;
 namespace Sudoku_Slover.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20230516124033_Init")]
-    partial class Init
+    [Migration("20230727143458_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,8 +30,7 @@ namespace Sudoku_Slover.Migrations
 
                     b.Property<string>("Data")
                         .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("IdUser")
                         .HasColumnType("int");
