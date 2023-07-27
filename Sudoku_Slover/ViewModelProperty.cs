@@ -32,11 +32,11 @@ namespace Sudoku_Slover
         public event EventHandler CloseWindow;
 
         // SudokusList
-        private ObservableCollection<DBContexts.Entities.SavingSudoku> sudokus { get; set; }
-        public IEnumerable<DBContexts.Entities.SavingSudoku> Sudokus => sudokus;
+        private ObservableCollection<Database.Entities.SavingSudoku> sudokus { get; set; }
+        public IEnumerable<Database.Entities.SavingSudoku> Sudokus => sudokus;
 
-        private DBContexts.Entities.SavingSudoku selectedSudoku;
-        public DBContexts.Entities.SavingSudoku SelectedSudoku
+        private Database.Entities.SavingSudoku selectedSudoku;
+        public Database.Entities.SavingSudoku SelectedSudoku
         {
             get { return selectedSudoku; }
             set { selectedSudoku = value; }

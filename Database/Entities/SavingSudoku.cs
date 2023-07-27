@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sudoku_Slover.DBContexts.Entities
+namespace Database.Entities
 {
     public partial class SavingSudoku
     {

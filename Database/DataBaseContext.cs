@@ -1,13 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SudokuSloverHendler.BetterMatrix;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Sudoku_Slover.DBContexts.Entities;
+using Database.Entities;
 
-namespace Sudoku_Slover.DBContexts
+namespace Database
 {
     public class DataBaseContext : DbContext
     {

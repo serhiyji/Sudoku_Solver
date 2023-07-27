@@ -28,7 +28,7 @@ namespace Sudoku_Slover
             this.slover = new SudokuSlover(ref this.matrix);
             this.cursorPosition = new CursorPosition(ref matrix, 4, 4);
             this.points = new ObservableCollection<SudokuSloverHendler.Points.Point>();
-            this.sudokus = new ObservableCollection<DBContexts.Entities.SavingSudoku>();
+            this.sudokus = new ObservableCollection<Database.Entities.SavingSudoku>();
             this.VisibilityListSudokus = Visibility.Hidden;
             this.nameSudokuInput = "";
 
@@ -217,7 +217,7 @@ namespace Sudoku_Slover
         private void UpdateListSavingSudukusBtnClick()
         {
             this.sudokus.Clear();
-            foreach (DBContexts.Entities.SavingSudoku sud in DatabaseHandler.Instance.GetSudokuByUser())
+            foreach (Database.Entities.SavingSudoku sud in DatabaseHandler.Instance.GetSudokuByUser())
             {
                 this.sudokus.Add(sud);
             }

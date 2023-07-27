@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Sudoku_Slover.Expansion;
-using Sudoku_Slover.DBContexts;
 using System.Windows.Input;
 using System.Text.RegularExpressions;
 using System.Windows.Media;

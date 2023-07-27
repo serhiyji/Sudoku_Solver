@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku_Slover", "Sudoku_Slo
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SudokuSloverSetup", "SudokuSloverSetup\SudokuSloverSetup.vdproj", "{F14C35D6-814A-4E55-B963-F4321E048BB9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{913F0F6E-9B64-4771-9667-D200FE139038}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{6271E8DD-E984-4586-B2E9-91E133D60D3F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F14C35D6-814A-4E55-B963-F4321E048BB9}.Debug|Any CPU.ActiveCfg = Debug
 		{F14C35D6-814A-4E55-B963-F4321E048BB9}.Release|Any CPU.ActiveCfg = Release
+		{913F0F6E-9B64-4771-9667-D200FE139038}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{913F0F6E-9B64-4771-9667-D200FE139038}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{913F0F6E-9B64-4771-9667-D200FE139038}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{913F0F6E-9B64-4771-9667-D200FE139038}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

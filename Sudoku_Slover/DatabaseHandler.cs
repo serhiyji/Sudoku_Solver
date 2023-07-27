@@ -6,8 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-
-using Sudoku_Slover.DBContexts;
+using Database;
 
 namespace Sudoku_Slover
 {
@@ -33,7 +32,7 @@ namespace Sudoku_Slover
             if (!IsLogined) { return -1; }
             try
             {
-                db.SavingSudokus.Add(new DBContexts.Entities.SavingSudoku(){
+                db.SavingSudokus.Add(new Database.Entities.SavingSudoku(){
                     Name = nameSudoku,
                     IdUser = this.IdUser,
                     Data = matrix.SaveSudoku(),
@@ -94,7 +93,7 @@ namespace Sudoku_Slover
         {
             try
             {
-                IEnumerable<DBContexts.Entities.User> users = db.Users.Where(i => i.Login == login && i.Password == password);
+                IEnumerable<Database.Entities.User> users = db.Users.Where(i => i.Login == login && i.Password == password);
                 if (users.Count() == 1)
                 {
                     this.IdUser = users.First().ID;
@@ -115,7 +114,7 @@ namespace Sudoku_Slover
             {
                 if (!IsLoginContains(login))
                 {
-                    this.db.Users.Add(new DBContexts.Entities.User()
+                    this.db.Users.Add(new Database.Entities.User()
                     {
                         Login = login,
                         Password = password,
@@ -155,9 +154,9 @@ namespace Sudoku_Slover
             this.IdUser = -1;
             this.NameUser = "";
         }
-        public IEnumerable<DBContexts.Entities.SavingSudoku> GetSudokuByUser()
+        public IEnumerable<Database.Entities.SavingSudoku> GetSudokuByUser()
         {
-            return IsLogined ? this.db.SavingSudokus.Where(s => s.IdUser == IdUser) : new List<DBContexts.Entities.SavingSudoku>();
+            return IsLogined ? this.db.SavingSudokus.Where(s => s.IdUser == IdUser) : new List<Database.Entities.SavingSudoku>();
         }
     }
 }
