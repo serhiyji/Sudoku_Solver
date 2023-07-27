@@ -58,13 +58,11 @@ namespace Sudoku_Slover
         private RelayCommand ExecuteCommand;
         private RelayCommand SloveUpToCommand;
         private RelayCommand CancelCommand;
-        private RelayCommand OpenDescriptionCommand;
 
         public ICommand NextHintCmd => NextHintCommand;
         public ICommand ExecuteCmd => ExecuteCommand;
         public ICommand SloveUpToCmd => SloveUpToCommand;
         public ICommand CancelCmd => CancelCommand;
-        public ICommand OpenDescriptionCmd => OpenDescriptionCommand;
 
 
         private RelayCommand ClearMatrixCommand;

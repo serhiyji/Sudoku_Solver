@@ -45,7 +45,6 @@ namespace Sudoku_Slover
             this.ExecuteCommand = new RelayCommand((i) => ExecuteBtnClick(), (i) => this.IsExecute);
             this.SloveUpToCommand = new RelayCommand((i) => SloveUpToBtnClick(), (i) => !this.IsExecute);
             this.CancelCommand = new RelayCommand((i) => CancelBtnClick(), (i) => this.IsExecute);
-            this.OpenDescriptionCommand = new RelayCommand((i) => OpenDescriptionBtnClick(), (i) => this.IsExecute);
 
             this.ClearMatrixCommand = new RelayCommand((i) => ClearMatrixBtnClick(), (i) => true);
 
@@ -177,17 +176,6 @@ namespace Sudoku_Slover
             Solution.Instance.IsExecute = false;
             Solution.Instance.Intersection.DeSelectSolution(ref this.matrix);
             Solution.Instance.Intersection.SetDefoltValues();
-        }
-        private async void OpenDescriptionBtnClick()
-        {
-            await Task.Run(() =>
-            {
-                Application.Current.Dispatcher.Invoke(() =>
-                {
-                    DescriptionAlgorithms.WindowDescription description = new DescriptionAlgorithms.WindowDescription(Solution.Instance.Intersection.algorithm);
-                    description.ShowDialog();
-                });
-            });
         }
         #endregion
 

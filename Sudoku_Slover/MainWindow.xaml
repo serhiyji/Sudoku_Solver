@@ -142,13 +142,8 @@
                         Command="{Binding Path=ExecuteCmd, UpdateSourceTrigger=PropertyChanged}">Застосувати рішення</Button>
                     <Button Grid.Column="0" Grid.Row="1"
                             Command="{Binding Path=SloveUpToCmd, UpdateSourceTrigger=PropertyChanged}">Вирішити  до  кінця</Button>
-
-                    <UniformGrid Grid.Row="1" Grid.Column="1" Columns="2" Rows="1">
-                        <Button Grid.Column="0" 
-                                Command="{Binding Path=CancelCmd, UpdateSourceTrigger=PropertyChanged}">Відмінити</Button>
-                        <Button Grid.Column="1" 
-                                Command="{Binding Path=OpenDescriptionCmd, UpdateSourceTrigger=PropertyChanged}">Інфо</Button>
-                    </UniformGrid>
+                    <Button Grid.Column="1" Grid.Row="1" 
+                            Command="{Binding Path=CancelCmd, UpdateSourceTrigger=PropertyChanged}">Відмінити</Button>
                 </Grid>
                 <TextBlock TextAlignment="Center" Margin="5"
                            Text="{Binding Path=Intersection.NameMethodSlover, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
