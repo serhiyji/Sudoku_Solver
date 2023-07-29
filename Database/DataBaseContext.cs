@@ -10,24 +10,17 @@ namespace Database
 {
     public class DataBaseContext : DbContext
     {
-        public DataBaseContext()
+        private readonly string connstr;
+        public DataBaseContext(string connstr)
         {
-
+            this.connstr = connstr;
         }
         public DbSet<User> Users { get; set; }
         public DbSet<SavingSudoku> SavingSudokus { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-
-            optionsBuilder.UseSqlServer(@"
-                    Data Source=DESKTOP-BH18TPA\SQLEXPRESS;
-                    Initial Catalog=sudokudatabase;
-                    Integrated Security=True;
-                    Connect Timeout=30;Encrypt=False;
-                    Trust Server Certificate=False;
-                    Application Intent=ReadWrite;
-                    Multi Subnet Failover=False");
+            optionsBuilder.UseSqlServer(connstr);
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
