@@ -43,7 +43,7 @@ namespace Sudoku_Slover
             }
             catch (Exception ex)
             {
-                throw new Exceptions.ExceptionConnectDatabase("Судоку не була збережена / Відсутнє зєднання з інтернетом");
+                throw new Exceptions.ExceptionConnectDatabase($"{ex.Message} Судоку не була збережена / Відсутнє зєднання з інтернетом");
             }
             return -1;
 
@@ -65,7 +65,7 @@ namespace Sudoku_Slover
             }
             catch (Exception ex)
             {
-                throw new Exceptions.ExceptionConnectDatabase("Судоку не була збережена / Відсутнє зєднання з інтернетом");
+                throw new Exceptions.ExceptionConnectDatabase($"{ex.Message} Судоку не була збережена / Відсутнє зєднання з інтернетом");
             }
             return false;
         }
@@ -104,7 +104,7 @@ namespace Sudoku_Slover
             }
             catch (Exception ex)
             {
-                throw new Exceptions.ExceptionConnectDatabase("Вхід не відбувся / Відсутнє зєднання з інтернетом");
+                throw new Exceptions.ExceptionConnectDatabase($"{ex.Message} Вхід не відбувся / Відсутнє зєднання з інтернетом");
             }
             return false;
         }
@@ -130,7 +130,7 @@ namespace Sudoku_Slover
             }
             catch (Exception ex) 
             { 
-                throw new Exceptions.ExceptionConnectDatabase("Реєстрація не відбулась / Відсутнє зєднання з інтернетом"); 
+                throw new Exceptions.ExceptionConnectDatabase($"{ex.Message} Реєстрація не відбулась / Відсутнє зєднання з інтернетом"); 
             }
             return false;
         }
@@ -144,9 +144,8 @@ namespace Sudoku_Slover
             }
             catch (Exception ex) 
             { 
-                throw new Exceptions.ExceptionConnectDatabase("Судоку не була збережена / Відсутнє зєднання з інтернетом"); 
+                throw new Exceptions.ExceptionConnectDatabase($"{ex.Message} Судоку не була збережена / Відсутнє зєднання з інтернетом"); 
             }
-            return false;
         }
         public void LogOut()
         {
