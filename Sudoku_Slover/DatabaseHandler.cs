@@ -21,17 +21,7 @@ namespace Sudoku_Slover
         private bool IsSudokuContains(int IdSudoku) => db.SavingSudokus.Select(i => i.ID).Contains(IdSudoku);
         public DatabaseHandler()
         {
-            string connstr = @"Data Source=den1.mssql7.gear.host;
-                Initial Catalog=sudokudatabase1;
-                User ID=sudokudatabase1;
-                Password=Fv6n33Ynq~-N;
-                Connect Timeout=30;
-                Encrypt=False;
-                Trust Server Certificate=False;
-                Application Intent=ReadWrite;
-                Multi Subnet Failover=True;";
-            MessageBox.Show(connstr);
-            this.db = new DataBaseContext(connstr);
+            this.db = new DataBaseContext();
             this.IsLogined = false;
             this.IdUser = -1;
             this.NameUser = "";
